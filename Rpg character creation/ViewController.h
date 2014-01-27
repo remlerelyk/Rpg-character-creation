@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ViewController : UIViewController
+#import "AppDelegate.h"
+@interface ViewController : UIViewController{
+       AppDelegate *appDelegate;
+    }
 @property (weak, nonatomic) IBOutlet UILabel *statDescribeLabel;
 
 @end

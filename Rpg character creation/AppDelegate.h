@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>{
-    int totalStats;
-}
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@property int totalStats;
+
 
 @property (strong, nonatomic) UIWindow *window;
 
