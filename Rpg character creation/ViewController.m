@@ -18,6 +18,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i many stat points left", appDelegate.totalStats]];
 }
 
 - (void)didReceiveMemoryWarning
