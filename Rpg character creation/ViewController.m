@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-
 @interface ViewController ()
 
 @end
@@ -38,60 +37,99 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (IBAction)femaleImageButton:(UIButton *)sender
 {
     
 }
 
+
 - (IBAction)magicMinusButton:(UIButton *)sender
 {
-    appDelegate.magic -= 1;
-    appDelegate.totalStats += 1;
+    if(appDelegate.magic >1)
+    {
+        appDelegate.magic -= 1;
+        appDelegate.totalStats += 1;
+    }
     [_magicLabel setText:[NSString stringWithFormat:@"MP: %i", appDelegate.magic]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
 }
 
 - (IBAction)magicPositiveButton:(UIButton *)sender
 {
-    
+    if(appDelegate.totalStats > 0)
+    {
+        appDelegate.magic += 1;
+        appDelegate.totalStats -= 1;
+    }
+    [_magicLabel setText:[NSString stringWithFormat:@"MP: %i", appDelegate.magic]];
+    [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
 }
 - (IBAction)strengthMinusButton:(UIButton *)sender
 {
-    appDelegate.strength -= 1;
-    appDelegate.totalStats += 1;
+    if(appDelegate.strength > 1)
+    {
+        appDelegate.strength -= 1;
+        appDelegate.totalStats += 1;
+    }
+    
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", appDelegate.strength]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
 }
 
 - (IBAction)strengthPositiveButton:(UIButton *)sender
 {
-    
+    if(appDelegate.totalStats > 0)
+    {
+        appDelegate.strength += 1;
+        appDelegate.totalStats -= 1;
+    }
+    [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", appDelegate.strength]];
+    [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
 }
 
 - (IBAction)dexterityMinusButton:(UIButton *)sender
 {
-    appDelegate.dexterity -= 1;
-    appDelegate.totalStats += 1;
+    if(appDelegate.dexterity > 1)
+    {
+        appDelegate.dexterity -= 1;
+        appDelegate.totalStats += 1;
+    }
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", appDelegate.dexterity]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
 }
 
 - (IBAction)dexterityPositiveButton:(UIButton *)sender
 {
-    
+    if(appDelegate.totalStats > 0)
+    {
+        appDelegate.dexterity += 1;
+        appDelegate.totalStats -= 1;
+    }
+    [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", appDelegate.dexterity]];
+    [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
 }
 
 - (IBAction)healthMinusButton:(UIButton *)sender
 {
-    appDelegate.health -= 1;
-    appDelegate.totalStats += 1;
+    if(appDelegate.health > 1)
+    {
+        appDelegate.health -= 1;
+        appDelegate.totalStats += 1;
+    }
     [_healthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.health]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
 }
 
 - (IBAction)healthPositiveButton:(UIButton *)sender
 {
-    
+    if(appDelegate.totalStats > 0)
+    {
+        appDelegate.health += 1;
+        appDelegate.totalStats -= 1;
+    }
+    [_healthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.health]];
+    [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
 }
 - (IBAction)maleImageButton:(UIButton *)sender
 {
