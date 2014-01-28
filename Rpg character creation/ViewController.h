@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+
 @interface ViewController : UIViewController
 {
     AppDelegate * appDelegate;
 }
+
+
 @property (weak, nonatomic) IBOutlet UILabel *statDescribeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *strengthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dexterityLabel;

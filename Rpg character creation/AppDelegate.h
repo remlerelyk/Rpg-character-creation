@@ -15,6 +15,7 @@
 @property int health;
 @property int magic;
 
+
 @property (strong, nonatomic) UIWindow *window;
 
 @end
