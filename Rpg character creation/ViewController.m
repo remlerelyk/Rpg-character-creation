@@ -17,6 +17,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    _male = YES;
+    [_characterImage setImage:[UIImage imageNamed:@"male.png"]];
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.totalStats = 10;
     appDelegate.strength = 8;
@@ -24,11 +26,11 @@
     appDelegate.health = 8;
     appDelegate.magic = 8;
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
-    
+    [_descriptionTextView setText:@""];
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", appDelegate.strength]];
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", appDelegate.dexterity]];
-    [_healthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.health]];
-    [_magicLabel setText:[NSString stringWithFormat:@"MP: %i", appDelegate.magic]];
+    [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.health]];
+    [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.magic]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,7 +42,11 @@
 
 - (IBAction)femaleImageButton:(UIButton *)sender
 {
-    
+    if(_male == YES)
+    {
+        [_characterImage setImage:[UIImage imageNamed:@"female.png"]];
+        _male = NO;
+    }
 }
 
 
@@ -51,8 +57,9 @@
         appDelegate.magic -= 1;
         appDelegate.totalStats += 1;
     }
-    [_magicLabel setText:[NSString stringWithFormat:@"MP: %i", appDelegate.magic]];
+    [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.magic]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
+    [_descriptionTextView setText:@"This stat affects how much MP or magic points you have. It also Increases damage done by spells."];
 }
 
 - (IBAction)magicPositiveButton:(UIButton *)sender
@@ -62,8 +69,9 @@
         appDelegate.magic += 1;
         appDelegate.totalStats -= 1;
     }
-    [_magicLabel setText:[NSString stringWithFormat:@"MP: %i", appDelegate.magic]];
+    [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.magic]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
+    [_descriptionTextView setText:@"This stat affects how much MP or magic points you have. It also Increases damage done by spells. When you're MP reaches 0 you can no longer cast any spells, and you must either level up or use a mana potion to restore it."];
 }
 - (IBAction)strengthMinusButton:(UIButton *)sender
 {
@@ -75,6 +83,7 @@
     
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", appDelegate.strength]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
+    [_descriptionTextView setText:@"This stat affects how much damage you deal with weapons"];
 }
 
 - (IBAction)strengthPositiveButton:(UIButton *)sender
@@ -86,6 +95,7 @@
     }
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", appDelegate.strength]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
+    [_descriptionTextView setText:@"This stat affects how much damage you deal with weapons"];
 }
 
 - (IBAction)dexterityMinusButton:(UIButton *)sender
@@ -97,6 +107,7 @@
     }
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", appDelegate.dexterity]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
+    [_descriptionTextView setText:@"This stat affects who goes first in the combat phase, it also affects your critical hit chance."];
 }
 
 - (IBAction)dexterityPositiveButton:(UIButton *)sender
@@ -108,6 +119,7 @@
     }
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", appDelegate.dexterity]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
+    [_descriptionTextView setText:@"This stat affects who goes first in the combat phase, it also affects your critical hit chance."];
 }
 
 - (IBAction)healthMinusButton:(UIButton *)sender
@@ -117,8 +129,9 @@
         appDelegate.health -= 1;
         appDelegate.totalStats += 1;
     }
-    [_healthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.health]];
+    [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.health]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
+    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to increase your health."];
 }
 
 - (IBAction)healthPositiveButton:(UIButton *)sender
@@ -128,12 +141,18 @@
         appDelegate.health += 1;
         appDelegate.totalStats -= 1;
     }
-    [_healthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.health]];
+    [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.health]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
+    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to increase your health."];
 }
 - (IBAction)maleImageButton:(UIButton *)sender
 {
-    
+    if(_male != YES)
+    {
+        [_characterImage setImage:[UIImage imageNamed:@"male.png"]];
+        _male = YES;
+    }
+
 }
 
 @end

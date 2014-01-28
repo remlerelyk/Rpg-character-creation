@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
-@interface ViewControllerMain : UIViewController{
-        AppDelegate *appDelegate;
-    }
+@interface ViewControllerMain : UIViewController
+{
+    AppDelegate *appDelegate;
+}
 
 @end

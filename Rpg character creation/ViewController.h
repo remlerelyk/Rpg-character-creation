@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dexterityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *magicLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 - (IBAction)strengthMinusButton:(UIButton *)sender;
 - (IBAction)strengthPositiveButton:(UIButton *)sender;
 - (IBAction)dexterityMinusButton:(UIButton *)sender;
@@ -33,6 +34,8 @@
 - (IBAction)femaleImageButton:(UIButton *)sender;
 - (IBAction)magicMinusButton:(UIButton *)sender;
 - (IBAction)magicPositiveButton:(UIButton *)sender;
+//User properties
+@property bool male;
 
 
 @end
