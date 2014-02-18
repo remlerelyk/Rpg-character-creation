@@ -12,7 +12,7 @@
 -(id)init{
     _exp = 0;
     _lvl = 1;
-    _expLvUP=5^_lvl;
+    _expLvUP=56*_lvl*_lvl-257*_lvl+280;
     return self;
 }
 -(void)addExperiance: (int) e{

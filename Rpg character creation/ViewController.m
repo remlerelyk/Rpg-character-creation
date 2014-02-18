@@ -31,6 +31,8 @@
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", appDelegate.dexterity]];
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.health]];
     [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.magic]];
+    _Test=[[Enemy alloc]initWithLv:2];
+    _Test2=[[Enemy alloc]initWithLv:10];
 }
 
 - (void)didReceiveMemoryWarning
