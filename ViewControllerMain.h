@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
-
-@interface ViewControllerMain : UIViewController
+#import "MagicViewController.h"
+#import "ViewController.h"
+@interface ViewControllerMain : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     AppDelegate *appDelegate;
 }
-
+@property int totalHealth;
+@property int totalMagic;
+@property int currentHealth;
+@property int currentMagic;
+@property NSMutableArray * showDataArray;
+@property (nonatomic, strong) IBOutlet UITableView * tableData;
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "Enemy.h"
-
+#import "ViewControllerMain.h"
 @interface ViewController : UIViewController
 {
     AppDelegate * appDelegate;

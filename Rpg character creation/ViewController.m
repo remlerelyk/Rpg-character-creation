@@ -23,16 +23,17 @@
     appDelegate.totalStats = 10;
     appDelegate.strength = 8;
     appDelegate.dexterity = 8;
-    appDelegate.health = 8;
-    appDelegate.magic = 8;
+    appDelegate.totalHealth = 8;
+    appDelegate.totalMagic = 8;
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
     [_descriptionTextView setText:@""];
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", appDelegate.strength]];
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", appDelegate.dexterity]];
-    [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.health]];
-    [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.magic]];
+    [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.totalHealth]];
+    [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.totalMagic]];
     _Test=[[Enemy alloc]initWithLv:2];
     _Test2=[[Enemy alloc]initWithLv:10];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,12 +55,12 @@
 
 - (IBAction)magicMinusButton:(UIButton *)sender
 {
-    if(appDelegate.magic >1)
+    if(appDelegate.totalMagic >1)
     {
-        appDelegate.magic -= 1;
+        appDelegate.totalMagic -= 1;
         appDelegate.totalStats += 1;
     }
-    [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.magic]];
+    [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.totalMagic]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
     [_descriptionTextView setText:@"This stat affects how much MP or magic points you have. It also Increases damage done by spells."];
 }
@@ -68,10 +69,10 @@
 {
     if(appDelegate.totalStats > 0)
     {
-        appDelegate.magic += 1;
+        appDelegate.totalMagic += 1;
         appDelegate.totalStats -= 1;
     }
-    [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.magic]];
+    [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", appDelegate.totalMagic]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
     [_descriptionTextView setText:@"This stat affects how much MP or magic points you have. It also Increases damage done by spells. When you're MP reaches 0 you can no longer cast any spells, and you must either level up or use a mana potion to restore it."];
 }
@@ -126,26 +127,26 @@
 
 - (IBAction)healthMinusButton:(UIButton *)sender
 {
-    if(appDelegate.health > 1)
+    if(appDelegate.totalHealth > 1)
     {
-        appDelegate.health -= 1;
+        appDelegate.totalHealth -= 1;
         appDelegate.totalStats += 1;
     }
-    [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.health]];
+    [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.totalHealth]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
-    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to increase your health."];
+    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to restore your health."];
 }
 
 - (IBAction)healthPositiveButton:(UIButton *)sender
 {
     if(appDelegate.totalStats > 0)
     {
-        appDelegate.health += 1;
+        appDelegate.totalHealth += 1;
         appDelegate.totalStats -= 1;
     }
-    [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.health]];
+    [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", appDelegate.totalHealth]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", appDelegate.totalStats]];
-    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to increase your health."];
+    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to restore your health."];
 }
 - (IBAction)maleImageButton:(UIButton *)sender
 {
@@ -155,6 +156,21 @@
         _male = YES;
     }
 
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    if ([segue.identifier isEqualToString:@"beginSegue"])
+    {
+        ViewControllerMain * destViewController = segue.destinationViewController;
+        appDelegate.currentHealth = appDelegate.totalHealth;
+        appDelegate.currentMagic = appDelegate.totalHealth;
+        destViewController.totalHealth = appDelegate.totalHealth;
+        destViewController.totalMagic = appDelegate.totalMagic;
+        destViewController.currentHealth = appDelegate.currentHealth;
+        destViewController.currentMagic = appDelegate.currentMagic;
+    }
 }
 
 @end

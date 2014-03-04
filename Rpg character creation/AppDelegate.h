@@ -12,8 +12,10 @@
 @property int totalStats;
 @property int strength;
 @property int dexterity;
-@property int health;
-@property int magic;
+@property int totalHealth;
+@property int currentHealth;
+@property int totalMagic;
+@property int currentMagic;
 
 
 @property (strong, nonatomic) UIWindow *window;
