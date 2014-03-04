@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "ViewControllerMain.h"
+#import "Player.h"
 @interface MagicViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     AppDelegate * appdelegate;

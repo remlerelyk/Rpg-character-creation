@@ -7,15 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Player.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-@property int totalStats;
-@property int strength;
-@property int dexterity;
-@property int totalHealth;
-@property int currentHealth;
-@property int totalMagic;
-@property int currentMagic;
+@property Player * Player;
 
 
 @property (strong, nonatomic) UIWindow *window;

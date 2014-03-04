@@ -19,9 +19,9 @@
 		3D8C30C31896EB4200C711A7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D8C30C11896EB4200C711A7 /* MainStoryboard.storyboard */; };
 		3D8C30C61896EB4200C711A7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C30C51896EB4200C711A7 /* ViewController.m */; };
 		3DFCBA6418BFD02000A55BA5 /* MagicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCBA6318BFD02000A55BA5 /* MagicViewController.m */; };
+		591E402218C6612800FE299F /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 591E402118C6612800FE299F /* Player.m */; };
 		59E5DAC518983A7F003E05D7 /* Female.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E5DAC318983A7F003E05D7 /* Female.png */; };
 		59E5DAC618983A7F003E05D7 /* Male.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E5DAC418983A7F003E05D7 /* Male.png */; };
-		59E5DAC918983B38003E05D7 /* Experience.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5DAC818983B38003E05D7 /* Experience.m */; };
 		59E5DACC189841E6003E05D7 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5DACB189841E6003E05D7 /* Enemy.m */; };
 		59E81DE51896EC5C008C4686 /* ViewControllerMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E81DE41896EC5C008C4686 /* ViewControllerMain.m */; };
 /* End PBXBuildFile section */
@@ -45,10 +45,10 @@
 		3D8C30C51896EB4200C711A7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3DFCBA6218BFD02000A55BA5 /* MagicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicViewController.h; sourceTree = "<group>"; };
 		3DFCBA6318BFD02000A55BA5 /* MagicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicViewController.m; sourceTree = "<group>"; };
+		591E402018C6612800FE299F /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		591E402118C6612800FE299F /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		59E5DAC318983A7F003E05D7 /* Female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Female.png; sourceTree = "<group>"; };
 		59E5DAC418983A7F003E05D7 /* Male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Male.png; sourceTree = "<group>"; };
-		59E5DAC718983B38003E05D7 /* Experience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Experience.h; sourceTree = "<group>"; };
-		59E5DAC818983B38003E05D7 /* Experience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Experience.m; sourceTree = "<group>"; };
 		59E5DACA189841E6003E05D7 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		59E5DACB189841E6003E05D7 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		59E81DE31896EC5C008C4686 /* ViewControllerMain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewControllerMain.h; path = ../ViewControllerMain.h; sourceTree = "<group>"; };
@@ -100,10 +100,10 @@
 			isa = PBXGroup;
 			children = (
 				3D8C30B81896EB4200C711A7 /* AppDelegate.h */,
-				59E5DAC718983B38003E05D7 /* Experience.h */,
-				59E5DAC818983B38003E05D7 /* Experience.m */,
 				3D8C30B91896EB4200C711A7 /* AppDelegate.m */,
 				3D8C30C11896EB4200C711A7 /* MainStoryboard.storyboard */,
+				591E402018C6612800FE299F /* Player.h */,
+				591E402118C6612800FE299F /* Player.m */,
 				3DFCBA6218BFD02000A55BA5 /* MagicViewController.h */,
 				3DFCBA6318BFD02000A55BA5 /* MagicViewController.m */,
 				59E5DACA189841E6003E05D7 /* Enemy.h */,
@@ -205,9 +205,9 @@
 				3D8C30BA1896EB4200C711A7 /* AppDelegate.m in Sources */,
 				3D8C30C61896EB4200C711A7 /* ViewController.m in Sources */,
 				59E81DE51896EC5C008C4686 /* ViewControllerMain.m in Sources */,
-				59E5DAC918983B38003E05D7 /* Experience.m in Sources */,
 				59E5DACC189841E6003E05D7 /* Enemy.m in Sources */,
 				3DFCBA6418BFD02000A55BA5 /* MagicViewController.m in Sources */,
+				591E402218C6612800FE299F /* Player.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

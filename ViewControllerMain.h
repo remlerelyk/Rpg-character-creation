@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "MagicViewController.h"
 #import "ViewController.h"
+#import "Player.h"
 @interface ViewControllerMain : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     AppDelegate *appDelegate;

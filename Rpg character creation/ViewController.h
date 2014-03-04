@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "Enemy.h"
 #import "ViewControllerMain.h"
+#import "Player.h"
 @interface ViewController : UIViewController
 {
     AppDelegate * appDelegate;

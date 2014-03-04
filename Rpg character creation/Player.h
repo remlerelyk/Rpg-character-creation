@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Experience : NSObject
-@property int exp,lvl,expLvUP;
+@interface Player : NSObject
+@property int exp,lvl,expLvUP,magic,strength,dexterity,health,curMagic,curStrength,curDexterity,curHealth,totalStats;
 -(void)addExperiance: (int) e;
+-(void)cleanStats;
 @end

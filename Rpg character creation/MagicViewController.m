@@ -30,7 +30,7 @@
 	// Do any additional setup after loading the view.
     _magicArray = [[NSMutableArray alloc] initWithObjects: @"Fire",@"Ice",@"Thunder", nil];
    
-    [manaLabel setText:[NSString stringWithFormat:@"MP:%i/%i", _currentMagic, _totalMagic]];
+    [manaLabel setText:[NSString stringWithFormat:@"MP:%i/%i", [appdelegate.Player curMagic], [appdelegate.Player magic]]];
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -63,22 +63,22 @@
     {
         NSLog(@"Fire Selected");
         NSLog(@"%i", _currentMagic);
-        appdelegate.currentMagic = _totalMagic - 2;
+        [appdelegate.Player setCurMagic:[appdelegate.Player curMagic]-2];
          NSLog(@"%i", _currentMagic);
     }
     if([[_magicArray objectAtIndex:indexPath.row] isEqual:[_magicArray objectAtIndex:1]])
     {
         NSLog(@"Ice Selected");
-        _currentMagic = _totalMagic - 3;
+        [appdelegate.Player setCurMagic:[appdelegate.Player curMagic]-3];
     }
     if([[_magicArray objectAtIndex:indexPath.row] isEqual:[_magicArray objectAtIndex:2]])
     {
         NSLog(@"Thunder Selected");
-        _currentMagic = _totalMagic - 4;
+        [appdelegate.Player setCurMagic:[appdelegate.Player curMagic]-4];
     }
     
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+/*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"magicSegueExit"])
     {
@@ -100,5 +100,5 @@
         destViewController.totalHealth = _totalHealth;
         destViewController.currentHealth = _currentHealth;
     }
-}
+}*/
 @end

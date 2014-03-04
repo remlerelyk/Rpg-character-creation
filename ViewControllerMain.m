@@ -31,10 +31,11 @@
 //Start Here
 - (void)viewDidLoad
 {
+    appDelegate = [[UIApplication sharedApplication] delegate];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     //NSLog(@"%i", _currentMagic);
-    NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", _currentHealth , _totalHealth, _currentMagic, _totalMagic];
+    NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]];
    // NSString * magic = [NSString stringWithFormat:@"MP: %i/%i", _totalMagic, _currentMagic];
     
     _showDataArray = [[NSMutableArray alloc] initWithObjects:
@@ -76,7 +77,7 @@
     
 
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+/*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"magicSegueEnter"])
     {
@@ -87,5 +88,5 @@
         destViewController.totalHealth = _totalHealth;
         destViewController.currentHealth = _currentHealth;
     }
-}
+}*/
 @end
