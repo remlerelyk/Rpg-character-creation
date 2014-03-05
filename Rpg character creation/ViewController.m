@@ -58,6 +58,7 @@
     [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", [appDelegate.Player magic]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much MP or magic points you have. It also Increases damage done by spells."];
+    [appDelegate.Player cleanStats];
 }
 
 - (IBAction)magicPositiveButton:(UIButton *)sender
@@ -70,6 +71,7 @@
     [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", [appDelegate.Player magic]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much MP or magic points you have. It also Increases damage done by spells. When you're MP reaches 0 you can no longer cast any spells, and you must either level up or use a mana potion to restore it."];
+    [appDelegate.Player cleanStats];
 }
 - (IBAction)strengthMinusButton:(UIButton *)sender
 {
@@ -82,6 +84,7 @@
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", [appDelegate.Player strength]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much damage you deal with weapons"];
+    [appDelegate.Player cleanStats];
 }
 
 - (IBAction)strengthPositiveButton:(UIButton *)sender
@@ -94,6 +97,7 @@
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", [appDelegate.Player strength]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much damage you deal with weapons"];
+    [appDelegate.Player cleanStats];
 }
 
 - (IBAction)dexterityMinusButton:(UIButton *)sender
@@ -106,6 +110,7 @@
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", [appDelegate.Player dexterity]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects who goes first in the combat phase, it also affects your critical hit chance."];
+    [appDelegate.Player cleanStats];
 }
 
 - (IBAction)dexterityPositiveButton:(UIButton *)sender
@@ -118,6 +123,7 @@
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", [appDelegate.Player dexterity]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects who goes first in the combat phase, it also affects your critical hit chance."];
+    [appDelegate.Player cleanStats];
 }
 
 - (IBAction)healthMinusButton:(UIButton *)sender
@@ -130,6 +136,7 @@
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", [appDelegate.Player health]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to restore your health."];
+    [appDelegate.Player cleanStats];
 }
 
 - (IBAction)healthPositiveButton:(UIButton *)sender
@@ -142,6 +149,7 @@
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", [appDelegate.Player health]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to restore your health."];
+    [appDelegate.Player cleanStats];
 }
 - (IBAction)maleImageButton:(UIButton *)sender
 {
