@@ -20,6 +20,13 @@
 		3D8C30C61896EB4200C711A7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C30C51896EB4200C711A7 /* ViewController.m */; };
 		3DFCBA6418BFD02000A55BA5 /* MagicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCBA6318BFD02000A55BA5 /* MagicViewController.m */; };
 		591E402218C6612800FE299F /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 591E402118C6612800FE299F /* Player.m */; };
+		591EF8BE18C7BC5E000F255E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 591EF8BD18C7BC5E000F255E /* AVFoundation.framework */; };
+		591EF8C218C7BE31000F255E /* ff7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 591EF8C018C7BE31000F255E /* ff7.mp3 */; };
+		591EF8C318C7BE31000F255E /* ff7bat.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 591EF8C118C7BE31000F255E /* ff7bat.mp3 */; };
+		591EF8C518C7BE3C000F255E /* death.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 591EF8C418C7BE3C000F255E /* death.mp3 */; };
+		591EF8C718C7BE44000F255E /* hit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 591EF8C618C7BE44000F255E /* hit.mp3 */; };
+		591EF8C918C7BE49000F255E /* cure.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 591EF8C818C7BE49000F255E /* cure.mp3 */; };
+		591EF8CB18C7BE65000F255E /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 591EF8CA18C7BE65000F255E /* music.mp3 */; };
 		59E5DAC518983A7F003E05D7 /* Female.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E5DAC318983A7F003E05D7 /* Female.png */; };
 		59E5DAC618983A7F003E05D7 /* Male.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E5DAC418983A7F003E05D7 /* Male.png */; };
 		59E5DACC189841E6003E05D7 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = 59E5DACB189841E6003E05D7 /* Enemy.m */; };
@@ -47,6 +54,13 @@
 		3DFCBA6318BFD02000A55BA5 /* MagicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicViewController.m; sourceTree = "<group>"; };
 		591E402018C6612800FE299F /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		591E402118C6612800FE299F /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		591EF8BD18C7BC5E000F255E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		591EF8C018C7BE31000F255E /* ff7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ff7.mp3; sourceTree = "<group>"; };
+		591EF8C118C7BE31000F255E /* ff7bat.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ff7bat.mp3; sourceTree = "<group>"; };
+		591EF8C418C7BE3C000F255E /* death.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = death.mp3; sourceTree = "<group>"; };
+		591EF8C618C7BE44000F255E /* hit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = hit.mp3; sourceTree = "<group>"; };
+		591EF8C818C7BE49000F255E /* cure.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cure.mp3; sourceTree = "<group>"; };
+		591EF8CA18C7BE65000F255E /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
 		59E5DAC318983A7F003E05D7 /* Female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Female.png; sourceTree = "<group>"; };
 		59E5DAC418983A7F003E05D7 /* Male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Male.png; sourceTree = "<group>"; };
 		59E5DACA189841E6003E05D7 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
@@ -60,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				591EF8BE18C7BC5E000F255E /* AVFoundation.framework in Frameworks */,
 				3D8C30AA1896EB4200C711A7 /* UIKit.framework in Frameworks */,
 				3D8C30AC1896EB4200C711A7 /* Foundation.framework in Frameworks */,
 				3D8C30AE1896EB4200C711A7 /* CoreGraphics.framework in Frameworks */,
@@ -72,6 +87,7 @@
 		3D8C309D1896EB4200C711A7 = {
 			isa = PBXGroup;
 			children = (
+				591EF8BD18C7BC5E000F255E /* AVFoundation.framework */,
 				3D8C30AF1896EB4200C711A7 /* Rpg character creation */,
 				3D8C30A81896EB4200C711A7 /* Frameworks */,
 				3D8C30A71896EB4200C711A7 /* Products */,
@@ -120,6 +136,7 @@
 		3D8C30B01896EB4200C711A7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				591EF8BF18C7BCCA000F255E /* audio */,
 				3D8C30B11896EB4200C711A7 /* Rpg character creation-Info.plist */,
 				59E5DAC318983A7F003E05D7 /* Female.png */,
 				59E5DAC418983A7F003E05D7 /* Male.png */,
@@ -131,6 +148,19 @@
 				3D8C30BF1896EB4200C711A7 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		591EF8BF18C7BCCA000F255E /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				591EF8C018C7BE31000F255E /* ff7.mp3 */,
+				591EF8C818C7BE49000F255E /* cure.mp3 */,
+				591EF8C418C7BE3C000F255E /* death.mp3 */,
+				591EF8C618C7BE44000F255E /* hit.mp3 */,
+				591EF8CA18C7BE65000F255E /* music.mp3 */,
+				591EF8C118C7BE31000F255E /* ff7bat.mp3 */,
+			);
+			name = audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +221,12 @@
 				3D8C30C31896EB4200C711A7 /* MainStoryboard.storyboard in Resources */,
 				59E5DAC518983A7F003E05D7 /* Female.png in Resources */,
 				59E5DAC618983A7F003E05D7 /* Male.png in Resources */,
+				591EF8C218C7BE31000F255E /* ff7.mp3 in Resources */,
+				591EF8C318C7BE31000F255E /* ff7bat.mp3 in Resources */,
+				591EF8C518C7BE3C000F255E /* death.mp3 in Resources */,
+				591EF8C718C7BE44000F255E /* hit.mp3 in Resources */,
+				591EF8C918C7BE49000F255E /* cure.mp3 in Resources */,
+				591EF8CB18C7BE65000F255E /* music.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

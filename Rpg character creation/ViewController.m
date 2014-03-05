@@ -29,6 +29,9 @@
     _Test=[[Enemy alloc]initWithLv:2];
     _Test2=[[Enemy alloc]initWithLv:10];
     
+    
+     
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,6 +47,7 @@
     {
         [_characterImage setImage:[UIImage imageNamed:@"female.png"]];
         _male = NO;
+        [appDelegate.Player setIsMale:FALSE];
     }
 }
 
@@ -157,6 +161,7 @@
     {
         [_characterImage setImage:[UIImage imageNamed:@"male.png"]];
         _male = YES;
+        [appDelegate.Player setIsMale:TRUE];
     }
 
 }

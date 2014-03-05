@@ -40,6 +40,14 @@
     
     _showDataArray = [[NSMutableArray alloc] initWithObjects:
                       data, nil];
+    
+    if(appDelegate.isMusic){
+    _audioPath = [[NSBundle mainBundle] pathForResource:@"ff7bat" ofType:@"mp3"];
+    _audioURL = [NSURL fileURLWithPath:_audioPath];
+    appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
+    [appDelegate.music play];
+        appDelegate.isMusic = FALSE;
+    }
 }
 -(void)viewDidAppear:(BOOL)animated
 {

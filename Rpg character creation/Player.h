@@ -10,6 +10,7 @@
 
 @interface Player : NSObject
 @property int exp,lvl,expLvUP,magic,strength,dexterity,health,curMagic,curStrength,curDexterity,curHealth,totalStats;
+@property BOOL isMale;
 -(void)addExperiance: (int) e;
 -(void)cleanStats;
 @end
