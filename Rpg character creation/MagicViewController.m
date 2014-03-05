@@ -29,14 +29,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _magicArray = [[NSMutableArray alloc] initWithObjects: @"Fire",@"Ice",@"Thunder", nil];
-   
-    [manaLabel setText:[NSString stringWithFormat:@"MP:%i/%i", [appdelegate.Player curMagic], [appdelegate.Player magic]]];
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    [manaLabel setText:[NSString stringWithFormat:@"MP:%i/%i", [appDelegate.Player curMagic], [appDelegate.Player magic]]];
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [_magicArray count];
-    
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -62,19 +61,30 @@
     if([[_magicArray objectAtIndex:indexPath.row] isEqual:[_magicArray objectAtIndex:0]])
     {
         NSLog(@"Fire Selected");
-        NSLog(@"%i", _currentMagic);
-        [appdelegate.Player setCurMagic:[appdelegate.Player curMagic]-2];
-         NSLog(@"%i", _currentMagic);
+       // NSLog(@"%i", _currentMagic);
+        if([appDelegate.Player curMagic] >= 2)
+        {
+            [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-2];
+        }
+         NSLog(@"%i", [appDelegate.Player curMagic]);
     }
     if([[_magicArray objectAtIndex:indexPath.row] isEqual:[_magicArray objectAtIndex:1]])
     {
         NSLog(@"Ice Selected");
-        [appdelegate.Player setCurMagic:[appdelegate.Player curMagic]-3];
+        if([appDelegate.Player curMagic] >= 3)
+        {
+            [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-3];
+        }
+        
     }
     if([[_magicArray objectAtIndex:indexPath.row] isEqual:[_magicArray objectAtIndex:2]])
     {
         NSLog(@"Thunder Selected");
-        [appdelegate.Player setCurMagic:[appdelegate.Player curMagic]-4];
+        if([appDelegate.Player curMagic] >= 4)
+        {
+            [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-4];
+        }
+        
     }
     
 }

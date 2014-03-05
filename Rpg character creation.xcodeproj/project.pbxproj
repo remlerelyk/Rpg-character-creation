@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D7C49AF18C7C1C100037FC2 /* positiveMagicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7C49AE18C7C1C100037FC2 /* positiveMagicViewController.m */; };
 		3D8C30AA1896EB4200C711A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8C30A91896EB4200C711A7 /* UIKit.framework */; };
 		3D8C30AC1896EB4200C711A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8C30AB1896EB4200C711A7 /* Foundation.framework */; };
 		3D8C30AE1896EB4200C711A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D8C30AD1896EB4200C711A7 /* CoreGraphics.framework */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D7C49AD18C7C1C100037FC2 /* positiveMagicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = positiveMagicViewController.h; sourceTree = "<group>"; };
+		3D7C49AE18C7C1C100037FC2 /* positiveMagicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = positiveMagicViewController.m; sourceTree = "<group>"; };
 		3D8C30A61896EB4200C711A7 /* Rpg character creation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rpg character creation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8C30A91896EB4200C711A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D8C30AB1896EB4200C711A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -108,6 +111,8 @@
 				3DFCBA6318BFD02000A55BA5 /* MagicViewController.m */,
 				59E5DACA189841E6003E05D7 /* Enemy.h */,
 				59E5DACB189841E6003E05D7 /* Enemy.m */,
+				3D7C49AD18C7C1C100037FC2 /* positiveMagicViewController.h */,
+				3D7C49AE18C7C1C100037FC2 /* positiveMagicViewController.m */,
 				3D8C30C41896EB4200C711A7 /* ViewController.h */,
 				3D8C30C51896EB4200C711A7 /* ViewController.m */,
 				59E81DE31896EC5C008C4686 /* ViewControllerMain.h */,
@@ -208,6 +213,7 @@
 				59E5DACC189841E6003E05D7 /* Enemy.m in Sources */,
 				3DFCBA6418BFD02000A55BA5 /* MagicViewController.m in Sources */,
 				591E402218C6612800FE299F /* Player.m in Sources */,
+				3D7C49AF18C7C1C100037FC2 /* positiveMagicViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

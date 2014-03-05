@@ -12,7 +12,7 @@
 #import "Player.h"
 @interface MagicViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
-    AppDelegate * appdelegate;
+    AppDelegate * appDelegate;
 }
 @property (nonatomic, strong) IBOutlet UITableView * magicTable;
 @property (nonatomic, strong) IBOutlet UILabel * manaLabel;

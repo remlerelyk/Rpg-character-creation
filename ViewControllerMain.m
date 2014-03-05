@@ -32,14 +32,18 @@
 - (void)viewDidLoad
 {
     appDelegate = [[UIApplication sharedApplication] delegate];
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    //NSLog(@"%i", _currentMagic);
+    
     NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]];
-   // NSString * magic = [NSString stringWithFormat:@"MP: %i/%i", _totalMagic, _currentMagic];
     
     _showDataArray = [[NSMutableArray alloc] initWithObjects:
                       data, nil];
+    [super viewDidLoad];
+    
+	// Do any additional setup after loading the view.
+    
+    
+    NSLog(@"%i", [appDelegate.Player curMagic]);
+    
 }
 -(void)viewDidAppear:(BOOL)animated
 {
