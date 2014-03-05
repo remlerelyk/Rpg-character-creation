@@ -63,7 +63,7 @@
 
 - (IBAction)magicPositiveButton:(UIButton *)sender
 {
-    if([appDelegate.Player magic] > 0)
+    if([appDelegate.Player totalStats] > 0)
     {
         [appDelegate.Player setMagic:[appDelegate.Player magic]+1];
         [appDelegate.Player setTotalStats:[appDelegate.Player totalStats]-1];;
