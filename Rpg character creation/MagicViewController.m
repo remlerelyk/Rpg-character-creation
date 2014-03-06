@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    _magicArray = [[NSMutableArray alloc] initWithObjects: @"Fire",@"Ice",@"Thunder", nil];
+    _magicArray = [[NSMutableArray alloc] initWithObjects: @"Fire/2MP",@"Ice/3MP",@"Thunder/4MP", nil];
     appDelegate = [[UIApplication sharedApplication] delegate];
     [manaLabel setText:[NSString stringWithFormat:@"MP:%i/%i", [appDelegate.Player curMagic], [appDelegate.Player magic]]];
     
@@ -64,7 +64,9 @@
        // NSLog(@"%i", _currentMagic);
         if([appDelegate.Player curMagic] >= 2)
         {
+            [appDelegate.Player setSpellCost:2];
             [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-2];
+            
         }
          NSLog(@"%i", [appDelegate.Player curMagic]);
     }
@@ -73,6 +75,7 @@
         NSLog(@"Ice Selected");
         if([appDelegate.Player curMagic] >= 3)
         {
+            [appDelegate.Player setSpellCost:3];
             [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-3];
         }
         
@@ -82,6 +85,7 @@
         NSLog(@"Thunder Selected");
         if([appDelegate.Player curMagic] >= 4)
         {
+            [appDelegate.Player setSpellCost:4];
             [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-4];
         }
         
@@ -90,25 +94,13 @@
 }
 /*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"magicSegueExit"])
-    {
-        NSLog(@"Exit");
-        ViewControllerMain * destViewController = segue.destinationViewController;
-        destViewController.totalMagic = _totalMagic;
-        destViewController.currentMagic = _currentMagic;
-        destViewController.totalHealth = _totalHealth;
-        destViewController.currentHealth = _currentHealth;
-    }
     if([segue.identifier isEqual:@"magicSegueMagicExit"])
     {
         
         NSLog(@"Magic Exit");
-       // NSLog(@"%i", _currentMagic);
-        ViewControllerMain * destViewController = segue.destinationViewController;
-        destViewController.totalMagic = _totalMagic;
-        destViewController.currentMagic = _currentMagic;
-        destViewController.totalHealth = _totalHealth;
-        destViewController.currentHealth = _currentHealth;
+        NSLog(@"%@",_magicType);
+        positiveMagicViewController * destViewController = segue.destinationViewController;
+        destViewController.magicType = _magicType;
     }
 }*/
 @end

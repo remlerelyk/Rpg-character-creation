@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 
 @interface Player : NSObject
-@property int exp,lvl,expLvUP,magic,strength,dexterity,health,curMagic,curStrength,curDexterity,curHealth,totalStats;
+@property int exp,lvl,expLvUP,magic,strength,dexterity,health,curMagic,curStrength,curDexterity,curHealth,totalStats, spellCost;
+@property (nonatomic, strong) NSString * curMagicSkill;
 -(void)addExperiance: (int) e;
 -(void)cleanStats;
+-(void)resetMana;
 @end

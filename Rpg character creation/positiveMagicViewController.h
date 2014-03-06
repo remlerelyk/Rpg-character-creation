@@ -12,5 +12,9 @@
 {
     AppDelegate * appDelegate;
 }
-@property (weak, nonatomic) IBOutlet UILabel *questionLabel;
+
+
+@property (weak, nonatomic) IBOutlet UITextView *questionLabel;
+- (IBAction)backButton:(UIButton *)sender;
+@property (nonatomic, strong) NSString * magicType;
 @end

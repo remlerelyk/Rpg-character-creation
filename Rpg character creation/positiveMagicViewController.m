@@ -13,7 +13,7 @@
 @end
 
 @implementation positiveMagicViewController
-
+@synthesize magicType;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,9 +29,9 @@
 	// Do any additional setup after loading the view.
     
     appDelegate = [[UIApplication sharedApplication] delegate];
+    [_questionLabel setText:[NSString stringWithFormat:@"Are you sure? spell will fizzle if\nyou don't have enough mana!"]];
     
- //   [_questionLabel setText:[NSString stringWithFormat:@"Are you sure you want to use %@ magic?",  ]];
-    
+   // NSLog(@"%i", [appDelegate.Player curMagic]);
     
 }
 
@@ -41,4 +41,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)backButton:(UIButton *)sender
+{
+    [appDelegate.Player resetMana];
+}
 @end

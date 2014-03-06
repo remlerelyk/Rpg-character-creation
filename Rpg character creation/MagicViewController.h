@@ -10,12 +10,14 @@
 #import "AppDelegate.h"
 #import "ViewControllerMain.h"
 #import "Player.h"
+#import "positiveMagicViewController.h"
 @interface MagicViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     AppDelegate * appDelegate;
 }
 @property (nonatomic, strong) IBOutlet UITableView * magicTable;
 @property (nonatomic, strong) IBOutlet UILabel * manaLabel;
+@property (nonatomic, strong) NSString * magicType;
 @property NSMutableArray * magicArray;
 @property int currentMagic;
 @property int totalMagic;

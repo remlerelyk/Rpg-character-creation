@@ -442,6 +442,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="n8Q-Om-yB5" kind="modal" id="Pfr-c0-Qgg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XFe-ef-lt5">
                                 <constraints>
@@ -456,26 +459,35 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButton:" destination="7vP-Mo-30Q" eventType="touchUpInside" id="KCK-VY-O7q"/>
+                                    <segue destination="8ID-d5-8hs" kind="modal" id="2HN-Fr-0Wn"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="kjafl;jas;lfa;lgj" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJ1-gy-Jkt">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWL-oU-nOJ">
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="IQj-Ja-stD"/>
+                                    <constraint firstAttribute="width" constant="240" id="uYm-0E-s2n"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="XFe-ef-lt5" firstAttribute="bottom" secondItem="LDr-GI-meg" secondAttribute="bottom" type="default" id="5NU-Y2-dQE"/>
                             <constraint firstItem="LDr-GI-meg" firstAttribute="top" secondItem="XFe-ef-lt5" secondAttribute="top" type="default" id="7Wm-ua-kIi"/>
                             <constraint firstItem="XFe-ef-lt5" firstAttribute="leading" secondItem="hii-NO-sn9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="87l-FG-g6f"/>
-                            <constraint firstItem="KJ1-gy-Jkt" firstAttribute="centerX" secondItem="hii-NO-sn9" secondAttribute="centerX" type="default" id="EUj-1s-Iy4"/>
                             <constraint firstItem="XFe-ef-lt5" firstAttribute="top" secondItem="hii-NO-sn9" secondAttribute="top" constant="216" id="R5y-s2-VuR"/>
-                            <constraint firstItem="KJ1-gy-Jkt" firstAttribute="top" secondItem="hii-NO-sn9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Tox-gl-9f2"/>
+                            <constraint firstItem="bWL-oU-nOJ" firstAttribute="top" secondItem="hii-NO-sn9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="YV5-an-pIY"/>
+                            <constraint firstItem="bWL-oU-nOJ" firstAttribute="centerX" secondItem="hii-NO-sn9" secondAttribute="centerX" type="default" id="uLE-YE-34Y"/>
                             <constraint firstAttribute="trailing" secondItem="LDr-GI-meg" secondAttribute="trailing" constant="11" id="zQk-1Z-ovT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="questionLabel" destination="KJ1-gy-Jkt" id="wzp-cP-h9B"/>
+                        <outlet property="questionLabel" destination="bWL-oU-nOJ" id="SiE-7y-Qa5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YS6-uC-49u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -520,7 +532,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
-                                            <segue destination="7vP-Mo-30Q" kind="modal" id="c4c-eD-M34"/>
+                                            <segue destination="7vP-Mo-30Q" kind="modal" identifier="magicSegueMagicExit" id="c4c-eD-M34"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -647,7 +659,8 @@
         <class className="positiveMagicViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/positiveMagicViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="questionLabel" candidateClass="UILabel"/>
+                <relationship kind="action" name="backButton:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="questionLabel" candidateClass="UITextView"/>
             </relationships>
         </class>
     </classes>
@@ -657,6 +670,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="S8d-7N-a08"/>
+        <segue reference="2HN-Fr-0Wn"/>
+        <segue reference="Pfr-c0-Qgg"/>
     </inferredMetricsTieBreakers>
 </document>

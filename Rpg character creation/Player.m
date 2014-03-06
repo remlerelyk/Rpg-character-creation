@@ -35,6 +35,9 @@
     _curMagic = _magic;
     _curHealth = _health;
 }
-
+-(void)resetMana
+{
+    _curMagic = _curMagic + _spellCost;
+}
 
 @end
