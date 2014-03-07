@@ -355,6 +355,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="Attack:" destination="n8Q-Om-yB5" eventType="touchUpInside" id="2bb-oN-pnN"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5qt-en-eTV">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -637,6 +640,7 @@
         <class className="ViewControllerMain" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewControllerMain.h"/>
             <relationships>
+                <relationship kind="action" name="Attack:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tableData" candidateClass="UITableView"/>
             </relationships>
         </class>

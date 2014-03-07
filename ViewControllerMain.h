@@ -21,6 +21,11 @@
 @property int currentMagic;
 @property NSMutableArray * showDataArray;
 @property (nonatomic, strong) IBOutlet UITableView * tableData;
+- (IBAction)Attack:(UIButton *)sender;
 @property NSString * audioPath,* hit,* death,* cure,* uwin;
 @property NSURL * audioURL,* audioSFX;
+@property UIImageView *Animation, * baddy;
+@property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
+@property UIImage * Temp,* uIdle;
+@property BOOL buttonPress;
 @end
