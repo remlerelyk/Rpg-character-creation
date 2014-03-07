@@ -644,7 +644,6 @@
                 <relationship kind="outlet" name="tableData" candidateClass="UITableView"/>
             </relationships>
         </class>
-<<<<<<< HEAD
         <class className="positiveMagicViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/positiveMagicViewController.h"/>
             <relationships>
@@ -652,8 +651,6 @@
                 <relationship kind="outlet" name="questionLabel" candidateClass="UITextView"/>
             </relationships>
         </class>
-=======
->>>>>>> FETCH_HEAD
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
