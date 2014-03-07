@@ -21,4 +21,6 @@
 @property int currentMagic;
 @property NSMutableArray * showDataArray;
 @property (nonatomic, strong) IBOutlet UITableView * tableData;
+@property NSString * audioPath,* hit,* death,* cure,* uwin;
+@property NSURL * audioURL,* audioSFX;
 @end

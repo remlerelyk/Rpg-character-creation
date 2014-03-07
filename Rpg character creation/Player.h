@@ -9,8 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface Player : NSObject
+<<<<<<< HEAD
 @property int exp,lvl,expLvUP,magic,strength,dexterity,health,curMagic,curStrength,curDexterity,curHealth,totalStats, spellCost;
 @property (nonatomic, strong) NSString * curMagicSkill;
+=======
+@property int exp,lvl,expLvUP,magic,strength,dexterity,health,curMagic,curStrength,curDexterity,curHealth,totalStats;
+@property BOOL isMale;
+>>>>>>> FETCH_HEAD
 -(void)addExperiance: (int) e;
 -(void)cleanStats;
 -(void)resetMana;

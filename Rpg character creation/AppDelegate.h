@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "Player.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 @property Player * Player;
-
-
+@property AVAudioPlayer * music;
+@property AVAudioPlayer * sfx;
+@property BOOL isMusic;
 @property (strong, nonatomic) UIWindow *window;
 
 @end
