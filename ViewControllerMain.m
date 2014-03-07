@@ -46,8 +46,6 @@
     
     _showDataArray = [[NSMutableArray alloc] initWithObjects:
                       data, nil];
-<<<<<<< HEAD
-<<<<<<< HEAD
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view.
@@ -55,14 +53,11 @@
     
     NSLog(@"%i", [appDelegate.Player curMagic]);
     
-=======
-    
-=======
+
     _hit = [[NSBundle mainBundle] pathForResource:@"hit" ofType:@"mp3"];
     _death = [[NSBundle mainBundle] pathForResource:@"death" ofType:@"mp3"];
     _uwin = [[NSBundle mainBundle] pathForResource:@"ff7" ofType:@"mp3"];
     _cure = [[NSBundle mainBundle] pathForResource:@"cure" ofType:@"mp3"];
->>>>>>> FETCH_HEAD
     if(appDelegate.isMusic){
     _audioPath = [[NSBundle mainBundle] pathForResource:@"ff7bat" ofType:@"mp3"];
     _audioURL = [NSURL fileURLWithPath:_audioPath];
@@ -95,7 +90,6 @@
         }
         [_Animation setImage:_uIdle];
     }
->>>>>>> FETCH_HEAD
 }
 -(void)viewDidAppear:(BOOL)animated
 {
