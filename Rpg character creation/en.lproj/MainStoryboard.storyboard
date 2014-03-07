@@ -385,6 +385,11 @@
                                     <segue destination="8ID-d5-8hs" kind="modal" identifier="magicSegueEnter" modalTransitionStyle="crossDissolve" id="XGa-bc-BIm"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqp-TN-P0D">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -392,9 +397,11 @@
                             <constraint firstItem="jf7-N2-LRj" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="F10-hN-eNw"/>
                             <constraint firstAttribute="bottom" secondItem="jf7-N2-LRj" secondAttribute="bottom" constant="107" id="Fc2-eE-v7n"/>
                             <constraint firstAttribute="bottom" secondItem="P55-ht-GV7" secondAttribute="bottom" constant="86" id="H2L-Ey-rZX"/>
+                            <constraint firstItem="hqp-TN-P0D" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="20" symbolic="YES" type="default" id="IDt-rl-d6e"/>
                             <constraint firstItem="uEr-MP-QtC" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="TdL-cJ-LC4"/>
                             <constraint firstAttribute="bottom" secondItem="uEr-MP-QtC" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Y9M-9l-2am"/>
                             <constraint firstItem="5qt-en-eTV" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="atb-kA-6Sd"/>
+                            <constraint firstAttribute="trailing" secondItem="hqp-TN-P0D" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="eKV-Ob-1Na"/>
                             <constraint firstItem="P55-ht-GV7" firstAttribute="trailing" secondItem="vTk-Db-Fjz" secondAttribute="trailing" type="default" id="kFR-bJ-K2Z"/>
                             <constraint firstAttribute="bottom" secondItem="5qt-en-eTV" secondAttribute="bottom" constant="63" id="nBs-B5-T5n"/>
                             <constraint firstItem="uEr-MP-QtC" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="uKe-8r-EWc"/>
@@ -402,6 +409,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="gGl-2Z-AgG"/>
                     <connections>
+                        <outlet property="enemyDamageLabel" destination="hqp-TN-P0D" id="HSW-VF-NSa"/>
                         <outlet property="tableData" destination="P55-ht-GV7" id="YKw-8b-JRi"/>
                     </connections>
                 </viewController>
@@ -602,63 +610,13 @@
             <point key="canvasLocation" x="1112" y="62"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="MagicViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MagicViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="magicTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dexterityMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="dexterityPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="femaleImageButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="healthMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="healthPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="magicMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="magicPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="maleImageButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="strengthMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="strengthPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="characterImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="descriptionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="dexterityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="magicLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="magicMinusButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="magicPositiveButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="statDescribeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="strengthLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewControllerMain" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewControllerMain.h"/>
-            <relationships>
-                <relationship kind="action" name="Attack:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="tableData" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="positiveMagicViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/positiveMagicViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backButton:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="questionLabel" candidateClass="UITextView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2HN-Fr-0Wn"/>
         <segue reference="Pfr-c0-Qgg"/>
+        <segue reference="XGa-bc-BIm"/>
     </inferredMetricsTieBreakers>
 </document>

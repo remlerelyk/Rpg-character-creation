@@ -10,7 +10,7 @@
 
 @interface Enemy : NSObject
 
-@property int Str,Dex,Con,Lvl,Exp;
+@property int Str,Dex,Con,Lvl,Exp,enemyDamge;
 -(id)initWithLv:(int) Lvl;
-
+-(int) enemyAttack;
 @end

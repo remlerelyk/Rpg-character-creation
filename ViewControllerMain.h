@@ -14,6 +14,7 @@
 @interface ViewControllerMain : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     AppDelegate *appDelegate;
+    Enemy * badEnemy;
 }
 @property int totalHealth;
 @property int totalMagic;
@@ -26,6 +27,7 @@
 @property NSURL * audioURL,* audioSFX;
 @property UIImageView *Animation, * baddy;
 @property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
+@property (weak, nonatomic) IBOutlet UILabel *enemyDamageLabel;
 @property UIImage * Temp,* uIdle;
 @property BOOL buttonPress;
 @end

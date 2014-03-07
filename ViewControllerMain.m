@@ -38,10 +38,13 @@
     
     _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 64, 64)];
     [self.view addSubview: _baddy];
-    
-    
+    if(appDelegate.enemyAlive == FALSE)
+    {
+        badEnemy = [[Enemy alloc] initWithLv:100];
+    }
+    [_enemyDamageLabel setText:@""];
     appDelegate = [[UIApplication sharedApplication] delegate];
-    
+
     NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]];
     
     _showDataArray = [[NSMutableArray alloc] initWithObjects:
@@ -91,11 +94,6 @@
         [_Animation setImage:_uIdle];
     }
 }
--(void)viewDidAppear:(BOOL)animated
-{
-    
-    // NSLog(@"%i", _currentMagic);
-}
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
         return [_showDataArray count];
@@ -139,8 +137,10 @@
         destViewController.currentHealth = _currentHealth;
     }
 }*/
-- (IBAction)Attack:(UIButton *)sender {
-    if (_buttonPress) {
+- (IBAction)Attack:(UIButton *)sender
+{
+    if (_buttonPress)
+    {
         _buttonPress = FALSE;
         [_Animation setAnimationImages:_uWalk];
         _Animation.animationDuration = 1.0f;
@@ -167,6 +167,11 @@
                         
                         
                         _Temp = [_baddy image];
+                    // Start enemy attack
+                    [badEnemy enemyAttack];
+                    [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [badEnemy enemyDamge]]];
+                    //enemy attack animation
+                    
                         [UIView animateWithDuration:0.1 animations:^{
                             _baddy.alpha = 1.0f;
                             _baddy.alpha = 0.0f;

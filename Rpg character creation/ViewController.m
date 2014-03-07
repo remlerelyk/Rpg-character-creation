@@ -28,6 +28,7 @@
     [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", [appDelegate.Player magic]]];
     _Test=[[Enemy alloc]initWithLv:2];
     _Test2=[[Enemy alloc]initWithLv:10];
+    appDelegate.enemyAlive = FALSE;
     
     
      
