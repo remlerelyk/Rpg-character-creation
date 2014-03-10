@@ -11,6 +11,7 @@
 #import "MagicViewController.h"
 #import "ViewController.h"
 #import "Player.h"
+#import "Enemy.h"
 @interface ViewControllerMain : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     AppDelegate *appDelegate;
@@ -28,4 +29,5 @@
 @property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
 @property UIImage * Temp,* uIdle;
 @property BOOL buttonPress;
+@property Enemy * bob;
 @end

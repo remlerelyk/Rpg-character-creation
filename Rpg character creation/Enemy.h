@@ -10,7 +10,9 @@
 
 @interface Enemy : NSObject
 
-@property int Str,Dex,Con,Lvl,Exp;
--(id)initWithLv:(int) Lvl;
+@property int Str,Dex,Con,Lvl,Exp,width,height;
+@property UIImage * img;
+-(id)initWithLv:(int) Lvl andWith:(UIImage *) img;
+-(id)initMechanic:(int) Lvl;
 
 @end

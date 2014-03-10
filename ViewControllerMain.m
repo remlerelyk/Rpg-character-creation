@@ -31,16 +31,16 @@
 //Start Here
 - (void)viewDidLoad
 {
-    
+    appDelegate = [[UIApplication sharedApplication] delegate];
+    _bob=[[Enemy alloc]initWithLv:[appDelegate.Player lvl] andWith:[UIImage imageNamed:@"Female.png"]];
     _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
     [self.view addSubview: _Animation];
-    _Animation.image = [UIImage imageNamed:@"Male.png"];
     
-    _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 64, 64)];
+    _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, _bob.width, _bob.height)];
     [self.view addSubview: _baddy];
+
     
-    
-    appDelegate = [[UIApplication sharedApplication] delegate];
+
     
     NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]];
     
@@ -58,13 +58,16 @@
     _death = [[NSBundle mainBundle] pathForResource:@"death" ofType:@"mp3"];
     _uwin = [[NSBundle mainBundle] pathForResource:@"ff7" ofType:@"mp3"];
     _cure = [[NSBundle mainBundle] pathForResource:@"cure" ofType:@"mp3"];
+    
+    
     if(appDelegate.isMusic){
     _audioPath = [[NSBundle mainBundle] pathForResource:@"ff7bat" ofType:@"mp3"];
     _audioURL = [NSURL fileURLWithPath:_audioPath];
     appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
     [appDelegate.music play];
         appDelegate.isMusic = FALSE;
-        
+        appDelegate.music.numberOfLoops = -1;
+        }
         
 
 
@@ -75,7 +78,7 @@
         _fWin = [[NSArray alloc] initWithArray:[NSArray arrayWithObjects:[UIImage imageNamed:@"ff2.gif"],[UIImage imageNamed:@"fw.gif"], nil]];
         _buttonPress = TRUE;
         [super viewDidLoad];
-        [_baddy setImage:[UIImage imageNamed:@"baddy.gif"]];
+        [_baddy setImage:[_bob img]];
         
         
         
@@ -89,7 +92,7 @@
             _uIdle = [UIImage imageNamed:@"ff2.gif"];
         }
         [_Animation setImage:_uIdle];
-    }
+    
 }
 -(void)viewDidAppear:(BOOL)animated
 {

@@ -26,9 +26,7 @@
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", [appDelegate.Player dexterity]]];
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", [appDelegate.Player health]]];
     [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", [appDelegate.Player magic]]];
-    _Test=[[Enemy alloc]initWithLv:2];
-    _Test2=[[Enemy alloc]initWithLv:10];
-    
+    [appDelegate.Player setIsMale:TRUE];
     
      
     
