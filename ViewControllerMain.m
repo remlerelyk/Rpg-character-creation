@@ -40,7 +40,7 @@
     [self.view addSubview: _baddy];
     if(appDelegate.enemyAlive == FALSE)
     {
-        badEnemy = [[Enemy alloc] initWithLv:100];
+        badEnemy = [[Enemy alloc] initWithLv:10];
     }
     [_enemyDamageLabel setText:@""];
     appDelegate = [[UIApplication sharedApplication] delegate];
