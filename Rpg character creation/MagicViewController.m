@@ -15,6 +15,30 @@
 @implementation MagicViewController
 @synthesize magicTable;
 @synthesize manaLabel;
+
+/*
+Spell = spell cost
+ Fire = 2
+ Ice = 3
+ Thunder = 4
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+*/
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

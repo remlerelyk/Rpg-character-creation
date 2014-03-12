@@ -39,6 +39,18 @@
         appDelegate.Enemy = _bob;
         
     }
+    if(appDelegate.Player.spellCost > 0)
+    {
+       
+        [appDelegate.Player playerSpell];
+        NSLog(@"%i", appDelegate.Player.spellDamage);
+        NSLog(@"%i", appDelegate.Player.spellCost);
+        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
+        [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Enemy.Con]];
+        
+        
+        appDelegate.Player.spellCost = 0;
+    }
     [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Enemy.Con]];
         _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
     [self.view addSubview: _Animation];
@@ -131,6 +143,7 @@
             _Animation.frame = CGRectMake(64,20,48,48);
         }completion:^(BOOL finished) {
             if (finished){
+                // start doing damage
                 [appDelegate.Player playerAttack];
                 NSLog(@"%i", appDelegate.Player.playerDamage);
                 [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.playerDamage];
@@ -167,7 +180,8 @@
                         if(appDelegate.Player.curHealth <= 0)
                         {
                             //Show game over animation
-                            
+                            UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+                            [gameOverAlert show];
                         }
 
                         

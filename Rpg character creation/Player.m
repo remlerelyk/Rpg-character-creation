@@ -44,5 +44,10 @@
     _playerDamage = (_strength *1.33) + ((arc4random() % (_lvl * 2)) + 1);
     return _playerDamage;
 }
+-(int)playerSpell
+{
+    _spellDamage = (_magic * (_spellCost));
+    return _spellDamage;
+}
 
 @end

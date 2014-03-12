@@ -10,7 +10,7 @@
 
 @interface Player : NSObject
 
-@property int exp,lvl,expLvUP,magic,strength,dexterity,health,curMagic,curStrength,curDexterity,curHealth,totalStats, spellCost, playerDamage;
+@property int exp,lvl,expLvUP,magic,strength,dexterity,health,curMagic,curStrength,curDexterity,curHealth,totalStats, spellCost, playerDamage, spellDamage;
 @property (nonatomic, strong) NSString * curMagicSkill;
 
 @property BOOL isMale;
@@ -19,5 +19,5 @@
 -(void)cleanStats;
 -(void)resetMana;
 -(int)playerAttack;
-
+-(int)playerSpell;
 @end
