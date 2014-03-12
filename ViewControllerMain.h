@@ -24,7 +24,7 @@
 - (IBAction)Attack:(UIButton *)sender;
 @property NSString * audioPath,* hit,* death,* cure,* uwin;
 @property NSURL * audioURL,* audioSFX;
-@property UIImageView *Animation, * baddy;
+@property UIImageView *Animation, * baddy,* magicLayer;
 @property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
 @property (weak, nonatomic) IBOutlet UILabel *enemyDamageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *enemyHealthLabel;
