@@ -13,7 +13,6 @@
 @end
 
 @implementation ViewControllerMain
-@synthesize tableData;
 
 
 // Don't worry about this
@@ -31,24 +30,28 @@
 //Start Here
 - (void)viewDidLoad
 {
-    
-    _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
-    [self.view addSubview: _Animation];
-    _Animation.image = [UIImage imageNamed:@"Male.png"];
-    
-    _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 64, 64)];
-    [self.view addSubview: _baddy];
+    appDelegate = [[UIApplication sharedApplication] delegate];
     if(appDelegate.enemyAlive == FALSE)
     {
-        badEnemy = [[Enemy alloc] initWithLv:10];
+        _bob = [[Enemy alloc]initWithLv:10 /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
+        appDelegate.enemyAlive = TRUE;
+        appDelegate.Enemy = _bob;
+        
     }
+    [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Enemy.Con]];
+        _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
+    [self.view addSubview: _Animation];
+    
+    _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, appDelegate.Enemy.width, appDelegate.Enemy.height)];
+    [self.view addSubview: _baddy];
+    
+    
+    
     [_enemyDamageLabel setText:@""];
-    appDelegate = [[UIApplication sharedApplication] delegate];
 
     NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]];
+    [_dataLabel setText:data];
     
-    _showDataArray = [[NSMutableArray alloc] initWithObjects:
-                      data, nil];
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view.
@@ -61,13 +64,16 @@
     _death = [[NSBundle mainBundle] pathForResource:@"death" ofType:@"mp3"];
     _uwin = [[NSBundle mainBundle] pathForResource:@"ff7" ofType:@"mp3"];
     _cure = [[NSBundle mainBundle] pathForResource:@"cure" ofType:@"mp3"];
+    
+    
     if(appDelegate.isMusic){
     _audioPath = [[NSBundle mainBundle] pathForResource:@"ff7bat" ofType:@"mp3"];
     _audioURL = [NSURL fileURLWithPath:_audioPath];
     appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
     [appDelegate.music play];
         appDelegate.isMusic = FALSE;
-        
+        appDelegate.music.numberOfLoops = -1;
+        }
         
 
 
@@ -78,7 +84,7 @@
         _fWin = [[NSArray alloc] initWithArray:[NSArray arrayWithObjects:[UIImage imageNamed:@"ff2.gif"],[UIImage imageNamed:@"fw.gif"], nil]];
         _buttonPress = TRUE;
         [super viewDidLoad];
-        [_baddy setImage:[UIImage imageNamed:@"baddy.gif"]];
+        [_baddy setImage:[appDelegate.Enemy img]];
         
         
         
@@ -92,39 +98,9 @@
             _uIdle = [UIImage imageNamed:@"ff2.gif"];
         }
         [_Animation setImage:_uIdle];
-    }
-}
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-        return [_showDataArray count];
-
-}
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString * simpleTableIdentifier = @"DataCell";
-
-    
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-
-    if(cell == nil)
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-
-    //NSLog([_showDataArray objectAtIndex:indexPath.row]);
-    cell.textLabel.text = [_showDataArray objectAtIndex:indexPath.row];
-
-   
-    return cell;
     
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //[_testLabel setText:[NSString stringWithFormat:@"%ld", (long)tableView.indexPathForSelectedRow.]];
-    
 
-}
 /*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"magicSegueEnter"])
@@ -142,6 +118,7 @@
     if (_buttonPress)
     {
         _buttonPress = FALSE;
+        //start your attack
         [_Animation setAnimationImages:_uWalk];
         _Animation.animationDuration = 1.0f;
         [_Animation startAnimating];
@@ -150,6 +127,15 @@
             _Animation.frame = CGRectMake(64,20,48,48);
         }completion:^(BOOL finished) {
             if (finished){
+                [appDelegate.Player playerAttack];
+                NSLog(@"%i", appDelegate.Player.playerDamage);
+                [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.playerDamage];
+                [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Enemy.Con]];
+                if(appDelegate.Enemy.Con <= 0)
+                {
+                    [appDelegate.Enemy setCon:0];
+                    appDelegate.enemyAlive = FALSE;
+                }
                 _Animation.transform = CGAffineTransformMakeScale(-1, 1);
                 _audioSFX = [NSURL fileURLWithPath:_hit];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
@@ -168,8 +154,20 @@
                         
                         _Temp = [_baddy image];
                     // Start enemy attack
-                    [badEnemy enemyAttack];
-                    [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [badEnemy enemyDamge]]];
+                    if(appDelegate.enemyAlive == TRUE)
+                    {
+                        [appDelegate.Enemy enemyAttack];
+                        [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
+                        [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
+                        [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]]];
+                        if(appDelegate.Player.curHealth <= 0)
+                        {
+                            //Show game over animation
+                            
+                        }
+
+                        
+                    }
                     //enemy attack animation
                     
                         [UIView animateWithDuration:0.1 animations:^{

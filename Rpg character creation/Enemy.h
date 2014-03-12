@@ -10,7 +10,11 @@
 
 @interface Enemy : NSObject
 
-@property int Str,Dex,Con,Lvl,Exp,enemyDamge;
--(id)initWithLv:(int) Lvl;
--(int) enemyAttack;
+@property int Str,Dex,Con,Lvl,Exp,width,height, enemyDamage;
+@property UIImage * img;
+
+-(int)enemyAttack;
+-(id)initWithLv:(int) Lvl andWith:(UIImage *) img;
+-(id)initMechanic:(int) Lvl;
+
 @end

@@ -31,13 +31,18 @@
 }
 -(void)cleanStats{
     _curDexterity=_dexterity;
-    _curStrength = _strength;
+    _curStrength =_strength;
     _curMagic = _magic;
     _curHealth = _health;
 }
 -(void)resetMana
 {
     _curMagic = _curMagic + _spellCost;
+}
+-(int)playerAttack
+{
+    _playerDamage = (_strength *1.33) + ((arc4random() % (_lvl * 2)) + 1);
+    return _playerDamage;
 }
 
 @end
