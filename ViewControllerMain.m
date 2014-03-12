@@ -30,6 +30,7 @@
 //Start Here
 - (void)viewDidLoad
 {
+        appDelegate = [[UIApplication sharedApplication] delegate];
     NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
     switch (appDelegate.Player.spellCost) {
         case 2:
@@ -49,7 +50,7 @@
             NSLog(@"U haz no makics");
             break;
     }
-    appDelegate = [[UIApplication sharedApplication] delegate];
+
     if(appDelegate.enemyAlive == FALSE)
     {
         _bob = [[Enemy alloc]initWithLv:10 /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
@@ -130,6 +131,7 @@
         }
         [_Animation setImage:_uIdle];
 
+    
     
 }
 
