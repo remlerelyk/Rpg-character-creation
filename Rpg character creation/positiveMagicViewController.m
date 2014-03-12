@@ -31,7 +31,8 @@
     appDelegate = [[UIApplication sharedApplication] delegate];
     [_questionLabel setText:[NSString stringWithFormat:@"Are you sure? spell will fizzle if\nyou don't have enough mana!"]];
     
-   // NSLog(@"%i", [appDelegate.Player curMagic]);
+    NSLog(@"Curent magic is %i", [appDelegate.Player curMagic]);
+    NSLog(@"Spell cost is %i", [appDelegate.Player spellCost]);
     
 }
 

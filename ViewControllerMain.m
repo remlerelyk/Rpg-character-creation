@@ -30,7 +30,25 @@
 //Start Here
 - (void)viewDidLoad
 {
-    
+    NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
+    switch (appDelegate.Player.spellCost) {
+        case 2:
+            
+            break;
+        case 3:
+            
+            break;
+        case 4:
+            _magicLayer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 220, 300)];
+            [_magicLayer setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"t1.png"],[UIImage imageNamed:@"t2.png"],[UIImage imageNamed:@"t3.png"],[UIImage imageNamed:@"t4.png"],[UIImage imageNamed:@"t5.png"],[UIImage imageNamed:@"t6.png"],[UIImage imageNamed:@"t7.png"],[UIImage imageNamed:@"t8.png"],[UIImage imageNamed:@"t9.png"],[UIImage imageNamed:@"t10.png"],[UIImage imageNamed:@"t11.png"],[UIImage imageNamed:@"t12.png"],[UIImage imageNamed:@"t13.png"],[UIImage imageNamed:@"t14.png"],[UIImage imageNamed:@"t15.png"],[UIImage imageNamed:@"t16.png"], nil]];
+            [_magicLayer setAnimationRepeatCount:1];
+            [_magicLayer startAnimating];
+            break;
+            
+        default:
+            NSLog(@"U haz no makics");
+            break;
+    }
     appDelegate = [[UIApplication sharedApplication] delegate];
     if(appDelegate.enemyAlive == FALSE)
     {
@@ -111,9 +129,7 @@
             _uIdle = [UIImage imageNamed:@"ff2.gif"];
         }
         [_Animation setImage:_uIdle];
-    if ([appDelegate.Player spellCost] == 4) {
-        [self addThunder];
-    }
+
     
 }
 
@@ -254,10 +270,6 @@
     
     return coloredImage;
 }
--(void)addThunder{
-    _magicLayer = [[UIImageView alloc] initWithFrame:CGRectMake(-58, -224, 220, 300)];
-    [_magicLayer setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"t1.png"],[UIImage imageNamed:@"t2.png"],[UIImage imageNamed:@"t3.png"],[UIImage imageNamed:@"t4.png"],[UIImage imageNamed:@"t5.png"],[UIImage imageNamed:@"t6.png"],[UIImage imageNamed:@"t7.png"],[UIImage imageNamed:@"t8.png"],[UIImage imageNamed:@"t9.png"],[UIImage imageNamed:@"t10.png"],[UIImage imageNamed:@"t11.png"],[UIImage imageNamed:@"t12.png"],[UIImage imageNamed:@"t13.png"],[UIImage imageNamed:@"t14.png"],[UIImage imageNamed:@"t15.png"],[UIImage imageNamed:@"t16.png"], nil]];
-    [_magicLayer startAnimating];
-}
+
 
 @end

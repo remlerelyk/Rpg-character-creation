@@ -111,6 +111,7 @@ Spell = spell cost
         {
             [appDelegate.Player setSpellCost:4];
             [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-4];
+            NSLog(@"MJ %i",[appDelegate.Player spellCost]);
         }
         
     }
