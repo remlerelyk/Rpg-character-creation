@@ -40,9 +40,10 @@
             
             break;
         case 4:
-            _magicLayer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 220, 300)];
+            _magicLayer = [[UIImageView alloc] initWithFrame:CGRectMake(-58, -224, 220, 300)];
+
+            [self.view addSubview: _magicLayer];
             [_magicLayer setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"t1.png"],[UIImage imageNamed:@"t2.png"],[UIImage imageNamed:@"t3.png"],[UIImage imageNamed:@"t4.png"],[UIImage imageNamed:@"t5.png"],[UIImage imageNamed:@"t6.png"],[UIImage imageNamed:@"t7.png"],[UIImage imageNamed:@"t8.png"],[UIImage imageNamed:@"t9.png"],[UIImage imageNamed:@"t10.png"],[UIImage imageNamed:@"t11.png"],[UIImage imageNamed:@"t12.png"],[UIImage imageNamed:@"t13.png"],[UIImage imageNamed:@"t14.png"],[UIImage imageNamed:@"t15.png"],[UIImage imageNamed:@"t16.png"], nil]];
-            [_magicLayer setAnimationRepeatCount:1];
             [_magicLayer startAnimating];
             break;
             
@@ -50,12 +51,14 @@
             NSLog(@"U haz no makics");
             break;
     }
-
     if(appDelegate.enemyAlive == FALSE)
     {
         _bob = [[Enemy alloc]initWithLv:10 /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
+        [_baddy setAlpha:0.8];
+          [UIView commitAnimations];
+        [_baddy startAnimating];
         
     }
     if(appDelegate.Player.spellCost > 0)
@@ -71,6 +74,8 @@
         appDelegate.Player.spellCost = 0;
     }
     [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Enemy.Con]];
+    _charHP = [[UILabel alloc]init];
+    [self.view addSubview:_charHP];
         _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
     [self.view addSubview: _Animation];
     
@@ -86,6 +91,7 @@
     
     [super viewDidLoad];
     
+
 	// Do any additional setup after loading the view.
     
     
@@ -170,6 +176,7 @@
                 {
                     [appDelegate.Enemy setCon:0];
                     appDelegate.enemyAlive = FALSE;
+                    
                 }
                 _Animation.transform = CGAffineTransformMakeScale(-1, 1);
                 _audioSFX = [NSURL fileURLWithPath:_hit];
@@ -188,22 +195,43 @@
                         
                         
                         _Temp = [_baddy image];
+                    
+                    if (appDelegate.enemyAlive==FALSE) {
+                        _audioSFX = [NSURL fileURLWithPath:_death];
+                        appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                        [appDelegate.sfx play];
+                        [UIView animateWithDuration:1.5 animations:^{
+                            [_baddy setImage:[self applyColor:[UIColor redColor] toImage:[_baddy image]]];
+                            _baddy.alpha = 0.5;
+                            _baddy.alpha = 0.0;
+                            _buttonPress = FALSE;
+                        }completion:^(BOOL uwin){if (uwin){
+                            [_Animation stopAnimating];
+                            [_Animation setAnimationImages:_uWin];
+                            _Animation.animationDuration = 1.0f;
+                            [_Animation startAnimating];
+                            [appDelegate.music stop];
+                            _audioURL = [NSURL fileURLWithPath:_uwin];
+                            appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
+                            [appDelegate.music play];
+                        }}]; }else{
                     // Start enemy attack
-                    if(appDelegate.enemyAlive == TRUE)
-                    {
+                    
                         [appDelegate.Enemy enemyAttack];
-                        [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
+                        [self text:appDelegate.Enemy.enemyDamage];
                         [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
                         [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]]];
-                        if(appDelegate.Player.curHealth <= 0)
+                        /*if(appDelegate.Player.curHealth <= 0)
                         {
                             //Show game over animation
                             UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
                             [gameOverAlert show];
-                        }
+                        }*/
 
                         
-                    }
+                            
+                        
+                   
                     //enemy attack animation
                     
                         [UIView animateWithDuration:0.1 animations:^{
@@ -240,11 +268,11 @@
                         }];}
                     [_Animation stopAnimating];
                     [_Animation setImage:_uIdle];
-                    
+                }
                 }];
                 
             }}];
-    }
+            }
 }
 - (UIImage *)applyColor:(UIColor *)color toImage:(UIImage*)toImage{
     UIGraphicsBeginImageContextWithOptions(toImage.size, NO, toImage.scale);
@@ -271,6 +299,29 @@
     CGColorSpaceRelease(space);
     
     return coloredImage;
+}
+- (void)text:(int)damage
+{
+    _charHP.textColor = [UIColor redColor];
+    [UIView animateWithDuration:0.5 animations:^{
+        _charHP.frame = CGRectMake(240,64,48,48);
+        [_charHP setText:[NSString stringWithFormat:@"%i",damage]];
+        _charHP.frame = CGRectMake(240,58,48,48);
+    }completion:^(BOOL Rise){if(Rise){
+        [UIView animateWithDuration:2.0 animations:^{
+            [_charHP setAlpha:1.0];
+            [_charHP setAlpha:0.0];
+        }completion:^(BOOL allDone){if(allDone){
+            [_charHP setText:@""];
+            _buttonPress=TRUE;
+            _charHP.frame = CGRectMake(240,64,48,48);
+        }
+        }
+         
+         ];
+    }
+    }
+     ];
 }
 
 
