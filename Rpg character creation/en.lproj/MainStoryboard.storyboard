@@ -363,11 +363,6 @@
                                     <segue destination="8ID-d5-8hs" kind="modal" identifier="magicSegueEnter" modalTransitionStyle="crossDissolve" id="XGa-bc-BIm"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hqp-TN-P0D">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5L-Tw-qMt">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -387,7 +382,11 @@
                             <constraint firstAttribute="trailing" secondItem="hxW-Ne-nqU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="DFE-Zv-AnK"/>
                             <constraint firstItem="jf7-N2-LRj" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="F10-hN-eNw"/>
                             <constraint firstAttribute="bottom" secondItem="jf7-N2-LRj" secondAttribute="bottom" constant="107" id="Fc2-eE-v7n"/>
+<<<<<<< HEAD
+                            <constraint firstItem="G5L-Tw-qMt" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="74" id="H5F-1o-6Rr"/>
+=======
                             <constraint firstItem="G5L-Tw-qMt" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="88" id="Qao-GE-CmI"/>
+>>>>>>> FETCH_HEAD
                             <constraint firstItem="uEr-MP-QtC" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="TdL-cJ-LC4"/>
                             <constraint firstAttribute="bottom" secondItem="uEr-MP-QtC" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Y9M-9l-2am"/>
                             <constraint firstItem="5qt-en-eTV" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="atb-kA-6Sd"/>
@@ -402,7 +401,6 @@
                     <navigationItem key="navigationItem" id="gGl-2Z-AgG"/>
                     <connections>
                         <outlet property="dataLabel" destination="hxW-Ne-nqU" id="McR-3P-HK0"/>
-                        <outlet property="enemyDamageLabel" destination="hqp-TN-P0D" id="HSW-VF-NSa"/>
                         <outlet property="enemyHealthLabel" destination="G5L-Tw-qMt" id="HHb-3O-OJC"/>
                     </connections>
                 </viewController>
