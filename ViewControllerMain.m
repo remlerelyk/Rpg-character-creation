@@ -61,14 +61,13 @@
         _bob = [[Enemy alloc]initWithLv:appDelegate.Player.lvl /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
-<<<<<<< HEAD
+
         [_enemyDamageLabel setText:@""];
-=======
+
         [_baddy setAlpha:0.8];
           [UIView commitAnimations];
         [_baddy startAnimating];
         
->>>>>>> FETCH_HEAD
         
     }
     if(appDelegate.Player.spellCost > 0)
@@ -113,13 +112,13 @@
     
         appDelegate.Player.spellCost = 0;
     }
-<<<<<<< HEAD
+
     [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Enemy.Con]];
     _charHP = [[UILabel alloc]init];
     [self.view addSubview:_charHP];
-=======
+
     
->>>>>>> FETCH_HEAD
+
         _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
     [self.view addSubview: _Animation];
 
@@ -270,13 +269,11 @@
                         [appDelegate.Enemy enemyAttack];
                         [self text:appDelegate.Enemy.enemyDamage];
                         [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
-<<<<<<< HEAD
+
                         [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]]];
                         /*if(appDelegate.Player.curHealth <= 0)
-=======
                         [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.magic]];
                         if(appDelegate.Player.curHealth <= 0)
->>>>>>> FETCH_HEAD
                         {
                             //Show game over animation
                             UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
