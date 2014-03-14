@@ -58,10 +58,10 @@
 
     if(appDelegate.enemyAlive == FALSE)
     {
-        _bob = [[Enemy alloc]initWithLv:10 /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
+        _bob = [[Enemy alloc]initWithLv:appDelegate.Player.lvl /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
-        
+        [_enemyDamageLabel setText:@""];
         
     }
     if(appDelegate.Player.spellCost > 0)
@@ -75,8 +75,10 @@
         NSLog(@"Enemy Exp: %i", appDelegate.Enemy.Exp);
         if(appDelegate.Enemy.Con <= 0)
         {
+            [_enemyDamageLabel setText:@""];
             [appDelegate.Enemy setCon:0];
             [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
+            NSLog(@"Enemy Dead");
             NSLog(@"PLayer Exp: %i", appDelegate.Player.exp);
             if(appDelegate.Player.lvl > 1)
             {
@@ -202,6 +204,7 @@
                 [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
                 if(appDelegate.Enemy.Con <= 0)
                 {
+                    NSLog(@"Enemy Dead");
                     [appDelegate.Enemy setCon:0];
                     [appDelegate.Player setExp:appDelegate.Player.exp + appDelegate.Enemy.Exp];
                     if(appDelegate.Player.lvl >1)
