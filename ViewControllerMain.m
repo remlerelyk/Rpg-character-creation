@@ -206,7 +206,7 @@
                 {
                     NSLog(@"Enemy Dead");
                     [appDelegate.Enemy setCon:0];
-                    [appDelegate.Player setExp:appDelegate.Player.exp + appDelegate.Enemy.Exp];
+                    [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
                     if(appDelegate.Player.lvl >1)
                     {
                         NSLog(@"Level UP");
