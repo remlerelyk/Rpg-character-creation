@@ -32,6 +32,11 @@
 {
         appDelegate = [[UIApplication sharedApplication] delegate];
     NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
+    if(appDelegate.enemyAlive == FALSE)
+    {
+        [_enemyDamageLabel setText:@""];
+        [_enemyHealthLabel setText:[NSString stringWithFormat:@""]];
+    }
     switch (appDelegate.Player.spellCost) {
         case 2:
             
@@ -57,33 +62,62 @@
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
         
+        
     }
     if(appDelegate.Player.spellCost > 0)
     {
        
         [appDelegate.Player playerSpell];
-        NSLog(@"%i", appDelegate.Player.spellDamage);
-        NSLog(@"%i", appDelegate.Player.spellCost);
+        NSLog(@"Spell Damge:%i", appDelegate.Player.spellDamage);
+        NSLog(@"Spell Cost: %i", appDelegate.Player.spellCost);
         [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
-        [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Enemy.Con]];
+        [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+        NSLog(@"Enemy Exp: %i", appDelegate.Enemy.Exp);
+        if(appDelegate.Enemy.Con <= 0)
+        {
+            [appDelegate.Enemy setCon:0];
+            [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
+            NSLog(@"PLayer Exp: %i", appDelegate.Player.exp);
+            if(appDelegate.Player.lvl > 1)
+            {
+                NSLog(@"Level UP %i", appDelegate.Player.lvl);
+            }
+            appDelegate.enemyAlive = FALSE;
+        }
         
+        //start animation
+        if(appDelegate.enemyAlive == TRUE)
+        {
+            [appDelegate.Enemy enemyAttack];
+            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
+            [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
         
+            if(appDelegate.Player.curHealth <= 0)
+            {
+                //Show game over animation
+                UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+                [gameOverAlert show];
+            }
+        }
+
+    
         appDelegate.Player.spellCost = 0;
     }
-    [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Enemy.Con]];
+    
         _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
     [self.view addSubview: _Animation];
-    
+
     _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, appDelegate.Enemy.width, appDelegate.Enemy.height)];
     [self.view addSubview: _baddy];
-    
-    
-    
-    [_enemyDamageLabel setText:@""];
 
-    NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]];
-    [_dataLabel setText:data];
+
+
     
+
+    NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.magic];
+    [_dataLabel setText:data];
+
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view.
@@ -165,10 +199,15 @@
                 [appDelegate.Player playerAttack];
                 NSLog(@"%i", appDelegate.Player.playerDamage);
                 [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.playerDamage];
-                [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Enemy.Con]];
+                [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
                 if(appDelegate.Enemy.Con <= 0)
                 {
                     [appDelegate.Enemy setCon:0];
+                    [appDelegate.Player setExp:appDelegate.Player.exp + appDelegate.Enemy.Exp];
+                    if(appDelegate.Player.lvl >1)
+                    {
+                        NSLog(@"Level UP");
+                    }
                     appDelegate.enemyAlive = FALSE;
                 }
                 _Animation.transform = CGAffineTransformMakeScale(-1, 1);
@@ -194,7 +233,7 @@
                         [appDelegate.Enemy enemyAttack];
                         [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
                         [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
-                        [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", [appDelegate.Player curHealth], [appDelegate.Player health],[appDelegate.Player curMagic], [appDelegate.Player magic]]];
+                        [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.magic]];
                         if(appDelegate.Player.curHealth <= 0)
                         {
                             //Show game over animation
