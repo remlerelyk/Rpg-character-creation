@@ -17,16 +17,21 @@
     _health = 1;
     _magic = 1;
     _totalStats = 20;
-    _expLvUP = 5;
+    _expLvUP = 1;
     self.cleanStats;
     return self;
 }
--(void)addExperiance: (int) e{
+-(void)addExperiance: (int) e
+{
     _exp = _exp + e;
-    while(_exp>_expLvUP)
+    NSLog(@"Exp:%i", _exp);
+    while(_exp >= _expLvUP)
     {
+        
         _lvl++;
-        _expLvUP=5^_lvl;
+        NSLog(@"Lvl: %i", _lvl);
+        _expLvUP=(_lvl + 1);
+        NSLog(@"Exp to Lvl up:%i", _expLvUP);
         self.cleanStats;
         _totalStats += 5;
     }
@@ -38,6 +43,7 @@
     _curStrength =_strength;
     _curMagic = _totalMagic;
     _curHealth = _totalHealth;
+    _exp = 0;
 }
 -(void)resetMana
 {
@@ -45,7 +51,7 @@
 }
 -(int)playerAttack
 {
-    _playerDamage = (_strength *1.33) + ((arc4random() % (_lvl * 2)) + 1);
+    _playerDamage = (_strength *2) + ((arc4random() % (_lvl * 2)) + 1);
     return _playerDamage;
 }
 -(int)playerSpell

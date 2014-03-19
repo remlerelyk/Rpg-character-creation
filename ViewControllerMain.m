@@ -31,6 +31,10 @@
 - (void)viewDidLoad
 {
         appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    /*[appDelegate.Player setCurHealth:9000];
+     [appDelegate.Player setTotalHealth:9000];*/
+    _buttonPress = FALSE;
     NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
     if(appDelegate.enemyAlive == FALSE)
     {
@@ -61,9 +65,12 @@
         _bob = [[Enemy alloc]initWithLv:appDelegate.Player.lvl /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
+        /*[appDelegate.Enemy setCon:9000];
+        [appDelegate.Enemy setStr:300];*/
         [_enemyDamageLabel setText:@""];
         
     }
+    [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.Enemy.Con]];
     if(appDelegate.Player.spellCost > 0)
     {
        
@@ -79,11 +86,6 @@
             [appDelegate.Enemy setCon:0];
             [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
             NSLog(@"Enemy Dead");
-            NSLog(@"PLayer Exp: %i", appDelegate.Player.exp);
-            if(appDelegate.Player.lvl > 1)
-            {
-                NSLog(@"Level UP %i", appDelegate.Player.lvl);
-            }
             appDelegate.enemyAlive = FALSE;
         }
         
@@ -92,6 +94,7 @@
         {
             [appDelegate.Enemy enemyAttack];
             [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
+             [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
             [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
             [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
         
@@ -150,7 +153,7 @@
         _mWin = [[NSArray alloc] initWithArray:[NSArray arrayWithObjects:[UIImage imageNamed:@"mf2.gif"],[UIImage imageNamed:@"mw.gif"], nil]];
         _fWalk = [[NSArray alloc]initWithArray:[NSArray arrayWithObjects:[UIImage imageNamed:@"ff1.gif"],[UIImage imageNamed:@"ff2.gif"],[UIImage imageNamed:@"ff3.gif"],[UIImage imageNamed:@"ff4.gif"], nil]];
         _fWin = [[NSArray alloc] initWithArray:[NSArray arrayWithObjects:[UIImage imageNamed:@"ff2.gif"],[UIImage imageNamed:@"fw.gif"], nil]];
-        _buttonPress = TRUE;
+       // _buttonPress = TRUE;
         [super viewDidLoad];
         [_baddy setImage:[appDelegate.Enemy img]];
         
@@ -185,9 +188,9 @@
 }*/
 - (IBAction)Attack:(UIButton *)sender
 {
-    if (_buttonPress)
+    if (_buttonPress == FALSE)
     {
-        _buttonPress = FALSE;
+        _buttonPress = TRUE;
         //start your attack
         [_Animation setAnimationImages:_uWalk];
         _Animation.animationDuration = 1.0f;
@@ -207,11 +210,9 @@
                     NSLog(@"Enemy Dead");
                     [appDelegate.Enemy setCon:0];
                     [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
-                    if(appDelegate.Player.lvl >1)
-                    {
-                        NSLog(@"Level UP");
-                    }
                     appDelegate.enemyAlive = FALSE;
+                    _buttonPress = TRUE;
+                    
                 }
                 _Animation.transform = CGAffineTransformMakeScale(-1, 1);
                 _audioSFX = [NSURL fileURLWithPath:_hit];
@@ -236,7 +237,9 @@
                         [appDelegate.Enemy enemyAttack];
                         [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
                         [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
+                        [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
                         [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.magic]];
+                        _buttonPress = FALSE;
                         if(appDelegate.Player.curHealth <= 0)
                         {
                             //Show game over animation
@@ -274,7 +277,7 @@
                                         
                                     }completion:^(BOOL finished) {if(finished){
                                         [_Animation setAnimationImages:[NSArray arrayWithObject:_uIdle]];
-                                        _buttonPress = TRUE;
+                                        //_buttonPress = TRUE;
                                     }
                                     }];
                                 }}];

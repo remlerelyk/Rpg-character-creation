@@ -30,7 +30,7 @@
     {
         _Con = 1;
     }
-    _Exp=56*(_Lvl-1)*(_Lvl-1)-257*(_Lvl-1)+280;
+    _Exp=(_Lvl);
     NSLog(@"Lvl:%i\nStr:%i\nDex:%i\nCon:%i\n",_Lvl,_Str,_Dex,_Con);
     return self;
 }
