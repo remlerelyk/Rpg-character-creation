@@ -26,7 +26,7 @@
     while(_exp>_expLvUP)
     {
         _lvl++;
-        _expLvUP=5^_lvl;
+        _expLvUP=_lvl+1;
         self.cleanStats;
         _totalStats += 5;
     }
@@ -38,6 +38,7 @@
     _curStrength =_strength;
     _curMagic = _totalMagic;
     _curHealth = _totalHealth;
+    _exp =0;
 }
 -(void)resetMana
 {

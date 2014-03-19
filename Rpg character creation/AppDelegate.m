@@ -14,6 +14,7 @@
     // Override point for customization after application launch.
     _Player = [[Player alloc]init];
     _isMusic = TRUE;
+    _isFin = FALSE;
     return YES;
 }
 							
