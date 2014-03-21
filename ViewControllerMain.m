@@ -31,18 +31,10 @@
 - (void)viewDidLoad
 {
         appDelegate = [[UIApplication sharedApplication] delegate];
-<<<<<<< HEAD
     
     /*[appDelegate.Player setCurHealth:9000];
      [appDelegate.Player setTotalHealth:9000];*/
     _buttonPress = FALSE;
-=======
-    if(appDelegate.isFin){
-        _baddy = NULL;
-        _Animation = NULL;
-    }
-
->>>>>>> FETCH_HEAD
     NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
     if(appDelegate.enemyAlive == FALSE)
     {
@@ -98,7 +90,8 @@
         }
         
         //start animation
-        if (appDelegate.enemyAlive == TRUE) {
+        if(appDelegate.enemyAlive == TRUE)
+        {
             [appDelegate.Enemy enemyAttack];
             [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
              [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
@@ -239,32 +232,7 @@
                         
                         _Temp = [_baddy image];
                     // Start enemy attack
-                    if(appDelegate.enemyAlive == FALSE)
-                    {
-                        _audioSFX = [NSURL fileURLWithPath:_death];
-                        appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
-                        [appDelegate.sfx play];
-                        [UIView animateWithDuration:1.5 animations:^{
-                            [_baddy setImage:[self applyColor:[UIColor redColor] toImage:[_baddy image]]];
-                            _baddy.alpha = 0.5;
-                            _baddy.alpha = 0.0;
-                            _buttonPress = FALSE;
-                        }completion:^(BOOL uwin){if (uwin){
-                            [_Animation stopAnimating];
-                            [_Animation setAnimationImages:_uWin];
-                            _Animation.animationDuration = 1.0f;
-                            [_Animation startAnimating];
-                            [appDelegate.music stop];
-                            _audioURL = [NSURL fileURLWithPath:_uwin];
-                            appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
-                            [appDelegate.music play];
-                            
-                            [self performSegueWithIdentifier: @"Uwin" sender: self];
-                            
-                            
-                        }}];
-                    }
-                        else
+                    if(appDelegate.enemyAlive == TRUE)
                     {
                         [appDelegate.Enemy enemyAttack];
                         [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
@@ -280,7 +248,7 @@
                         }
 
                         
-                    
+                    }
                     //enemy attack animation
                     
                         [UIView animateWithDuration:0.1 animations:^{
@@ -309,12 +277,7 @@
                                         
                                     }completion:^(BOOL finished) {if(finished){
                                         [_Animation setAnimationImages:[NSArray arrayWithObject:_uIdle]];
-<<<<<<< HEAD
                                         //_buttonPress = TRUE;
-=======
-                                        _buttonPress = TRUE;
-                                        
->>>>>>> FETCH_HEAD
                                     }
                                     }];
                                 }}];
@@ -323,7 +286,6 @@
                     [_Animation stopAnimating];
                     [_Animation setImage:_uIdle];
                     
-                    }
                 }];
                 
             }}];

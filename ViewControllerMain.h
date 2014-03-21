@@ -33,5 +33,4 @@
 @property UIImage * Temp,* uIdle;
 @property BOOL buttonPress;
 @property Enemy * bob;
-@property UIViewController * toViewController;
 @end
