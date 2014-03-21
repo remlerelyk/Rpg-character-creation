@@ -29,9 +29,13 @@
     {
         
         _lvl++;
+<<<<<<< HEAD
         NSLog(@"Lvl: %i", _lvl);
         _expLvUP=(_lvl + 1);
         NSLog(@"Exp to Lvl up:%i", _expLvUP);
+=======
+        _expLvUP=_lvl+1;
+>>>>>>> FETCH_HEAD
         self.cleanStats;
         _totalStats += 5;
     }
@@ -43,7 +47,11 @@
     _curStrength =_strength;
     _curMagic = _totalMagic;
     _curHealth = _totalHealth;
+<<<<<<< HEAD
     _exp = 0;
+=======
+    _exp =0;
+>>>>>>> FETCH_HEAD
 }
 -(void)resetMana
 {
