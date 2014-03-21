@@ -277,6 +277,7 @@
                                         
                                     }completion:^(BOOL finished) {if(finished){
                                         [_Animation setAnimationImages:[NSArray arrayWithObject:_uIdle]];
+                                        [self performSegueWithIdentifier:@"Uwin" sender:self];
                                         //_buttonPress = TRUE;
                                     }
                                     }];
