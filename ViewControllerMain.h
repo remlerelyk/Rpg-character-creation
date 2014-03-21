@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *enemyDamageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *enemyHealthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dataLabel;
+@property (weak, nonatomic) IBOutlet UILabel *attackLabel;
 
 @property UIImage * Temp,* uIdle;
 @property BOOL buttonPress;
