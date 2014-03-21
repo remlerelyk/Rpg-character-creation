@@ -378,20 +378,31 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAe-de-beX">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="SHb-ds-DAK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jf7-N2-LRj" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="6m3-Pg-8CG"/>
                             <constraint firstItem="hxW-Ne-nqU" firstAttribute="leading" secondItem="jf7-N2-LRj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="7LJ-rX-YUY"/>
                             <constraint firstItem="G5L-Tw-qMt" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9vE-sz-xBz"/>
+                            <constraint firstItem="EAe-de-beX" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" type="default" id="9x3-qq-EjN"/>
                             <constraint firstAttribute="trailing" secondItem="hxW-Ne-nqU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="DFE-Zv-AnK"/>
                             <constraint firstItem="jf7-N2-LRj" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="F10-hN-eNw"/>
                             <constraint firstAttribute="bottom" secondItem="jf7-N2-LRj" secondAttribute="bottom" constant="107" id="Fc2-eE-v7n"/>
+                            <constraint firstItem="EAe-de-beX" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="PSf-4y-kMO"/>
                             <constraint firstItem="G5L-Tw-qMt" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="88" id="Qao-GE-CmI"/>
                             <constraint firstItem="uEr-MP-QtC" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="TdL-cJ-LC4"/>
                             <constraint firstAttribute="bottom" secondItem="uEr-MP-QtC" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Y9M-9l-2am"/>
                             <constraint firstItem="5qt-en-eTV" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="atb-kA-6Sd"/>
                             <constraint firstAttribute="trailing" secondItem="hqp-TN-P0D" secondAttribute="trailing" constant="39" id="ato-mC-Phr"/>
+                            <constraint firstAttribute="trailing" secondItem="EAe-de-beX" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="bkt-eT-jnz"/>
                             <constraint firstItem="hxW-Ne-nqU" firstAttribute="baseline" secondItem="jf7-N2-LRj" secondAttribute="baseline" type="default" id="c15-dP-sBx"/>
                             <constraint firstItem="G5L-Tw-qMt" firstAttribute="baseline" secondItem="hqp-TN-P0D" secondAttribute="baseline" type="default" id="j1S-ol-jWT"/>
                             <constraint firstItem="hxW-Ne-nqU" firstAttribute="centerY" secondItem="jf7-N2-LRj" secondAttribute="centerY" type="default" id="l9s-PB-31Z"/>
@@ -401,10 +412,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="gGl-2Z-AgG"/>
                     <connections>
+                        <outlet property="attackLabel" destination="EAe-de-beX" id="mYc-8A-fpJ"/>
                         <outlet property="dataLabel" destination="hxW-Ne-nqU" id="McR-3P-HK0"/>
                         <outlet property="enemyDamageLabel" destination="hqp-TN-P0D" id="HSW-VF-NSa"/>
                         <outlet property="enemyHealthLabel" destination="G5L-Tw-qMt" id="HHb-3O-OJC"/>
-                        <segue destination="rjk-lQ-hcN" kind="modal" identifier="Uwin" modalTransitionStyle="crossDissolve" id="x15-Z0-dvG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yfZ-0x-eQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -554,6 +565,7 @@
             </objects>
             <point key="canvasLocation" x="2544" y="451"/>
         </scene>
+<<<<<<< HEAD
         <!--Exp Controller-->
         <scene sceneID="BEl-Lw-6VJ">
             <objects>
@@ -568,6 +580,8 @@
             </objects>
             <point key="canvasLocation" x="1716" y="-767"/>
         </scene>
+=======
+>>>>>>> FETCH_HEAD
         <!--Overdrive View Controller-->
         <scene sceneID="fX0-D9-3xM">
             <objects>
@@ -658,9 +672,6 @@
         </scene>
     </scenes>
     <classes>
-        <class className="ExpController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExpController.h"/>
-        </class>
         <class className="MagicViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MagicViewController.h"/>
             <relationships>
@@ -706,6 +717,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewControllerMain.h"/>
             <relationships>
                 <relationship kind="action" name="Attack:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="attackLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="dataLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="enemyDamageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="enemyHealthLabel" candidateClass="UILabel"/>
@@ -725,7 +737,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="XGa-bc-BIm"/>
         <segue reference="V29-TQ-YAN"/>
+        <segue reference="XGa-bc-BIm"/>
     </inferredMetricsTieBreakers>
 </document>
