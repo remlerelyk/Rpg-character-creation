@@ -565,7 +565,7 @@
             </objects>
             <point key="canvasLocation" x="2544" y="451"/>
         </scene>
-<<<<<<< HEAD
+
         <!--Exp Controller-->
         <scene sceneID="BEl-Lw-6VJ">
             <objects>
@@ -580,8 +580,7 @@
             </objects>
             <point key="canvasLocation" x="1716" y="-767"/>
         </scene>
-=======
->>>>>>> FETCH_HEAD
+
         <!--Overdrive View Controller-->
         <scene sceneID="fX0-D9-3xM">
             <objects>
