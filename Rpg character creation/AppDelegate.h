@@ -18,5 +18,6 @@
 @property BOOL enemyAlive;
 @property Enemy * Enemy;
 @property (strong, nonatomic) UIWindow *window;
+@property int expLvl;
 
 @end

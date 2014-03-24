@@ -205,16 +205,7 @@
                 NSLog(@"%i", appDelegate.Player.playerDamage);
                 [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.playerDamage];
                 [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
-                if(appDelegate.Enemy.Con <= 0)
-                {
-                    NSLog(@"Enemy Dead");
-                    [appDelegate.Enemy setCon:0];
-                    [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
-                    appDelegate.enemyAlive = FALSE;
-                    _buttonPress = TRUE;
-                    
-                }
-                _Animation.transform = CGAffineTransformMakeScale(-1, 1);
+                               _Animation.transform = CGAffineTransformMakeScale(-1, 1);
                 _audioSFX = [NSURL fileURLWithPath:_hit];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
                 [appDelegate.sfx play];
@@ -226,6 +217,16 @@
                     _Animation.frame = CGRectMake(240,20,48,48);
                 }completion:^(BOOL Done){if (Done){
                     _Animation.transform = CGAffineTransformMakeScale(1, 1);
+                    if(appDelegate.Enemy.Con <= 0)
+                    {
+                        NSLog(@"Enemy Dead");
+                        [appDelegate.Enemy setCon:0];
+                        [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
+                        appDelegate.enemyAlive = FALSE;
+                        _buttonPress = TRUE;
+                        [self performSegueWithIdentifier:@"Uwin" sender:self];
+                        
+                    }
 
                     
                         
@@ -277,7 +278,6 @@
                                         
                                     }completion:^(BOOL finished) {if(finished){
                                         [_Animation setAnimationImages:[NSArray arrayWithObject:_uIdle]];
-                                        [self performSegueWithIdentifier:@"Uwin" sender:self];
                                         //_buttonPress = TRUE;
                                     }
                                     }];
