@@ -15,6 +15,8 @@
     _Player = [[Player alloc]init];
     _isMusic = TRUE;
     _overdriveUsed = FALSE;
+
+
     return YES;
 }
 							

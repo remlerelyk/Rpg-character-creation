@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "AppDelegate.h"
 @interface ExpController : UIViewController
+{
+    AppDelegate * appDelegate;
+}
+@property UIImageView * Frame,* exp;
 
 @end

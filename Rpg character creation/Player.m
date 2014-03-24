@@ -44,6 +44,7 @@
     _curMagic = _totalMagic;
     _curHealth = _totalHealth;
     _exp = 0;
+
 }
 -(void)resetMana
 {
