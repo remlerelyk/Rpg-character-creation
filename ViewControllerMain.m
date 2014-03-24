@@ -32,15 +32,22 @@
 {
         appDelegate = [[UIApplication sharedApplication] delegate];
     
-    /*[appDelegate.Player setCurHealth:9000];
-     [appDelegate.Player setTotalHealth:9000];*/
+    [appDelegate.Player setCurHealth:9000];
+     [appDelegate.Player setTotalHealth:9000];
     _buttonPress = FALSE;
     NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
+    if(appDelegate.overdriveUsed == TRUE)
+    {
+       [_attackLabel setText:[NSString stringWithFormat:@"%@", _attackString]];
+        appDelegate.overdriveUsed = FALSE;
+    }
     if(appDelegate.enemyAlive == FALSE)
     {
+        [_attackLabel setText:@""];
         [_enemyDamageLabel setText:@""];
         [_enemyHealthLabel setText:[NSString stringWithFormat:@""]];
     }
+    
     switch (appDelegate.Player.spellCost) {
         case 2:
             
@@ -65,8 +72,8 @@
         _bob = [[Enemy alloc]initWithLv:appDelegate.Player.lvl /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
-        /*[appDelegate.Enemy setCon:9000];
-        [appDelegate.Enemy setStr:300];*/
+        [appDelegate.Enemy setCon:9000];
+        [appDelegate.Enemy setStr:300];
         [_enemyDamageLabel setText:@""];
         
     }

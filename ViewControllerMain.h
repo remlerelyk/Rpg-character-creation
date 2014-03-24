@@ -21,8 +21,10 @@
 @property int totalMagic;
 @property int currentHealth;
 @property int currentMagic;
+@property BOOL overdriveUsed;
 - (IBAction)Attack:(UIButton *)sender;
 @property NSString * audioPath,* hit,* death,* cure,* uwin;
+@property (nonatomic, strong) NSString * attackString;
 @property NSURL * audioURL,* audioSFX;
 @property UIImageView *Animation, * baddy,* magicLayer;
 @property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
@@ -30,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *enemyHealthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dataLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attackLabel;
+
 
 @property UIImage * Temp,* uIdle;
 @property BOOL buttonPress;

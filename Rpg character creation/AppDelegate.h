@@ -16,6 +16,7 @@
 @property AVAudioPlayer * sfx;
 @property BOOL isMusic;
 @property BOOL enemyAlive;
+@property BOOL overdriveUsed;
 @property Enemy * Enemy;
 @property (strong, nonatomic) UIWindow *window;
 
