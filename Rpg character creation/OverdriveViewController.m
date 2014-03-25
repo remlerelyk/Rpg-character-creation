@@ -70,6 +70,7 @@
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
         [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 500];
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 50];
+        [appDelegate.Player setPlayerDamage:500];
         appDelegate.overdriveUsed = TRUE;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
@@ -78,6 +79,7 @@
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
          [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 1000];
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 100];
+        [appDelegate.Player setPlayerDamage:1000];
         appDelegate.overdriveUsed = TRUE;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
@@ -86,6 +88,7 @@
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
          [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 5000];
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 500];
+        [appDelegate.Player setPlayerDamage:5000];
         appDelegate.overdriveUsed = TRUE;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
@@ -94,6 +97,7 @@
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
          [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 10000];
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 1000];
+        [appDelegate.Player setPlayerDamage:10000];
         appDelegate.overdriveUsed = TRUE;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
@@ -102,6 +106,7 @@
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
          [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 50000];
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 5000];
+        [appDelegate.Player setPlayerDamage:50000];
         appDelegate.overdriveUsed = TRUE;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
