@@ -14,7 +14,6 @@
 
 @implementation ViewControllerMain
 
-
 // Don't worry about this
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,101 +29,41 @@
 //Start Here
 - (void)viewDidLoad
 {
-        appDelegate = [[UIApplication sharedApplication] delegate];
-    
-    [appDelegate.Player setCurHealth:9000];
-     [appDelegate.Player setTotalHealth:9000];
-    _buttonPress = FALSE;
-    NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
-    if(appDelegate.overdriveUsed == TRUE)
-    {
-       [_attackLabel setText:[NSString stringWithFormat:@"%@", _attackString]];
-        appDelegate.overdriveUsed = FALSE;
-    }
+
+    appDelegate = [[UIApplication sharedApplication] delegate];
     if(appDelegate.enemyAlive == FALSE)
     {
+        
         [_attackLabel setText:@""];
         [_enemyDamageLabel setText:@""];
-        [_enemyHealthLabel setText:[NSString stringWithFormat:@""]];
-    }
-    
-    switch (appDelegate.Player.spellCost) {
-        case 2:
-            
-            break;
-        case 3:
-            
-            break;
-        case 4:
-            _magicLayer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 220, 300)];
-            [_magicLayer setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"t1.png"],[UIImage imageNamed:@"t2.png"],[UIImage imageNamed:@"t3.png"],[UIImage imageNamed:@"t4.png"],[UIImage imageNamed:@"t5.png"],[UIImage imageNamed:@"t6.png"],[UIImage imageNamed:@"t7.png"],[UIImage imageNamed:@"t8.png"],[UIImage imageNamed:@"t9.png"],[UIImage imageNamed:@"t10.png"],[UIImage imageNamed:@"t11.png"],[UIImage imageNamed:@"t12.png"],[UIImage imageNamed:@"t13.png"],[UIImage imageNamed:@"t14.png"],[UIImage imageNamed:@"t15.png"],[UIImage imageNamed:@"t16.png"], nil]];
-            [_magicLayer setAnimationRepeatCount:1];
-            [_magicLayer startAnimating];
-            break;
-            
-        default:
-            NSLog(@"U haz no makics");
-            break;
-    }
-
-    if(appDelegate.enemyAlive == FALSE)
-    {
+        [_enemyHealthLabel setText:@""];
+        [_playerDamageLabel setText:@""];
+        //[_playerDamageLabel bringSubviewToFront:];
         _bob = [[Enemy alloc]initWithLv:appDelegate.Player.lvl /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
-        [appDelegate.Enemy setCon:1];
+
+        [appDelegate.Enemy setCon:100];
+
         [appDelegate.Enemy setStr:300];
         [_enemyDamageLabel setText:@""];
-        
-    }
-    [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.Enemy.Con]];
-    if(appDelegate.Player.spellCost > 0)
-    {
-       
-        [appDelegate.Player playerSpell];
-        NSLog(@"Spell Damge:%i", appDelegate.Player.spellDamage);
-        NSLog(@"Spell Cost: %i", appDelegate.Player.spellCost);
-        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
-        [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
-        NSLog(@"Enemy Exp: %i", appDelegate.Enemy.Exp);
-        if(appDelegate.Enemy.Con <= 0)
-        {
-            [_enemyDamageLabel setText:@""];
-            [appDelegate.Enemy setCon:0];
-            [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
-            NSLog(@"Enemy Dead");
-            appDelegate.enemyAlive = FALSE;
-        }
-        
-        //start animation
-        if(appDelegate.enemyAlive == TRUE)
-        {
-            [appDelegate.Enemy enemyAttack];
-            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
-             [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
-            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
-            [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
-        
-            if(appDelegate.Player.curHealth <= 0)
-            {
-                //Show game over animation
-                UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
-                [gameOverAlert show];
-            }
-        }
-
     
-        appDelegate.Player.spellCost = 0;
     }
-    
+    [appDelegate.Player setCurHealth:9000];
+     [appDelegate.Player setTotalHealth:9000];
+    _buttonPress = FALSE;
+    NSLog(@"Spell cost %i",appDelegate.Player.spellCost);    
+        
         _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
     [self.view addSubview: _Animation];
 
     _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, appDelegate.Enemy.width, appDelegate.Enemy.height)];
     [self.view addSubview: _baddy];
+    [self.view addSubview:_playerDamageLabel];
+    [self.view bringSubviewToFront:_playerDamageLabel];
 
 
-
+     [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.Enemy.Con]];
     
 
     NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.magic];
@@ -177,10 +116,89 @@
         }
         [_Animation setImage:_uIdle];
 
-    
-    
 }
+-(void)viewDidAppear:(BOOL)animated
+{
+    if(appDelegate.overdriveUsed == TRUE)
+    {
+        [_attackLabel setText:[NSString stringWithFormat:@"%@", _attackString]];
+        [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP:%i", appDelegate.Enemy.Con ]];
+        [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
+        if(appDelegate.Enemy.Con <= 0)
+        {
+            NSLog(@"Enemy Dead");
+            [appDelegate.Enemy setCon:0];
+            [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
+            appDelegate.enemyAlive = FALSE;
+            _buttonPress = TRUE;
+            [self performSegueWithIdentifier:@"Uwin" sender:self];
+            
+        }
+                appDelegate.overdriveUsed = FALSE;
+    }
+    if(appDelegate.Player.spellCost > 0)
+    {
+        
+        [appDelegate.Player playerSpell];
+        NSLog(@"Spell Damge:%i", appDelegate.Player.spellDamage);
+        NSLog(@"Spell Cost: %i", appDelegate.Player.spellCost);
+        switch (appDelegate.Player.spellCost)
+        {
+            case 2:
+                
+                break;
+            case 3:
+                
+                break;
+            case 4:
+                NSLog(@"spell animattion");
+                _magicLayer = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 220, 300)];
+                [_magicLayer setAnimationImages:[NSArray arrayWithObjects:[UIImage imageNamed:@"t1.png"],[UIImage imageNamed:@"t2.png"],[UIImage imageNamed:@"t3.png"],[UIImage imageNamed:@"t4.png"],[UIImage imageNamed:@"t5.png"],[UIImage imageNamed:@"t6.png"],[UIImage imageNamed:@"t7.png"],[UIImage imageNamed:@"t8.png"],[UIImage imageNamed:@"t9.png"],[UIImage imageNamed:@"t10.png"],[UIImage imageNamed:@"t11.png"],[UIImage imageNamed:@"t12.png"],[UIImage imageNamed:@"t13.png"],[UIImage imageNamed:@"t14.png"],[UIImage imageNamed:@"t15.png"],[UIImage imageNamed:@"t16.png"], nil]];
+                [_magicLayer setAnimationRepeatCount:1];
+                [_magicLayer startAnimating];
+                break;
+                
+            default:
+                NSLog(@"U haz no makics");
+                break;
+        }
+        
+        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
+        [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP:%i", appDelegate.Enemy.Con]];
+        [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+        NSLog(@"Enemy Exp: %i", appDelegate.Enemy.Exp);
+        if(appDelegate.Enemy.Con <= 0)
+        {
+            [_enemyDamageLabel setText:@""];
+            [appDelegate.Enemy setCon:0];
+            [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
+            [self performSegueWithIdentifier:@"Uwin" sender:self];
+            NSLog(@"Enemy Dead");
+            appDelegate.enemyAlive = FALSE;
+        }
+        
+        //start animation
+        if(appDelegate.enemyAlive == TRUE)
+        {
+            [appDelegate.Enemy enemyAttack];
+            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
+            [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
+            
+            if(appDelegate.Player.curHealth <= 0)
+            {
+                //Show game over animation
+                UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+                [gameOverAlert show];
+            }
+        }
+        
+        
+        appDelegate.Player.spellCost = 0;
+    }
 
+}
 /*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"magicSegueEnter"])
@@ -211,7 +229,8 @@
                 [appDelegate.Player playerAttack];
                 NSLog(@"%i", appDelegate.Player.playerDamage);
                 [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.playerDamage];
-                [_enemyHealthLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
+                [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP:%i", appDelegate.Enemy.Con]];
+                [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
                                _Animation.transform = CGAffineTransformMakeScale(-1, 1);
                 _audioSFX = [NSURL fileURLWithPath:_hit];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];

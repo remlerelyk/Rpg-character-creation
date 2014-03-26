@@ -90,6 +90,7 @@ Spell = spell cost
         {
             [appDelegate.Player setSpellCost:2];
             [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-2];
+            [self performSegueWithIdentifier:@"magicUsed" sender:self];
             
         }
          NSLog(@"%i", [appDelegate.Player curMagic]);
@@ -101,6 +102,7 @@ Spell = spell cost
         {
             [appDelegate.Player setSpellCost:3];
             [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-3];
+            [self performSegueWithIdentifier:@"magicUsed" sender:self];
         }
         
     }
@@ -112,6 +114,7 @@ Spell = spell cost
             [appDelegate.Player setSpellCost:4];
             [appDelegate.Player setCurMagic:[appDelegate.Player curMagic]-4];
             NSLog(@"MJ %i",[appDelegate.Player spellCost]);
+            [self performSegueWithIdentifier:@"magicUsed" sender:self];
         }
         
     }
