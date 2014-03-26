@@ -27,6 +27,7 @@
 //Bar is 264px 
 - (void)viewDidLoad
 {
+    
     int value = 0;
     appDelegate = [[UIApplication sharedApplication] delegate];
     _exp = [[UIImageView alloc]initWithFrame:CGRectMake(16, 16, 1, 16)];
@@ -38,22 +39,53 @@
     [_exp setImage:[UIImage imageNamed:@"exp.gif"]];
     [_Frame setImage:[UIImage imageNamed:@"Frame.gif"]];
 	// Do any additional setup after loading the view.
-    while ([appDelegate.Player lvl]>=appDelegate.expLvl) {
-    [UIView animateWithDuration:2.0f animations:^{
-       _exp.frame =CGRectMake(16, 16, 1, 16);
-        _exp.frame =CGRectMake(16, 16, 280, 16);
-    }completion:^(BOOL Done){if (Done){
-        _exp.frame =CGRectMake(16, 16, 1, 16);
-    }}
-     ];
-        appDelegate.expLvl++;
-     }
-}
+    [self animation];
 
+}
+- (void)animation{
+    float i = appDelegate.Player.expLvUP;
+    float o = appDelegate.Player.exp;
+    float temp = o/i;
+    temp = temp*280;
+    if(appDelegate.BarProgress){
+    [UIView animateWithDuration:2.0f animations:^{
+            _exp.frame =CGRectMake(16, 16, appDelegate.BarProgress, 16);
+            _exp.frame =CGRectMake(16, 16, 280, 16);
+            appDelegate.BarProgress=0;
+        }];
+                appDelegate.expLvl++;
+        if (appDelegate.expLvl<=[appDelegate.Player expLvUP]){
+            [self performSelector:@selector(animation) withObject:self afterDelay:2.1f];
+        }
+    }else if (appDelegate.Player.lvl!=appDelegate.expLvl) {
+        [UIView animateWithDuration:2.0f animations:^{
+            _exp.frame =CGRectMake(16, 16, 1, 16);
+            _exp.frame =CGRectMake(16, 16, 280, 16);
+        }completion:^(BOOL Done){if (Done){
+            _exp.frame =CGRectMake(16, 16, 1, 16);
+        }}
+         ];
+        appDelegate.expLvl++;
+        if (appDelegate.expLvl<=[appDelegate.Player expLvUP]){
+        [self performSelector:@selector(animation) withObject:self afterDelay:2.1f];   
+        }
+    }else{
+            [UIView animateWithDuration:2.0f animations:^{
+            _exp.frame =CGRectMake(16, 16, 1, 16);
+            _exp.frame =CGRectMake(16, 16, temp, 16);
+            appDelegate.BarProgress=temp;
+            }];
+        
+    }
+
+
+
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

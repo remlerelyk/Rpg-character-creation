@@ -72,7 +72,7 @@
         _bob = [[Enemy alloc]initWithLv:appDelegate.Player.lvl /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
-        [appDelegate.Enemy setCon:9000];
+        [appDelegate.Enemy setCon:1];
         [appDelegate.Enemy setStr:300];
         [_enemyDamageLabel setText:@""];
         

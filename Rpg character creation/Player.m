@@ -23,14 +23,14 @@
 }
 -(void)addExperiance: (int) e
 {
-    _exp = _exp + e;
+    _exp +=e;
     NSLog(@"Exp:%i", _exp);
     while(_exp >= _expLvUP)
     {
         
         _lvl++;
         NSLog(@"Lvl: %i", _lvl);
-        _expLvUP=(_lvl + 1);
+        _expLvUP=_lvl+1;
         NSLog(@"Exp to Lvl up:%i", _expLvUP);
         self.cleanStats;
         _totalStats += 5;

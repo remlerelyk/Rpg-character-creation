@@ -19,6 +19,6 @@
 @property BOOL overdriveUsed;
 @property Enemy * Enemy;
 @property (strong, nonatomic) UIWindow *window;
-@property int expLvl;
+@property int expLvl,BarProgress;
 
 @end
