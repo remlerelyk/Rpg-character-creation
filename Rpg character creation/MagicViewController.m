@@ -53,6 +53,7 @@ Spell = spell cost
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     _magicArray = [[NSMutableArray alloc] initWithObjects: @"Fire/2MP",@"Ice/3MP",@"Thunder/4MP", nil];
+    _magicArrayText = [[NSMutableArray alloc] initWithObjects: @"Fire",@"Ice",@"Thunder", nil];
     appDelegate = [[UIApplication sharedApplication] delegate];
     [manaLabel setText:[NSString stringWithFormat:@"MP:%i/%i", [appDelegate.Player curMagic], [appDelegate.Player magic]]];
     
@@ -120,15 +121,15 @@ Spell = spell cost
     }
     
 }
-/*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqual:@"magicSegueMagicExit"])
+    if([segue.identifier isEqual:@"magicUsed"])
     {
         
         NSLog(@"Magic Exit");
         NSLog(@"%@",_magicType);
-        positiveMagicViewController * destViewController = segue.destinationViewController;
-        destViewController.magicType = _magicType;
+        ViewControllerMain * destViewController = segue.destinationViewController;
+        destViewController.attackString = [_magicArrayText objectAtIndex:appDelegate.Player.spellCost-2];
     }
-}*/
+}
 @end

@@ -322,9 +322,6 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jf7-N2-LRj">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="109" id="hAn-Qk-MEe"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Attack">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -380,41 +377,48 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxW-Ne-nqU">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hxW-Ne-nqU">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EAe-de-beX">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="26" id="SHb-ds-DAK"/>
+                                    <constraint firstAttribute="height" constant="26" id="haE-6R-1QR"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPb-pE-aH3">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPb-pE-aH3">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="MoZ-4B-F7P"/>
+                                    <constraint firstAttribute="width" constant="89" id="cH2-bx-5Hz"/>
                                     <constraint firstAttribute="height" constant="21" id="fJH-Xg-bwW"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" red="0.64267777423469385" green="0.0979188165284888" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FeH-qO-1Yo">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GPb-pE-aH3" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="2CJ-ap-HB2"/>
+                            <constraint firstItem="jf7-N2-LRj" firstAttribute="trailing" secondItem="GPb-pE-aH3" secondAttribute="trailing" type="default" id="699-lv-m5d"/>
                             <constraint firstItem="jf7-N2-LRj" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="6m3-Pg-8CG"/>
                             <constraint firstItem="hxW-Ne-nqU" firstAttribute="leading" secondItem="jf7-N2-LRj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="7LJ-rX-YUY"/>
-                            <constraint firstItem="GPb-pE-aH3" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="44" id="8yy-dA-GaF"/>
                             <constraint firstItem="G5L-Tw-qMt" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9vE-sz-xBz"/>
+                            <constraint firstItem="FeH-qO-1Yo" firstAttribute="leading" secondItem="5qt-en-eTV" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="AgG-Rh-J39"/>
                             <constraint firstAttribute="trailing" secondItem="hxW-Ne-nqU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="DFE-Zv-AnK"/>
-                            <constraint firstItem="jf7-N2-LRj" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="F10-hN-eNw"/>
+                            <constraint firstItem="hxW-Ne-nqU" firstAttribute="leading" secondItem="FeH-qO-1Yo" secondAttribute="leading" type="default" id="Eeq-Kw-QzK"/>
                             <constraint firstAttribute="bottom" secondItem="jf7-N2-LRj" secondAttribute="bottom" constant="107" id="Fc2-eE-v7n"/>
+                            <constraint firstItem="FeH-qO-1Yo" firstAttribute="top" secondItem="5qt-en-eTV" secondAttribute="top" type="default" id="O2M-xs-NqT"/>
                             <constraint firstItem="EAe-de-beX" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="20" symbolic="YES" type="default" id="PFH-No-QTl"/>
                             <constraint firstItem="EAe-de-beX" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="PSf-4y-kMO"/>
+                            <constraint firstAttribute="trailing" secondItem="FeH-qO-1Yo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="PaO-hu-QAr"/>
                             <constraint firstItem="G5L-Tw-qMt" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="88" id="Qao-GE-CmI"/>
                             <constraint firstItem="uEr-MP-QtC" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="TdL-cJ-LC4"/>
                             <constraint firstAttribute="bottom" secondItem="uEr-MP-QtC" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Y9M-9l-2am"/>
@@ -426,15 +430,18 @@
                             <constraint firstItem="hxW-Ne-nqU" firstAttribute="centerY" secondItem="jf7-N2-LRj" secondAttribute="centerY" type="default" id="l9s-PB-31Z"/>
                             <constraint firstAttribute="bottom" secondItem="5qt-en-eTV" secondAttribute="bottom" constant="63" id="nBs-B5-T5n"/>
                             <constraint firstAttribute="trailing" secondItem="hqp-TN-P0D" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ofU-US-rKz"/>
+                            <constraint firstItem="GPb-pE-aH3" firstAttribute="baseline" secondItem="EAe-de-beX" secondAttribute="baseline" type="default" id="rEW-44-yy6"/>
+                            <constraint firstItem="GPb-pE-aH3" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="tBN-Qm-d0j"/>
                             <constraint firstItem="uEr-MP-QtC" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="uKe-8r-EWc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gGl-2Z-AgG"/>
                     <connections>
                         <outlet property="attackLabel" destination="EAe-de-beX" id="mYc-8A-fpJ"/>
-                        <outlet property="dataLabel" destination="hxW-Ne-nqU" id="McR-3P-HK0"/>
                         <outlet property="enemyDamageLabel" destination="hqp-TN-P0D" id="HSW-VF-NSa"/>
                         <outlet property="enemyHealthLabel" destination="G5L-Tw-qMt" id="HHb-3O-OJC"/>
+                        <outlet property="healthLabel" destination="hxW-Ne-nqU" id="mKQ-lw-gJv"/>
+                        <outlet property="manaLabel" destination="FeH-qO-1Yo" id="hbJ-a4-t81"/>
                         <outlet property="playerDamageLabel" destination="GPb-pE-aH3" id="Pud-Pd-TAZ"/>
                         <segue destination="rjk-lQ-hcN" kind="modal" identifier="Uwin" modalTransitionStyle="crossDissolve" id="vTe-Rs-G1W"/>
                     </connections>
@@ -673,9 +680,10 @@
             <relationships>
                 <relationship kind="action" name="Attack:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="attackLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dataLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="enemyDamageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="enemyHealthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playerDamageLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
