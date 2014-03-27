@@ -23,7 +23,7 @@
 @property int currentMagic;
 @property BOOL overdriveUsed;
 - (IBAction)Attack:(UIButton *)sender;
-@property NSString * audioPath,* hit,* death,* cure,* uwin;
+@property NSString * audioPath,* hit,* death,* cure;
 @property (nonatomic, strong) NSString * attackString;
 @property NSURL * audioURL,* audioSFX;
 @property UIImageView *Animation, * baddy,* magicLayer;

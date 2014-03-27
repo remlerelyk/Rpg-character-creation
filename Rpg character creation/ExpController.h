@@ -12,6 +12,9 @@
 {
     AppDelegate * appDelegate;
 }
+- (IBAction)leaveView:(UIButton *)sender;
 @property UIImageView * Frame,* exp;
+@property NSString * iWin,* Win;
+@property NSURL * audioURL,* audioSFX;
 
 @end

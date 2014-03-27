@@ -27,8 +27,7 @@
 //Bar is 264px 
 - (void)viewDidLoad
 {
-    
-    int value = 0;
+        int value = 0;
     appDelegate = [[UIApplication sharedApplication] delegate];
     _exp = [[UIImageView alloc]initWithFrame:CGRectMake(16, 16, 1, 16)];
     [self.view addSubview:_exp];
@@ -40,6 +39,14 @@
     [_Frame setImage:[UIImage imageNamed:@"Frame.gif"]];
 	// Do any additional setup after loading the view.
     [self animation];
+    _iWin =[[NSBundle mainBundle] pathForResource:@"iWin" ofType:@"mp3"];
+    _Win =[[NSBundle mainBundle] pathForResource:@"Win" ofType:@"mp3"];
+    _audioURL = [NSURL fileURLWithPath:_iWin];
+    [appDelegate.music stop];
+    appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
+    [appDelegate.music play];
+    [self performSelector:@selector(playRest) withObject:self afterDelay:15.2145f];
+
 
 }
 - (void)animation{
@@ -80,6 +87,15 @@
 
 
 
+
+}
+-(void)playRest{
+    _audioURL = [NSURL fileURLWithPath:_Win];
+    [appDelegate.music stop];
+    appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
+    [appDelegate.music play];
+    appDelegate.isMusic = TRUE;
+    appDelegate.music.numberOfLoops = -1;
 }
 - (void)didReceiveMemoryWarning
 {
@@ -88,4 +104,6 @@
 }
 
 
+- (IBAction)leaveView:(UIButton *)sender {
+}
 @end

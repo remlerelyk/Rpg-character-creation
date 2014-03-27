@@ -79,7 +79,6 @@
 
     _hit = [[NSBundle mainBundle] pathForResource:@"hit" ofType:@"mp3"];
     _death = [[NSBundle mainBundle] pathForResource:@"death" ofType:@"mp3"];
-    _uwin = [[NSBundle mainBundle] pathForResource:@"ff7" ofType:@"mp3"];
     _cure = [[NSBundle mainBundle] pathForResource:@"cure" ofType:@"mp3"];
     
     
@@ -250,6 +249,7 @@
                         [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
                         appDelegate.enemyAlive = FALSE;
                         _buttonPress = TRUE;
+             
                         [self performSegueWithIdentifier:@"Uwin" sender:self];
                         
                     }

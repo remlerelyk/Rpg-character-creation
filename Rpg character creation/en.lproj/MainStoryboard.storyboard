@@ -519,6 +519,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="leaveView:" destination="rjk-lQ-hcN" eventType="touchUpInside" id="ikM-fd-trX"/>
                                     <segue destination="n8Q-Om-yB5" kind="modal" modalTransitionStyle="crossDissolve" id="Jeb-3h-a7G"/>
                                 </connections>
                             </button>
@@ -623,69 +624,12 @@
             <point key="canvasLocation" x="1112" y="62"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="ExpController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExpController.h"/>
-        </class>
-        <class className="MagicViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MagicViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="magicTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="OverdriveViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OverdriveViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="overdriveLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="overdriveTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dexterityMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="dexterityPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="femaleImageButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="healthMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="healthPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="magicMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="magicPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="maleImageButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="strengthMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="strengthPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="characterImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="descriptionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="dexterityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="magicLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="magicMinusButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="magicPositiveButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="statDescribeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="strengthLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewControllerMain" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewControllerMain.h"/>
-            <relationships>
-                <relationship kind="action" name="Attack:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="attackLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="dataLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enemyDamageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enemyHealthLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playerDamageLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6hk-ly-VWl"/>
+        <segue reference="Jeb-3h-a7G"/>
     </inferredMetricsTieBreakers>
 </document>
