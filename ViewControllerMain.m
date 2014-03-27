@@ -29,14 +29,14 @@
 //Start Here
 - (void)viewDidLoad
 {
-
+    
+   
     appDelegate = [[UIApplication sharedApplication] delegate];
     if(appDelegate.enemyAlive == FALSE)
     {
         
         [_attackLabel setText:@""];
         [_enemyDamageLabel setText:@""];
-        [_enemyHealthLabel setText:@""];
         [_playerDamageLabel setText:@""];
         //[_playerDamageLabel bringSubviewToFront:];
         _bob = [[Enemy alloc]initWithLv:appDelegate.Player.lvl /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
@@ -46,11 +46,15 @@
         [appDelegate.Enemy setCon:100];
 
         [appDelegate.Enemy setStr:300];
+        
+        [appDelegate.Player setCurHealth:9000];
+        [appDelegate.Player setTotalHealth:9000];
         [_enemyDamageLabel setText:@""];
+        [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.Enemy.Con]];
+
     
     }
-    [appDelegate.Player setCurHealth:9000];
-     [appDelegate.Player setTotalHealth:9000];
+
     _buttonPress = FALSE;
     NSLog(@"Spell cost %i",appDelegate.Player.spellCost);    
         
@@ -62,12 +66,10 @@
     [self.view addSubview:_playerDamageLabel];
     [self.view bringSubviewToFront:_playerDamageLabel];
 
-
-     [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.Enemy.Con]];
-    
-
-    NSString * data = [NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.magic];
-    [_dataLabel setText:data];
+    NSString * healthData = [NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth];
+    NSString * manaData = [NSString stringWithFormat:@" MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic];
+    [_healthLabel setText:healthData];
+    [_manaLabel setText:manaData];
 
     [super viewDidLoad];
     
@@ -115,9 +117,8 @@
         }
         [_Animation setImage:_uIdle];
 
-}
--(void)viewDidAppear:(BOOL)animated
-{
+    
+    
     if(appDelegate.overdriveUsed == TRUE)
     {
         [_attackLabel setText:[NSString stringWithFormat:@"%@", _attackString]];
@@ -130,10 +131,26 @@
             [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
             appDelegate.enemyAlive = FALSE;
             _buttonPress = TRUE;
-            [self performSegueWithIdentifier:@"Uwin" sender:self];
+           // [self performSegueWithIdentifier:@"Uwin" sender:self];
             
         }
-                appDelegate.overdriveUsed = FALSE;
+        if(appDelegate.enemyAlive == TRUE)
+        {
+            [appDelegate.Enemy enemyAttack];
+            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
+            
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            [_manaLabel setText:[NSString stringWithFormat:@" MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic]];
+            
+            if(appDelegate.Player.curHealth <= 0)
+            {
+                //Show game over animation
+                UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+                [gameOverAlert show];
+            }
+        }                appDelegate.overdriveUsed = FALSE;
     }
     if(appDelegate.Player.spellCost > 0)
     {
@@ -141,6 +158,7 @@
         [appDelegate.Player playerSpell];
         NSLog(@"Spell Damge:%i", appDelegate.Player.spellDamage);
         NSLog(@"Spell Cost: %i", appDelegate.Player.spellCost);
+        [_attackLabel setText:_attackString];
         switch (appDelegate.Player.spellCost)
         {
             case 2:
@@ -171,7 +189,7 @@
             [_enemyDamageLabel setText:@""];
             [appDelegate.Enemy setCon:0];
             [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
-            [self performSegueWithIdentifier:@"Uwin" sender:self];
+           // [self performSegueWithIdentifier:@"Uwin" sender:self];
             NSLog(@"Enemy Dead");
             appDelegate.enemyAlive = FALSE;
         }
@@ -183,7 +201,9 @@
             [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
             [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
             [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
-            [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
+            
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            [_manaLabel setText:[NSString stringWithFormat:@" MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic]];
             
             if(appDelegate.Player.curHealth <= 0)
             {
@@ -196,7 +216,13 @@
         
         appDelegate.Player.spellCost = 0;
     }
-
+}
+-(void)viewDidAppear:(BOOL)animated
+{
+    if(appDelegate.Enemy.Con <= 0)
+    {
+        [self performSegueWithIdentifier:@"Uwin" sender:self];
+    }
 }
 /*-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -265,7 +291,8 @@
                         [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
                         [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
                         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
-                        [_dataLabel setText:[NSString stringWithFormat:@"HP: %i/%i MP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth,appDelegate.Player.curMagic, appDelegate.Player.magic]];
+                        [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+                        [_manaLabel setText:[NSString stringWithFormat:@" MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic]];
                         _buttonPress = FALSE;
                         if(appDelegate.Player.curHealth <= 0)
                         {

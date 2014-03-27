@@ -18,6 +18,7 @@
 @property (nonatomic, strong) IBOutlet UILabel * manaLabel;
 @property (nonatomic, strong) NSString * magicType;
 @property NSMutableArray * magicArray;
+@property NSMutableArray * magicArrayText;
 @property int currentMagic;
 @property int totalMagic;
 @property int totalHealth;

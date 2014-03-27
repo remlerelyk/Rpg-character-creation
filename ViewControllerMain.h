@@ -12,6 +12,7 @@
 #import "ViewController.h"
 #import "Player.h"
 #import "Enemy.h"
+#import "ExpController.h"
 @interface ViewControllerMain : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     AppDelegate *appDelegate;
@@ -30,9 +31,10 @@
 @property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
 @property (weak, nonatomic) IBOutlet UILabel *enemyDamageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *enemyHealthLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dataLabel;
+@property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attackLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerDamageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *manaLabel;
 
 @property UIImage * Temp,* uIdle;
 @property BOOL buttonPress;
