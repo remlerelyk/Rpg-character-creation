@@ -29,8 +29,6 @@
 - (IBAction)dexterityPositiveButton:(UIButton *)sender;
 - (IBAction)healthMinusButton:(UIButton *)sender;
 - (IBAction)healthPositiveButton:(UIButton *)sender;
-@property (weak, nonatomic) IBOutlet UIButton *magicMinusButton;
-@property (weak, nonatomic) IBOutlet UIButton *magicPositiveButton;
 @property (weak, nonatomic) IBOutlet UIImageView *characterImage;
 - (IBAction)maleImageButton:(UIButton *)sender;
 - (IBAction)femaleImageButton:(UIButton *)sender;

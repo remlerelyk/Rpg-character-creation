@@ -13,5 +13,18 @@
     AppDelegate * appDelegate;
 }
 @property UIImageView * Frame,* exp;
-
+@property (weak, nonatomic) IBOutlet UILabel *statDescribeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *strengthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dexterityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *healthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *magicLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+- (IBAction)strengthMinusButton:(UIButton *)sender;
+- (IBAction)strengthPositiveButton:(UIButton *)sender;
+- (IBAction)dexterityMinusButton:(UIButton *)sender;
+- (IBAction)dexterityPositiveButton:(UIButton *)sender;
+- (IBAction)healthMinusButton:(UIButton *)sender;
+- (IBAction)healthPositiveButton:(UIButton *)sender;
+- (IBAction)magicMinusButton:(UIButton *)sender;
+- (IBAction)magicPositiveButton:(UIButton *)sender;
 @end
