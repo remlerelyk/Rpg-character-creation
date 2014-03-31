@@ -30,8 +30,11 @@
 //Bar is 264px 
 - (void)viewDidLoad
 {
+
     //int value = 0;
+
     appDelegate = [[UIApplication sharedApplication] delegate];
+        appDelegate.isLeft = TRUE;
     _exp = [[UIImageView alloc]initWithFrame:CGRectMake(16, 16, 1, 16)];
     [self.view addSubview:_exp];
     _Frame = [[UIImageView alloc]initWithFrame:CGRectMake(16, 16, 280, 16)];
@@ -68,6 +71,25 @@
     float o = appDelegate.Player.exp;
     float temp = o/i;
     temp = temp*280;
+   
+    if (temp==0) {
+        temp=280;
+    }
+    [UIView animateWithDuration:2.0f animations:^{
+        _exp.frame=CGRectMake(16, 16, appDelegate.lastValue, 16);
+        _exp.frame=CGRectMake(16, 16, temp, 16);
+    }completion:^(BOOL fin){
+         appDelegate.lastValue = temp;
+        if (temp==280) {
+           _exp.frame=CGRectMake(16, 16, 1, 16);
+            appDelegate.lastValue = 1;
+            [_levelUpLabel setText:@"Level UP!!!"];
+        }
+        [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
+    }
+     ];
+    
+    /*
     if(appDelegate.BarProgress){
     [UIView animateWithDuration:2.0f animations:^{
             _exp.frame =CGRectMake(16, 16, appDelegate.BarProgress, 16);
@@ -124,6 +146,7 @@
                 }
             }];
     }
+     */
 }
 // All of the button actions
 - (IBAction)magicMinusButton:(UIButton *)sender
@@ -221,12 +244,14 @@
 
 
 -(void)playRest{
+    if(appDelegate.isLeft){
     _audioURL = [NSURL fileURLWithPath:_Win];
     [appDelegate.music stop];
     appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
     [appDelegate.music play];
     appDelegate.isMusic = TRUE;
     appDelegate.music.numberOfLoops = -1;
+    }
 }
 - (IBAction)healthPositiveButton:(UIButton *)sender
 {
@@ -251,5 +276,7 @@
 
 
 - (IBAction)leaveView:(UIButton *)sender {
+    appDelegate.isLeft = FALSE;
+    appDelegate.isMusic = TRUE;
 }
 @end

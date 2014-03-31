@@ -29,6 +29,7 @@
 //Start Here
 - (void)viewDidLoad
 {
+    appDelegate.isLeft =FALSE;
     
    
     appDelegate = [[UIApplication sharedApplication] delegate];
