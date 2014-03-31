@@ -52,7 +52,8 @@
     [appDelegate.music stop];
     appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
     [appDelegate.music play];
-    [self performSelector:@selector(playRest) withObject:self afterDelay:15.2145f];
+    _myTimer = [self createTimer];
+
 
 
     
@@ -278,5 +279,11 @@
 - (IBAction)leaveView:(UIButton *)sender {
     appDelegate.isLeft = FALSE;
     appDelegate.isMusic = TRUE;
+    [_myTimer invalidate];
+}
+- (NSTimer*)createTimer {
+    
+    // create timer on run loop
+    return [NSTimer scheduledTimerWithTimeInterval:15.2145f target:self selector:@selector(playRest) userInfo:nil repeats:NO];
 }
 @end
