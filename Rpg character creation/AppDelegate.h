@@ -14,7 +14,7 @@
 @property Player * Player;
 @property AVAudioPlayer * music;
 @property AVAudioPlayer * sfx;
-@property BOOL isMusic;
+@property BOOL isMusic,isLeft;
 @property BOOL enemyAlive;
 @property BOOL overdriveUsed;
 @property Enemy * Enemy;

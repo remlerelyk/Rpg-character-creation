@@ -30,8 +30,10 @@
 //Bar is 264px 
 - (void)viewDidLoad
 {
+
         int value = 0;
     appDelegate = [[UIApplication sharedApplication] delegate];
+        appDelegate.isLeft = TRUE;
     _exp = [[UIImageView alloc]initWithFrame:CGRectMake(16, 16, 1, 16)];
     [self.view addSubview:_exp];
     _Frame = [[UIImageView alloc]initWithFrame:CGRectMake(16, 16, 280, 16)];
@@ -221,12 +223,14 @@
 
 
 -(void)playRest{
+    if(appDelegate.isLeft){
     _audioURL = [NSURL fileURLWithPath:_Win];
     [appDelegate.music stop];
     appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
     [appDelegate.music play];
     appDelegate.isMusic = TRUE;
     appDelegate.music.numberOfLoops = -1;
+    }
 }
 - (IBAction)healthPositiveButton:(UIButton *)sender
 {
@@ -251,5 +255,7 @@
 
 
 - (IBAction)leaveView:(UIButton *)sender {
+    appDelegate.isLeft = FALSE;
+    appDelegate.isMusic = TRUE;
 }
 @end
