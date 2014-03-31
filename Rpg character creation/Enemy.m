@@ -30,9 +30,16 @@
     {
         _Con = 1;
     }
-    _Exp=(_Lvl);
-    NSLog(@"Lvl:%i\nStr:%i\nDex:%i\nCon:%i\n",_Lvl,_Str,_Dex,_Con);
-    return self;
+    if(_Lvl > 1)
+    {
+        _Exp=pow((_Lvl * 2), 1.4);//(1), 6(p15), 17(p25), 27(p36), 39(p47), 53(p59)
+        NSLog(@"Enemy exp gained %i", _Exp);
+        //NSLog(@"Lvl:%i\nStr:%i\nDex:%i\nCon:%i\n",_Lvl,_Str,_Dex,_Con);
+    }
+    else
+    {
+        _Exp = 1;
+    }    return self;
 }
 -(id)initMechanic:(int) Lvl{
     _img = [UIImage imageNamed:@"baddy.gif"];

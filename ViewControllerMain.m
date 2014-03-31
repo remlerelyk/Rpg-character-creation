@@ -56,7 +56,7 @@
     }
 
     _buttonPress = FALSE;
-    NSLog(@"Spell cost %i",appDelegate.Player.spellCost);    
+   // NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
         
         _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
     [self.view addSubview: _Animation];
@@ -76,7 +76,7 @@
 	// Do any additional setup after loading the view.
     
     
-    NSLog(@"%i", [appDelegate.Player curMagic]);
+   // NSLog(@"%i", [appDelegate.Player curMagic]);
     
 
     _hit = [[NSBundle mainBundle] pathForResource:@"hit" ofType:@"mp3"];
@@ -252,7 +252,7 @@
             if (finished){
                 // start doing damage
                 [appDelegate.Player playerAttack];
-                NSLog(@"%i", appDelegate.Player.playerDamage);
+               // NSLog(@"%i", appDelegate.Player.playerDamage);
                 [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.playerDamage];
                 [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP:%i", appDelegate.Enemy.Con]];
                 [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
@@ -270,7 +270,7 @@
                     _Animation.transform = CGAffineTransformMakeScale(1, 1);
                     if(appDelegate.Enemy.Con <= 0)
                     {
-                        NSLog(@"Enemy Dead");
+                       // NSLog(@"Enemy Dead");
                         [appDelegate.Enemy setCon:0];
                         [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
                         appDelegate.enemyAlive = FALSE;

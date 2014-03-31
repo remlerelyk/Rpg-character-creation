@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <math.h>
 @interface Enemy : NSObject
 
 @property int Str,Dex,Con,Lvl,Exp,width,height, enemyDamage;

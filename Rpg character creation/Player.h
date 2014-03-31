@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <math.h>
 @interface Player : NSObject
 
 @property int exp,lvl,expLvUP,magic,strength,dexterity,health,totalHealth,totalMagic,curMagic,curStrength,curDexterity,curHealth,totalStats, spellCost, playerDamage, spellDamage, damageTaken;

@@ -30,14 +30,14 @@
 //Bar is 264px 
 - (void)viewDidLoad
 {
-        int value = 0;
+    //int value = 0;
     appDelegate = [[UIApplication sharedApplication] delegate];
     _exp = [[UIImageView alloc]initWithFrame:CGRectMake(16, 16, 1, 16)];
     [self.view addSubview:_exp];
     _Frame = [[UIImageView alloc]initWithFrame:CGRectMake(16, 16, 280, 16)];
     [self.view addSubview:_Frame];
     [super viewDidLoad];
-    NSLog(@"Exp %i",value);
+   // NSLog(@"Exp %i",value);
     [_exp setImage:[UIImage imageNamed:@"exp.gif"]];
     [_Frame setImage:[UIImage imageNamed:@"Frame.gif"]];
 	// Do any additional setup after loading the view.
