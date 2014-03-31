@@ -43,12 +43,12 @@
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
 
-        [appDelegate.Enemy setCon:100];
+       // [appDelegate.Enemy setCon:100];
 
-        [appDelegate.Enemy setStr:300];
+        //[appDelegate.Enemy setStr:300];
         
-        [appDelegate.Player setCurHealth:9000];
-        [appDelegate.Player setTotalHealth:9000];
+        //[appDelegate.Player setCurHealth:9000];
+        //[appDelegate.Player setTotalHealth:9000];
         [_enemyDamageLabel setText:@""];
         [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.Enemy.Con]];
 
@@ -67,7 +67,7 @@
     [self.view bringSubviewToFront:_playerDamageLabel];
 
     NSString * healthData = [NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth];
-    NSString * manaData = [NSString stringWithFormat:@" MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic];
+    NSString * manaData = [NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic];
     [_healthLabel setText:healthData];
     [_manaLabel setText:manaData];
 
@@ -142,7 +142,7 @@
             [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
             
             [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
-            [_manaLabel setText:[NSString stringWithFormat:@" MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic]];
+            [_manaLabel setText:[NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic]];
             
             if(appDelegate.Player.curHealth <= 0)
             {
@@ -203,7 +203,7 @@
             [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
             
             [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
-            [_manaLabel setText:[NSString stringWithFormat:@" MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic]];
+            [_manaLabel setText:[NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic]];
             
             if(appDelegate.Player.curHealth <= 0)
             {
@@ -292,7 +292,7 @@
                         [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
                         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
                         [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
-                        [_manaLabel setText:[NSString stringWithFormat:@" MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic]];
+                        [_manaLabel setText:[NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic]];
                         _buttonPress = FALSE;
                         if(appDelegate.Player.curHealth <= 0)
                         {
@@ -343,6 +343,24 @@
                 }];
                 
             }}];
+    }
+}
+
+- (IBAction)Overdrive:(UIButton *)sender
+{
+    if(_buttonPress == false)
+    {
+        [self performSegueWithIdentifier:@"OverdriveButton" sender:self];
+        _buttonPress = true;
+    }
+}
+
+- (IBAction)Magic:(UIButton *)sender
+{
+    if(_buttonPress == false)
+    {
+        [self performSegueWithIdentifier:@"MagicButton" sender:self];
+        _buttonPress = true;
     }
 }
 - (UIImage *)applyColor:(UIColor *)color toImage:(UIImage*)toImage{

@@ -30,10 +30,11 @@
         
         _lvl++;
         NSLog(@"Lvl: %i", _lvl);
-        _expLvUP=_lvl+1;
+        _expLvUP=_lvl*10;
         NSLog(@"Exp to Lvl up:%i", _expLvUP);
         self.cleanStats;
         _totalStats += 5;
+        _exp = 0;
     }
 }
 -(void)cleanStats{
@@ -43,7 +44,7 @@
     _curStrength =_strength;
     _curMagic = _totalMagic;
     _curHealth = _totalHealth;
-    _exp = 0;
+    
 
 }
 -(void)resetMana

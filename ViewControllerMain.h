@@ -24,6 +24,8 @@
 @property int currentMagic;
 @property BOOL overdriveUsed;
 - (IBAction)Attack:(UIButton *)sender;
+- (IBAction)Overdrive:(UIButton *)sender;
+- (IBAction)Magic:(UIButton *)sender;
 @property NSString * audioPath,* hit,* death,* cure;
 @property (nonatomic, strong) NSString * attackString;
 @property NSURL * audioURL,* audioSFX;

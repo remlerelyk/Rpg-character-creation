@@ -19,6 +19,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *statDescribeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *strengthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *levelUpLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dexterityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *magicLabel;

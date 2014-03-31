@@ -14,7 +14,7 @@
 
 @implementation ExpController
 
-//working on implementing a level up system in this view controller.
+//working on the level up view controller touch ups
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -55,6 +55,7 @@
     
     [_statDescribeLabel setText:@""];
     [_descriptionTextView setText:@""];
+    [_levelUpLabel setText:@""];
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", [appDelegate.Player strength]]];
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", [appDelegate.Player dexterity]]];
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", [appDelegate.Player health]]];
@@ -73,11 +74,20 @@
             _exp.frame =CGRectMake(16, 16, 280, 16);
             appDelegate.BarProgress=0;
         
-        }];
-                appDelegate.expLvl++;
-        if (appDelegate.expLvl<=[appDelegate.Player expLvUP]){
-            [self performSelector:@selector(animation) withObject:self afterDelay:2.1f];
-            
+        }
+                     completion:^(BOOL finished)
+        {
+            if( finished)
+            {
+                 [_levelUpLabel setText:@"Level UP!!!"];
+               [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
+                _exp.frame =CGRectMake(16, 16, 1, 16);
+            }
+        }
+     ];
+        //we need to fix on monday
+                appDelegate.expLvl = appDelegate.Player.lvl;
+        if (appDelegate.expLvl <= [appDelegate.Player expLvUP]){
             
             
         }
@@ -88,9 +98,11 @@
             _exp.frame =CGRectMake(16, 16, 280, 16);
             
         }completion:^(BOOL Done){if (Done){
+           
             _exp.frame =CGRectMake(16, 16, 1, 16);
-            //[_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
-
+            [_levelUpLabel setText:@"Level UP!!!"];
+            [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
+            
                     }}
          ];
         appDelegate.expLvl++;
@@ -103,8 +115,13 @@
             _exp.frame =CGRectMake(16, 16, 1, 16);
             _exp.frame =CGRectMake(16, 16, temp, 16);
             appDelegate.BarProgress=temp;
-                [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
-
+                
+            }completion:^(BOOL finished)
+        {
+                if(finished)
+                {
+                    [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
+                }
             }];
     }
 }
