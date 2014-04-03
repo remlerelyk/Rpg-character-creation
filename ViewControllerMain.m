@@ -29,6 +29,7 @@
 //Start Here
 - (void)viewDidLoad
 {
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
     appDelegate.isLeft =FALSE;
     
    
@@ -51,8 +52,9 @@
         //[appDelegate.Player setCurHealth:9000];
         //[appDelegate.Player setTotalHealth:9000];
         [_enemyDamageLabel setText:@""];
+        [_enemyDamageLabel setTextColor:[UIColor whiteColor]];
         [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.Enemy.Con]];
-
+        [_enemyHealthLabel setTextColor:[UIColor whiteColor]];
     
     }
 
@@ -138,6 +140,7 @@
         if(appDelegate.enemyAlive == TRUE)
         {
             [appDelegate.Enemy enemyAttack];
+            [_enemyDamageLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
             [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
             [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
             [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];

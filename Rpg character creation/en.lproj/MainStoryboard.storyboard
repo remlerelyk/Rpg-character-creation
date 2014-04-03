@@ -320,6 +320,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jf7-N2-LRj">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="109" id="aov-WR-a8x"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Attack">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -405,31 +408,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jf7-N2-LRj" firstAttribute="trailing" secondItem="GPb-pE-aH3" secondAttribute="trailing" type="default" id="699-lv-m5d"/>
-                            <constraint firstItem="jf7-N2-LRj" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="6m3-Pg-8CG"/>
-                            <constraint firstItem="hxW-Ne-nqU" firstAttribute="leading" secondItem="jf7-N2-LRj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="7LJ-rX-YUY"/>
+                            <constraint firstItem="5qt-en-eTV" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0ha-OK-bsa"/>
                             <constraint firstItem="G5L-Tw-qMt" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9vE-sz-xBz"/>
-                            <constraint firstItem="FeH-qO-1Yo" firstAttribute="leading" secondItem="5qt-en-eTV" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="AgG-Rh-J39"/>
-                            <constraint firstAttribute="trailing" secondItem="hxW-Ne-nqU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="DFE-Zv-AnK"/>
-                            <constraint firstItem="FeH-qO-1Yo" firstAttribute="leading" secondItem="jf7-N2-LRj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="JgO-Da-i4X"/>
-                            <constraint firstItem="FeH-qO-1Yo" firstAttribute="bottom" secondItem="jf7-N2-LRj" secondAttribute="bottom" type="default" id="LNH-Ee-5i9"/>
+                            <constraint firstItem="uEr-MP-QtC" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Hyj-iP-kMG"/>
+                            <constraint firstItem="jf7-N2-LRj" firstAttribute="bottom" secondItem="FeH-qO-1Yo" secondAttribute="bottom" type="default" id="LT4-OT-9X3"/>
+                            <constraint firstItem="uEr-MP-QtC" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="N0f-4s-A6R"/>
                             <constraint firstItem="EAe-de-beX" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="20" symbolic="YES" type="default" id="PFH-No-QTl"/>
                             <constraint firstItem="EAe-de-beX" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="PSf-4y-kMO"/>
-                            <constraint firstAttribute="trailing" secondItem="FeH-qO-1Yo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="PaO-hu-QAr"/>
+                            <constraint firstItem="hxW-Ne-nqU" firstAttribute="leading" secondItem="jf7-N2-LRj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="QRc-tr-hQy"/>
                             <constraint firstItem="G5L-Tw-qMt" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="88" id="Qao-GE-CmI"/>
-                            <constraint firstItem="uEr-MP-QtC" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="TdL-cJ-LC4"/>
+                            <constraint firstAttribute="trailing" secondItem="hxW-Ne-nqU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="TU4-21-Fwn"/>
+                            <constraint firstItem="hxW-Ne-nqU" firstAttribute="top" secondItem="jf7-N2-LRj" secondAttribute="top" type="default" id="WDt-wq-hwX"/>
                             <constraint firstAttribute="bottom" secondItem="uEr-MP-QtC" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Y9M-9l-2am"/>
-                            <constraint firstItem="5qt-en-eTV" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="atb-kA-6Sd"/>
+                            <constraint firstItem="FeH-qO-1Yo" firstAttribute="leading" secondItem="jf7-N2-LRj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="a2h-eI-9FK"/>
                             <constraint firstAttribute="trailing" secondItem="EAe-de-beX" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="bkt-eT-jnz"/>
                             <constraint firstItem="hqp-TN-P0D" firstAttribute="top" secondItem="G5L-Tw-qMt" secondAttribute="top" type="default" id="fVJ-gg-MyG"/>
                             <constraint firstItem="G5L-Tw-qMt" firstAttribute="baseline" secondItem="hqp-TN-P0D" secondAttribute="baseline" type="default" id="j1S-ol-jWT"/>
-                            <constraint firstAttribute="bottom" secondItem="5qt-en-eTV" secondAttribute="bottom" constant="63" id="nBs-B5-T5n"/>
+                            <constraint firstItem="jf7-N2-LRj" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="j9b-Jd-jbt"/>
+                            <constraint firstAttribute="bottom" secondItem="jf7-N2-LRj" secondAttribute="bottom" constant="102" id="oJy-fD-A2d"/>
                             <constraint firstAttribute="trailing" secondItem="hqp-TN-P0D" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ofU-US-rKz"/>
+                            <constraint firstAttribute="trailing" secondItem="FeH-qO-1Yo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="pVP-Bb-2vR"/>
                             <constraint firstItem="GPb-pE-aH3" firstAttribute="baseline" secondItem="EAe-de-beX" secondAttribute="baseline" type="default" id="rEW-44-yy6"/>
+                            <constraint firstAttribute="bottom" secondItem="5qt-en-eTV" secondAttribute="bottom" constant="61" id="sUQ-AY-bhZ"/>
+                            <constraint firstItem="FeH-qO-1Yo" firstAttribute="leading" secondItem="5qt-en-eTV" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="srB-qh-gkv"/>
                             <constraint firstItem="GPb-pE-aH3" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="tBN-Qm-d0j"/>
-                            <constraint firstAttribute="bottom" secondItem="FeH-qO-1Yo" secondAttribute="bottom" constant="107" id="tyO-jI-sJn"/>
-                            <constraint firstItem="uEr-MP-QtC" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="uKe-8r-EWc"/>
-                            <constraint firstItem="jf7-N2-LRj" firstAttribute="top" secondItem="hxW-Ne-nqU" secondAttribute="top" type="default" id="zxb-Xz-t1W"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gGl-2Z-AgG"/>
@@ -868,6 +870,82 @@
             <point key="canvasLocation" x="1112" y="62"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ExpController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExpController.h"/>
+            <relationships>
+                <relationship kind="action" name="dexterityMinusButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="dexterityPositiveButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="healthMinusButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="healthPositiveButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="leaveView:" candidateClass="UIButton"/>
+                <relationship kind="action" name="magicMinusButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="magicPositiveButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="strengthMinusButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="strengthPositiveButton:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="descriptionTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="dexterityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="levelUpLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="magicLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statDescribeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="strengthLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MagicViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MagicViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="magicTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="OverdriveViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OverdriveViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="overdriveLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="overdriveTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="dexterityMinusButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="dexterityPositiveButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="femaleImageButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="healthMinusButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="healthPositiveButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="magicMinusButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="magicPositiveButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="maleImageButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="strengthMinusButton:" candidateClass="UIButton"/>
+                <relationship kind="action" name="strengthPositiveButton:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="characterImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="descriptionTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="dexterityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="magicLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="statDescribeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="strengthLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ViewControllerMain" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewControllerMain.h"/>
+            <relationships>
+                <relationship kind="action" name="Attack:" candidateClass="UIButton"/>
+                <relationship kind="action" name="Magic:" candidateClass="UIButton"/>
+                <relationship kind="action" name="Overdrive:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="attackLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="enemyDamageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="enemyHealthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playerDamageLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

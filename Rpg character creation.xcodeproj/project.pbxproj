@@ -42,6 +42,7 @@
 		597CD8DC18C90B690085D8FE /* ff4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 597CD8D818C90B690085D8FE /* ff4.gif */; };
 		597CD8DE18C90B6E0085D8FE /* fw.gif in Resources */ = {isa = PBXBuildFile; fileRef = 597CD8DD18C90B6E0085D8FE /* fw.gif */; };
 		597CD8E118C90BE60085D8FE /* baddy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 597CD8E018C90BE60085D8FE /* baddy.gif */; };
+		59834C2118EB43E0006AE6A5 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 59834C2018EB43E0006AE6A5 /* background.png */; };
 		5999782118E3613000C16CB4 /* Frame.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5999782018E3613000C16CB4 /* Frame.gif */; };
 		5999782318E3622600C16CB4 /* exp.gif in Resources */ = {isa = PBXBuildFile; fileRef = 5999782218E3622600C16CB4 /* exp.gif */; };
 		59E0182118CF93C700A1FBDC /* t1.png in Resources */ = {isa = PBXBuildFile; fileRef = 59E0181118CF93C700A1FBDC /* t1.png */; };
@@ -111,6 +112,7 @@
 		597CD8D818C90B690085D8FE /* ff4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = ff4.gif; sourceTree = "<group>"; };
 		597CD8DD18C90B6E0085D8FE /* fw.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fw.gif; sourceTree = "<group>"; };
 		597CD8E018C90BE60085D8FE /* baddy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = baddy.gif; sourceTree = "<group>"; };
+		59834C2018EB43E0006AE6A5 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		5999782018E3613000C16CB4 /* Frame.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Frame.gif; sourceTree = "<group>"; };
 		5999782218E3622600C16CB4 /* exp.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = exp.gif; sourceTree = "<group>"; };
 		59E0181118CF93C700A1FBDC /* t1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = t1.png; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				5999782218E3622600C16CB4 /* exp.gif */,
+				59834C2018EB43E0006AE6A5 /* background.png */,
 				5999782018E3613000C16CB4 /* Frame.gif */,
 				59E0180F18CF93AD00A1FBDC /* Magic */,
 				597CD8E018C90BE60085D8FE /* baddy.gif */,
@@ -401,6 +404,7 @@
 				5999782318E3622600C16CB4 /* exp.gif in Resources */,
 				591CC76118E4AA34005A6736 /* iWin.mp3 in Resources */,
 				591CC76218E4AA34005A6736 /* Win.mp3 in Resources */,
+				59834C2118EB43E0006AE6A5 /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
