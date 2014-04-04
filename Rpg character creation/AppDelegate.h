@@ -21,4 +21,5 @@
 @property (strong, nonatomic) UIWindow *window;
 @property int expLvl,BarProgress;
 @property float lastValue;
+@property UIImage * BGimg;
 @end
