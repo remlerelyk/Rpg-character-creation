@@ -320,6 +320,9 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jf7-N2-LRj">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="109" id="aov-WR-a8x"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Attack">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -420,9 +423,23 @@
                             <constraint firstAttribute="trailing" secondItem="FeH-qO-1Yo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="PaO-hu-QAr"/>
                             <constraint firstAttribute="bottom" secondItem="jf7-N2-LRj" secondAttribute="bottom" constant="108" id="R2w-bE-iwC"/>
                             <constraint firstItem="uEr-MP-QtC" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="TdL-cJ-LC4"/>
+
+                            <constraint firstItem="5qt-en-eTV" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0ha-OK-bsa"/>
+                            <constraint firstItem="G5L-Tw-qMt" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9vE-sz-xBz"/>
+                            <constraint firstItem="uEr-MP-QtC" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Hyj-iP-kMG"/>
+                            <constraint firstItem="jf7-N2-LRj" firstAttribute="bottom" secondItem="FeH-qO-1Yo" secondAttribute="bottom" type="default" id="LT4-OT-9X3"/>
+                            <constraint firstItem="uEr-MP-QtC" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="N0f-4s-A6R"/>
+                            <constraint firstItem="EAe-de-beX" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="20" symbolic="YES" type="default" id="PFH-No-QTl"/>
+                            <constraint firstItem="EAe-de-beX" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="PSf-4y-kMO"/>
+                            <constraint firstItem="hxW-Ne-nqU" firstAttribute="leading" secondItem="jf7-N2-LRj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="QRc-tr-hQy"/>
+                            <constraint firstItem="G5L-Tw-qMt" firstAttribute="top" secondItem="vTk-Db-Fjz" secondAttribute="top" constant="88" id="Qao-GE-CmI"/>
+                            <constraint firstAttribute="trailing" secondItem="hxW-Ne-nqU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="TU4-21-Fwn"/>
+                            <constraint firstItem="hxW-Ne-nqU" firstAttribute="top" secondItem="jf7-N2-LRj" secondAttribute="top" type="default" id="WDt-wq-hwX"/>
+
                             <constraint firstAttribute="bottom" secondItem="uEr-MP-QtC" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="Y9M-9l-2am"/>
-                            <constraint firstItem="5qt-en-eTV" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="atb-kA-6Sd"/>
+                            <constraint firstItem="FeH-qO-1Yo" firstAttribute="leading" secondItem="jf7-N2-LRj" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="a2h-eI-9FK"/>
                             <constraint firstAttribute="trailing" secondItem="EAe-de-beX" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="bkt-eT-jnz"/>
+
                             <constraint firstAttribute="bottom" secondItem="5qt-en-eTV" secondAttribute="bottom" constant="63" id="nBs-B5-T5n"/>
                             <constraint firstAttribute="trailing" secondItem="hqp-TN-P0D" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ofU-US-rKz"/>
                             <constraint firstAttribute="bottom" secondItem="hxW-Ne-nqU" secondAttribute="bottom" constant="129" id="rGH-O9-kDz"/>
@@ -430,6 +447,18 @@
                             <constraint firstAttribute="bottom" secondItem="FeH-qO-1Yo" secondAttribute="bottom" constant="107" id="tyO-jI-sJn"/>
                             <constraint firstItem="uEr-MP-QtC" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" type="default" id="uKe-8r-EWc"/>
                             <constraint firstAttribute="trailing" secondItem="fOt-8b-Bju" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="zej-LX-f39"/>
+
+                            <constraint firstItem="hqp-TN-P0D" firstAttribute="top" secondItem="G5L-Tw-qMt" secondAttribute="top" type="default" id="fVJ-gg-MyG"/>
+                            <constraint firstItem="G5L-Tw-qMt" firstAttribute="baseline" secondItem="hqp-TN-P0D" secondAttribute="baseline" type="default" id="j1S-ol-jWT"/>
+                            <constraint firstItem="jf7-N2-LRj" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="j9b-Jd-jbt"/>
+                            <constraint firstAttribute="bottom" secondItem="jf7-N2-LRj" secondAttribute="bottom" constant="102" id="oJy-fD-A2d"/>
+                            <constraint firstAttribute="trailing" secondItem="hqp-TN-P0D" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ofU-US-rKz"/>
+                            <constraint firstAttribute="trailing" secondItem="FeH-qO-1Yo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="pVP-Bb-2vR"/>
+                            <constraint firstItem="GPb-pE-aH3" firstAttribute="baseline" secondItem="EAe-de-beX" secondAttribute="baseline" type="default" id="rEW-44-yy6"/>
+                            <constraint firstAttribute="bottom" secondItem="5qt-en-eTV" secondAttribute="bottom" constant="61" id="sUQ-AY-bhZ"/>
+                            <constraint firstItem="FeH-qO-1Yo" firstAttribute="leading" secondItem="5qt-en-eTV" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="srB-qh-gkv"/>
+                            <constraint firstItem="GPb-pE-aH3" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="tBN-Qm-d0j"/>
+
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gGl-2Z-AgG"/>
@@ -937,10 +966,17 @@
                 <relationship kind="action" name="Overdrive:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="attackLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="enemyDamageLabel" candidateClass="UILabel"/>
+
                 <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playerDamageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playerHealLabel" candidateClass="UILabel"/>
+
+                <relationship kind="outlet" name="enemyHealthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="playerDamageLabel" candidateClass="UILabel"/>
+
             </relationships>
         </class>
     </classes>

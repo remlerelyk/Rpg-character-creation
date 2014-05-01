@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dexterityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *magicLabel;
+@property NSTimer * myTimer;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 - (IBAction)strengthMinusButton:(UIButton *)sender;
 - (IBAction)strengthPositiveButton:(UIButton *)sender;

@@ -29,22 +29,32 @@
 //Start Here
 - (void)viewDidLoad
 {
-    appDelegate = [[UIApplication sharedApplication] delegate];
+
+    NSArray * imgARRAY = [[NSArray alloc]initWithArray:[NSArray arrayWithObjects:[UIImage imageNamed:@"BG1.png"],[UIImage imageNamed:@"BG2.png"],[UIImage imageNamed:@"GB3.gif"],[UIImage imageNamed:@"BG4.png"], nil]];
+    //[self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
+
     appDelegate.isLeft =FALSE;
     //appDelegate.Player.lvl ++;
    
     
     if(appDelegate.enemyAlive == FALSE)
     {
+     
+        int rnd = arc4random()%4;
+        appDelegate.BGimg =[self imageWithImage:[imgARRAY objectAtIndex:rnd] borderImage:[UIImage imageNamed:@"battleFrame.gif"] covertToSize:CGSizeMake(320, 560)];
+        
+        
         
         [_attackLabel setText:@""];
         [_enemyDamageLabel setText:@""];
         [_playerDamageLabel setText:@""];
         //[_playerDamageLabel bringSubviewToFront:];
+
         _bob = [[Enemy alloc]initWithLv:[appDelegate.Player lvl] andWith:[UIImage imageNamed:@"baddy.gif"]];
         
         _jack = [[Enemy alloc]initWithLv:[appDelegate.Player lvl] andWith:[UIImage imageNamed:@"baddy.gif"]];
         //_bob = [[Enemy alloc]initWithLv:100 andWith:[UIImage imageNamed:@"baddy.gif"]];
+
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
         appDelegate.EnemyTwo = _jack;
@@ -69,8 +79,11 @@
         
         [_enemyDamageLabel setText:@""];
 
+        [_enemyDamageLabel setTextColor:[UIColor whiteColor]];
     
     }
+   [self.view setBackgroundColor:[UIColor colorWithPatternImage:appDelegate.BGimg]];
+
     _buttonPress = FALSE;
    // NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
                                                                 // 240  24 48 48
@@ -160,6 +173,7 @@
         if(appDelegate.enemyAlive == TRUE)
         {
             [appDelegate.Enemy enemyAttack];
+            [_enemyDamageLabel setTextColor:[UIColor colorWithWhite:1.0 alpha:1.0]];
             [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.Enemy enemyDamage]]];
             [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.Enemy.enemyDamage];
             [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.Enemy.enemyDamage];
@@ -574,6 +588,14 @@
     
     return coloredImage;
 }
-
+-(UIImage *)imageWithImage:(UIImage *)image borderImage:(UIImage *)borderImage covertToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);
+    [borderImage drawInRect:CGRectMake( 0, 110, size.width, 280 )];
+    [borderImage drawInRect:CGRectMake( 0, 390, size.width, 170 )];
+    [image drawInRect:CGRectMake( 0, 0, size.width, 110)];
+    UIImage *destImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return destImage;
+}
 
 @end
