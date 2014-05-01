@@ -28,20 +28,54 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     appDelegate = [[UIApplication sharedApplication] delegate];
-    _overdriveArray = [[NSMutableArray alloc] initWithObjects:
-                       @"Multi-Slash:50",
-                       @"Tri-Magic:100",
-                       @"Smoltering Blade:500",
-                       @"Jabbing the Abdomen:1000",
-                       @"DNS:5000", nil];
-    _overdriveArrayName = [[NSMutableArray alloc] initWithObjects:
-                       @"Multi-Slash",
-                       @"Tri-Magic",
-                       @"Smoltering Blade",
-                       @"Jabbing the Abdomen",
-                       @"Dance of the Nine Swords", nil];
+    
+    
+    
+     NSLog(@"Player Level:%i", appDelegate.Player.lvl);
+    
+
+        _overdriveArray = [[NSMutableArray alloc] initWithObjects:
+                       @"",
+                       @"",
+                       @"",
+                       @"",
+                       @"",
+                       @"",nil];
+        _overdriveArrayName = [[NSMutableArray alloc] initWithObjects:
+                       @"",
+                       @"",
+                       @"",
+                       @"",
+                       @"",
+                       @"", nil];
+
     [_overdriveLabel setText:[NSString stringWithFormat:@"Damage Taken:%i", appDelegate.Player.damageTaken]];
     
+    switch (appDelegate.Player.lvl)
+    {
+        case 80 ... 999:
+            [_overdriveArray replaceObjectAtIndex:5 withObject:@"DNS:5000"];
+            [_overdriveArrayName replaceObjectAtIndex:5 withObject:@"Dance of the Nine Swords"];
+        case 50 ... 79:
+            [_overdriveArray replaceObjectAtIndex:4 withObject:@"Between the eyes:2500"];
+            [_overdriveArrayName replaceObjectAtIndex:4 withObject:@"Between the eyes"];
+        case 40 ... 49:
+            [_overdriveArray replaceObjectAtIndex:3 withObject:@"Jabbing the Abdomen:1000"];
+            [_overdriveArrayName replaceObjectAtIndex:3 withObject:@"Jabbing the Abdomen"];
+        case 30 ... 39:
+            [_overdriveArray replaceObjectAtIndex:2 withObject:@"Smoltering Blade:500"];
+            [_overdriveArrayName replaceObjectAtIndex:2 withObject:@"Smoltering Blade"];
+        case 20 ... 29:
+            [_overdriveArray replaceObjectAtIndex:1 withObject:@"Tri-Magic:100"];
+            [_overdriveArrayName replaceObjectAtIndex:1 withObject:@"Tri-Magic"];
+        case 10 ... 19:
+            [_overdriveArray replaceObjectAtIndex:0 withObject:@"Multi-Slash:50"];
+            [_overdriveArrayName replaceObjectAtIndex:0 withObject:@"Multi-Slash"];
+            break;
+            
+        default:
+            break;
+    }
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -61,10 +95,19 @@
     }
     
     cell.textLabel.text = [_overdriveArray objectAtIndex:indexPath.row];
+    if([[_overdriveArray objectAtIndex:indexPath.row] isEqual:@""])
+    {
+        //UITableViewCell * cell = [overdriveTable cellForRowAtIndexPath:indexPath];
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setUserInteractionEnabled:NO];
+    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [overdriveTable deselectRowAtIndexPath:indexPath animated:YES];
+    
     if((appDelegate.Player.damageTaken >= 50) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:0]])
     {
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
@@ -72,6 +115,7 @@
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 50];
         [appDelegate.Player setPlayerDamage:500];
         appDelegate.overdriveUsed = TRUE;
+        _whatOverdrive = 0;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else if((appDelegate.Player.damageTaken >= 100) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:1]])
@@ -81,6 +125,7 @@
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 100];
         [appDelegate.Player setPlayerDamage:1000];
         appDelegate.overdriveUsed = TRUE;
+        _whatOverdrive = 1;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else if((appDelegate.Player.damageTaken >= 500) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:2]])
@@ -90,6 +135,7 @@
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 500];
         [appDelegate.Player setPlayerDamage:5000];
         appDelegate.overdriveUsed = TRUE;
+        _whatOverdrive = 2;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else if((appDelegate.Player.damageTaken >= 1000) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:3]])
@@ -99,15 +145,27 @@
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 1000];
         [appDelegate.Player setPlayerDamage:10000];
         appDelegate.overdriveUsed = TRUE;
+        _whatOverdrive = 3;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
-    else if((appDelegate.Player.damageTaken >= 5000) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:4]])
+    else if((appDelegate.Player.damageTaken >= 2500) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:4]])
+    {
+        NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
+        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 25000];
+        [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 2500];
+        [appDelegate.Player setPlayerDamage:25000];
+        appDelegate.overdriveUsed = TRUE;
+        _whatOverdrive  = 4;
+        [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
+    }
+    else if((appDelegate.Player.damageTaken >= 5000) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:5]])
     {
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
          [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 50000];
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 5000];
         [appDelegate.Player setPlayerDamage:50000];
         appDelegate.overdriveUsed = TRUE;
+        _whatOverdrive = 5;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else
@@ -119,9 +177,11 @@
 {
     if([segue.identifier isEqualToString:@"OverdriveUse"])
     {
-        NSIndexPath * indexPath = [self.overdriveTable indexPathForSelectedRow];
+        
+        
+        
         ViewControllerMain * destViewController = segue.destinationViewController;
-        destViewController.attackString = [_overdriveArrayName objectAtIndex:indexPath.row];
+        destViewController.attackString = [_overdriveArrayName objectAtIndex:_whatOverdrive];
     }
 }
 @end

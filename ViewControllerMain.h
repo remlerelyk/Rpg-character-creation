@@ -16,7 +16,8 @@
 @interface ViewControllerMain : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
     AppDelegate *appDelegate;
-    Enemy * enemy;
+    //Enemy * enemy;
+
 }
 @property int totalHealth;
 @property int totalMagic;
@@ -29,16 +30,20 @@
 @property NSString * audioPath,* hit,* death,* cure;
 @property (nonatomic, strong) NSString * attackString;
 @property NSURL * audioURL,* audioSFX;
-@property UIImageView *Animation, * baddy,* magicLayer;
+@property UIImageView *Animation, * baddy,* baddyTwo, * selector, * magicLayer;
 @property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
 @property (weak, nonatomic) IBOutlet UILabel *enemyDamageLabel;
-@property (weak, nonatomic) IBOutlet UILabel *enemyHealthLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attackLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerDamageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *manaLabel;
+@property (weak, nonatomic) IBOutlet UILabel *playerHealLabel;
 
-@property UIImage * Temp,* uIdle;
+@property UIImage * Temp, *TempTwo, * uIdle;
 @property BOOL buttonPress;
 @property Enemy * bob;
+@property Enemy * jack;
+@property NSSet * theSet;
+
 @end

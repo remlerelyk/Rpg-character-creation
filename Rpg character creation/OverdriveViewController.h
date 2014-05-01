@@ -17,4 +17,5 @@
 @property (nonatomic, strong) NSString * overdriveType;
 @property NSMutableArray * overdriveArray;
 @property NSMutableArray * overdriveArrayName;
+@property int whatOverdrive;
 @end

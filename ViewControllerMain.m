@@ -29,10 +29,11 @@
 //Start Here
 - (void)viewDidLoad
 {
-    appDelegate.isLeft =FALSE;
-    
-   
     appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.isLeft =FALSE;
+    //appDelegate.Player.lvl ++;
+   
+    
     if(appDelegate.enemyAlive == FALSE)
     {
         
@@ -40,32 +41,52 @@
         [_enemyDamageLabel setText:@""];
         [_playerDamageLabel setText:@""];
         //[_playerDamageLabel bringSubviewToFront:];
-        _bob = [[Enemy alloc]initWithLv:appDelegate.Player.lvl /*[appDelegate.Player lvl]*/ andWith:[UIImage imageNamed:@"baddy.gif"]];
+        _bob = [[Enemy alloc]initWithLv:[appDelegate.Player lvl] andWith:[UIImage imageNamed:@"baddy.gif"]];
+        
+        _jack = [[Enemy alloc]initWithLv:[appDelegate.Player lvl] andWith:[UIImage imageNamed:@"baddy.gif"]];
+        //_bob = [[Enemy alloc]initWithLv:100 andWith:[UIImage imageNamed:@"baddy.gif"]];
         appDelegate.enemyAlive = TRUE;
         appDelegate.Enemy = _bob;
-
-       // [appDelegate.Enemy setCon:100];
-
-        //[appDelegate.Enemy setStr:300];
+        appDelegate.EnemyTwo = _jack;
         
+        //debugging
+        
+        //[appDelegate.Enemy setCon:10000];
+        //[appDelegate.Enemy setStr:100];//100
+        
+        
+        //[appDelegate.Player setLvl:100];//5 x 100 + 10= 510
+        //[appDelegate.Player setDexterity:100];//100
         //[appDelegate.Player setCurHealth:9000];
         //[appDelegate.Player setTotalHealth:9000];
+        //[appDelegate.Player setHealth:200];//200
+        //[appDelegate.Player setDamageTaken:10000];
+        //[appDelegate.Player setMagic:110];//120
+        //[appDelegate.Player setCurMagic:120];
+        //[appDelegate.Player setStrength:100];
+        //[appDelegate.Player cleanStats];
+        
+        
         [_enemyDamageLabel setText:@""];
-        [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP: %i", appDelegate.Enemy.Con]];
 
     
     }
-
     _buttonPress = FALSE;
    // NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
-        
-        _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 24, 48, 48)];
+                                                                // 240  24 48 48
+        _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 20, 48, 48)];
+    
     [self.view addSubview: _Animation];
 
     _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, appDelegate.Enemy.width, appDelegate.Enemy.height)];
+    _baddyTwo = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, appDelegate.Enemy.width, appDelegate.Enemy.height)];
+    
     [self.view addSubview: _baddy];
+    [self.view addSubview: _baddyTwo];
     [self.view addSubview:_playerDamageLabel];
+    [self.view addSubview:_playerHealLabel];
     [self.view bringSubviewToFront:_playerDamageLabel];
+    [self.view bringSubviewToFront:_playerHealLabel];
 
     NSString * healthData = [NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth];
     NSString * manaData = [NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.magic];
@@ -104,7 +125,8 @@
        // _buttonPress = TRUE;
         [super viewDidLoad];
         [_baddy setImage:[appDelegate.Enemy img]];
-        
+        [_baddyTwo setImage:[appDelegate.Enemy img]];
+    
         
         
         if([appDelegate.Player isMale]==TRUE){
@@ -118,12 +140,12 @@
         }
         [_Animation setImage:_uIdle];
 
-    
+    //adding a second enemy
     
     if(appDelegate.overdriveUsed == TRUE)
     {
         [_attackLabel setText:[NSString stringWithFormat:@"%@", _attackString]];
-        [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP:%i", appDelegate.Enemy.Con ]];
+       
         [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
         if(appDelegate.Enemy.Con <= 0)
         {
@@ -155,12 +177,13 @@
     }
     if(appDelegate.Player.spellCost > 0)
     {
-        
+        NSLog(@"Start of magic");
         [appDelegate.Player playerSpell];
         NSLog(@"Spell Damge:%i", appDelegate.Player.spellDamage);
         NSLog(@"Spell Cost: %i", appDelegate.Player.spellCost);
-        [_attackLabel setText:_attackString];
-        switch (appDelegate.Player.spellCost)
+    
+        
+        /*switch (appDelegate.Player.spellCost)
         {
             case 2:
                 
@@ -179,12 +202,51 @@
             default:
                 NSLog(@"U haz no makics");
                 break;
+        }*/
+        if(appDelegate.Player.spellCost == 2)
+        {
+            // cure
+            [appDelegate.Player setSpellDamage:appDelegate.Player.totalHealth/4];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
+            [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+            if(appDelegate.Player.curHealth > appDelegate.Player.totalHealth)
+            {
+                [appDelegate.Player setCurHealth:appDelegate.Player.totalHealth];
+            }
+            [_healthLabel setText:[NSString stringWithFormat:@"HP:%i/%i",appDelegate.Player.curHealth,appDelegate.Player.totalHealth]];
         }
-        
-        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
-        [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP:%i", appDelegate.Enemy.Con]];
-        [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
-        NSLog(@"Enemy Exp: %i", appDelegate.Enemy.Exp);
+        else if(appDelegate.Player.spellCost == 10)
+        {
+            //Bacure
+             [appDelegate.Player setSpellDamage:appDelegate.Player.totalHealth/2];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
+            [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+            if(appDelegate.Player.curHealth > appDelegate.Player.totalHealth)
+            {
+                [appDelegate.Player setCurHealth:appDelegate.Player.totalHealth];
+            }
+            [_healthLabel setText:[NSString stringWithFormat:@"HP:%i/%i",appDelegate.Player.curHealth,appDelegate.Player.totalHealth]];
+        }
+        else if(appDelegate.Player.spellCost == 20)
+        {
+            //Cracure
+            [appDelegate.Player setSpellDamage:appDelegate.Player.totalHealth*.75];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
+            [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+            if(appDelegate.Player.curHealth > appDelegate.Player.totalHealth)
+            {
+                [appDelegate.Player setCurHealth:appDelegate.Player.totalHealth];
+            }
+            [_healthLabel setText:[NSString stringWithFormat:@"HP:%i/%i",appDelegate.Player.curHealth,appDelegate.Player.totalHealth]];
+        }
+        else
+        {
+            [_attackLabel setText:_attackString];
+            [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
+            
+            [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+            NSLog(@"Enemy Exp: %i", appDelegate.Enemy.Exp);
+        }
         if(appDelegate.Enemy.Con <= 0)
         {
             [_enemyDamageLabel setText:@""];
@@ -217,6 +279,95 @@
         
         appDelegate.Player.spellCost = 0;
     }
+    
+}
+-(void)selection:(int)x andWith:(int)y
+{
+    
+}
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    CGPoint thePoint = [[touches anyObject] locationInView:self.view];
+    //CGPoint baddyPoint = [[_theSet anyObject] locationInView:self.view];
+    //NSLog(@"the object in the set is%f", thePoint);
+    //NSLog(@"the object in the set is%f", baddyPoint);
+    int pointX = thePoint.x;
+    int pointY = thePoint.y;
+    //int baddyPointX = baddyPoint.x;
+    //int baddyPointY = baddyPoint.y;
+    
+    
+    /*
+     boundary box for baddy one
+     
+     TLC, x = 20, y = 12
+     TRC, x = 66, y = 12
+     BLC, x = 20, y = 75
+     BRC, x = 66, y = 75
+     
+     
+     */
+    
+    NSLog(@" point x = %i ", pointX);
+    NSLog(@" point y = %i ", pointY);
+    if(pointX >= 20 && pointX <= 66 && pointY >= 12 && pointY <= 75)
+    {
+        
+        appDelegate.enemySelected = 1;
+        
+        [_selector setImage:nil];
+        
+        _selector = [[UIImageView alloc] initWithFrame:CGRectMake(80, 30, 32, 20)];
+        
+        [self.view addSubview:_selector];
+        
+        [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
+        
+        NSLog(@"Enemy one working");
+    }
+    /*
+     
+     Boundary box for baddy two
+     
+     TLC x = 20, y = 102
+     TRC x = 66, y = 102
+     BLC x = 20, y = 163
+     BRC x = 66, y = 163
+    
+     selector one
+     
+     
+     
+     
+    */
+    if(pointX >= 20 && pointX <= 66  && pointY >= 102 && pointY <= 163)
+    {
+        appDelegate.enemySelected = 2;
+       // [_selector delete:self];
+        [_selector setImage:nil];
+        
+        _selector = [[UIImageView alloc] initWithFrame:CGRectMake(80, 120, 32, 20)];
+        
+        [self.view addSubview:_selector];
+        
+        
+        [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
+        
+        NSLog(@"Enemy two working");
+    }
+
+    //NSLog(@" point x = %i ", baddyPointX);
+    //NSLog(@" point x = %i ", baddyPointY);
+    
+    
+}
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
+}
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    
 }
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -252,12 +403,26 @@
         }completion:^(BOOL finished) {
             if (finished){
                 // start doing damage
+            
                 [appDelegate.Player playerAttack];
                // NSLog(@"%i", appDelegate.Player.playerDamage);
-                [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.playerDamage];
-                [_enemyHealthLabel setText:[NSString stringWithFormat:@"HP:%i", appDelegate.Enemy.Con]];
-                [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
-                               _Animation.transform = CGAffineTransformMakeScale(-1, 1);
+                if(appDelegate.enemySelected == 1)
+                {
+                    [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.playerDamage];
+                    [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
+                    NSLog(@"Number of hits: %i", appDelegate.Player.numberOfHits);
+                    NSLog(@"Enemy one hit");
+                }
+                else if(appDelegate.enemySelected == 2)
+                {
+                    [appDelegate.EnemyTwo setCon:appDelegate.EnemyTwo.Con - appDelegate.Player.playerDamage];
+                    [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
+                    NSLog(@"Number of hits: %i", appDelegate.Player.numberOfHits);
+                    NSLog(@"Enemy two hit");
+                }
+                
+            
+                _Animation.transform = CGAffineTransformMakeScale(-1, 1);
                 _audioSFX = [NSURL fileURLWithPath:_hit];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
                 [appDelegate.sfx play];
@@ -269,22 +434,36 @@
                     _Animation.frame = CGRectMake(240,20,48,48);
                 }completion:^(BOOL Done){if (Done){
                     _Animation.transform = CGAffineTransformMakeScale(1, 1);
+                    
                     if(appDelegate.Enemy.Con <= 0)
                     {
-                       // NSLog(@"Enemy Dead");
                         [appDelegate.Enemy setCon:0];
                         [appDelegate.Player addExperiance:appDelegate.Enemy.Exp];
                         appDelegate.enemyAlive = FALSE;
-                        _buttonPress = TRUE;
-             
-                        [self performSegueWithIdentifier:@"Uwin" sender:self];
+                       // _buttonPress = TRUE;
+                        NSLog(@"Enemy one dead");
+                    }
+                    if(appDelegate.EnemyTwo.Con <= 0)
+                    {
+                        [appDelegate.EnemyTwo setCon:0];
+                        [appDelegate.Player addExperiance:appDelegate.EnemyTwo.Exp];
+                        appDelegate.enemyAlive = FALSE;
                         
+                        NSLog(@"Enemy two dead");
+                    }
+                    
+                    if(appDelegate.Enemy.Con <= 0 && appDelegate.EnemyTwo.Con <= 0)
+                    {
+                       // NSLog(@"Enemy Dead");
+                        [self performSegueWithIdentifier:@"Uwin" sender:self];
+                        _buttonPress = TRUE;
                     }
 
                     
                         
                         
                         _Temp = [_baddy image];
+                        _TempTwo = [_baddyTwo image];
                     // Start enemy attack
                     if(appDelegate.enemyAlive == TRUE)
                     {
@@ -309,11 +488,15 @@
                         [UIView animateWithDuration:0.1 animations:^{
                             _baddy.alpha = 1.0f;
                             _baddy.alpha = 0.0f;
+                           // _baddyTwo.alpha = 1.0f;
+                            //_baddyTwo.alpha = 0.0f;
                             
                         }completion:^(BOOL badAttack){if (badAttack){
                             [UIView animateWithDuration:0.1 animations:^{
                                 _baddy.alpha = 0.0f;
                                 _baddy.alpha = 1.0f;
+                               // _baddyTwo.alpha = 0.0f;
+                               // _baddyTwo.alpha = 1.0f;
                                 
                                 
                                 
@@ -340,6 +523,7 @@
                         }];}
                     [_Animation stopAnimating];
                     [_Animation setImage:_uIdle];
+                    _buttonPress = FALSE;
                     
                 }];
                 

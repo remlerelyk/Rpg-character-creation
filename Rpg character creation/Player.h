@@ -10,7 +10,7 @@
 #import <math.h>
 @interface Player : NSObject
 
-@property int exp,lvl,expLvUP,magic,strength,dexterity,health,totalHealth,totalMagic,curMagic,curStrength,curDexterity,curHealth,totalStats, spellCost, playerDamage, spellDamage, damageTaken;
+@property int exp,lvl,expLvUP,magic,strength,dexterity,health,totalHealth,totalMagic,curMagic,curStrength,curDexterity,curHealth,totalStats, spellCost, playerDamage, spellDamage, damageTaken, numberOfHits;
 @property (nonatomic, strong) NSString * curMagicSkill;
 @property float amoutOfProgress;
 @property BOOL isMale;
@@ -18,6 +18,7 @@
 -(void)addExperiance: (int) e;
 -(void)cleanStats;
 -(void)resetMana;
+-(void)levelUp;
 -(int)playerAttack;
 -(int)playerSpell;
 @end
