@@ -422,6 +422,7 @@
                             <constraint firstItem="EAe-de-beX" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="PSf-4y-kMO"/>
                             <constraint firstAttribute="trailing" secondItem="FeH-qO-1Yo" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="PaO-hu-QAr"/>
                             <constraint firstAttribute="bottom" secondItem="jf7-N2-LRj" secondAttribute="bottom" constant="108" id="R2w-bE-iwC"/>
+
                             <constraint firstItem="uEr-MP-QtC" firstAttribute="trailing" secondItem="5qt-en-eTV" secondAttribute="trailing" type="default" id="TdL-cJ-LC4"/>
 
                             <constraint firstItem="5qt-en-eTV" firstAttribute="leading" secondItem="vTk-Db-Fjz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0ha-OK-bsa"/>
@@ -972,7 +973,7 @@
                 <relationship kind="outlet" name="playerDamageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playerHealLabel" candidateClass="UILabel"/>
 
-                <relationship kind="outlet" name="enemyHealthLabel" candidateClass="UILabel"/>
+
                 <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playerDamageLabel" candidateClass="UILabel"/>

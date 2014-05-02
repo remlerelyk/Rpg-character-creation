@@ -17,8 +17,6 @@
     _overdriveUsed = FALSE;
     _expLvl = 1;
     _lastValue = 1;
-    _firstTimeMagic = TRUE;
-    _firstTimeOverdrive = TRUE;
     _enemySelected = 0;
     return YES;
 }

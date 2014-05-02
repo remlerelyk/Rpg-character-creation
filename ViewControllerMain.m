@@ -29,7 +29,7 @@
 //Start Here
 - (void)viewDidLoad
 {
-
+    appDelegate = [[UIApplication sharedApplication] delegate];
     NSArray * imgARRAY = [[NSArray alloc]initWithArray:[NSArray arrayWithObjects:[UIImage imageNamed:@"BG1.png"],[UIImage imageNamed:@"BG2.png"],[UIImage imageNamed:@"GB3.gif"],[UIImage imageNamed:@"BG4.png"], nil]];
     //[self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.png"]]];
 
