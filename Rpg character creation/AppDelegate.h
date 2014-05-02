@@ -22,7 +22,6 @@
 @property (strong, nonatomic) UIWindow *window;
 @property int expLvl,BarProgress, enemySelected;
 @property float lastValue;
-
-@property UIImage * BGimg;
-
+@property BOOL firstTimeMagic;
+@property BOOL firstTimeOverdrive;
 @end
