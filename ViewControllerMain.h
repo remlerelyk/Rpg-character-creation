@@ -23,6 +23,7 @@
 @property int totalMagic;
 @property int currentHealth;
 @property int currentMagic;
+@property int frozenChance;
 @property BOOL overdriveUsed;
 - (IBAction)Attack:(UIButton *)sender;
 - (IBAction)Overdrive:(UIButton *)sender;
@@ -30,9 +31,11 @@
 @property NSString * audioPath,* hit,* death,* cure;
 @property (nonatomic, strong) NSString * attackString;
 @property NSURL * audioURL,* audioSFX;
-@property UIImageView *Animation, * baddy,* baddyTwo, * selector, * magicLayer;
+@property UIImageView *Animation, * baddy,* baddyTwo,* baddyThree, * selector, * magicLayer;
 @property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
 @property (weak, nonatomic) IBOutlet UILabel *enemyDamageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *playerDamageLabelTwo;
+@property (weak, nonatomic) IBOutlet UILabel *playerDamageLabelThree;
 
 @property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attackLabel;
@@ -40,10 +43,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *manaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerHealLabel;
 
-@property UIImage * Temp, *TempTwo, * uIdle;
+@property UIImage * Temp, *TempTwo,*TempThree, * uIdle;
 @property BOOL buttonPress;
 @property Enemy * bob;
 @property Enemy * jack;
+@property Enemy * Jill;
 @property NSSet * theSet;
 
 @end

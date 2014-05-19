@@ -14,7 +14,7 @@
 
 @implementation ExpController
 
-//working on the level up view controller touch ups
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,8 +32,10 @@
 {
 
     //int value = 0;
-
+    
     appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    [appDelegate.Player levelUp];
         appDelegate.isLeft = TRUE;
     _exp = [[UIImageView alloc]initWithFrame:CGRectMake(16, 16, 1, 16)];
     [self.view addSubview:_exp];
@@ -54,8 +56,7 @@
     [appDelegate.music play];
     [self performSelector:@selector(playRest) withObject:self afterDelay:15.2145f];
 
-
-    
+    [_labelNewAbility setText:@""];
     [_statDescribeLabel setText:@""];
     [_descriptionTextView setText:@""];
     [_levelUpLabel setText:@""];
@@ -84,9 +85,72 @@
            _exp.frame=CGRectMake(16, 16, 1, 16);
             appDelegate.lastValue = 1;
             [_levelUpLabel setText:@"Level UP!!!"];
+             [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
+            switch (appDelegate.Player.lvl)
+            {
+                case 80:
+                    [_labelNewAbility setText:@"Learned Dance of the Nine Swords"];
+                    break;
+                case 75:
+                    [_labelNewAbility setText:@"Learned SheerVoltabalu"];
+                     break;
+                case 61:
+                    [_labelNewAbility setText:@"Learned Sheer Ice"];
+                     break;
+                case 50:
+                    [_labelNewAbility setText:@"Learned Between the eyes"];
+                     break;
+                case 49:
+                    [_labelNewAbility setText:@"Learned Voltunder"];
+                    break;
+                case 42:
+                    [_labelNewAbility setText:@"Learned Cracure"];
+                     break;
+                case 40:
+                    [_labelNewAbility setText:@"Learned Jabbing the Abdomen"];
+                    break;
+                case 34:
+                    [_labelNewAbility setText:@"Learned Balufire"];
+                     break;
+                case 30:
+                    [_labelNewAbility setText:@"Learned Smoltering Blade"];
+                    break;
+                case 27:
+                    [_labelNewAbility setText:@"Learned Baice"];
+                     break;
+                case 21:
+                    [_labelNewAbility setText:@"Learned Bathunder"];
+                     break;
+                case 20:
+                    [_labelNewAbility setText:@"Learned Tri-Magic"];
+                    break;
+                case 15:
+                    [_labelNewAbility setText:@"Learned Bacure"];
+                     break;
+                case 10:
+                    [_labelNewAbility setText:@"Learned Bafire and MultiSlash"];
+                     break;
+                case 7:
+                    [_labelNewAbility setText:@"Learned Ice"];
+                     break;
+                case 5:
+                    [_labelNewAbility setText:@"Learned Thunder"];
+                     break;
+                case 3:
+                    [_labelNewAbility setText:@"Learned Fire"];
+                    break;
+                case 2:
+                    [_labelNewAbility setText:@"Learned Cure"];
+                    break;
+                default:
+                    break;
+            }
+        
+            
         }
-        [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
+    
     }
+     
      ];
     
     /*

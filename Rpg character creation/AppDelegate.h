@@ -15,13 +15,15 @@
 @property AVAudioPlayer * music;
 @property AVAudioPlayer * sfx;
 @property BOOL isMusic,isLeft;
-@property BOOL enemyAlive;
+//@property BOOL enemyAlive;
 @property BOOL overdriveUsed;
 @property Enemy * Enemy;
 @property Enemy * EnemyTwo;
+@property Enemy * EnemyThree;
 @property (strong, nonatomic) UIWindow *window;
-@property int expLvl,BarProgress, enemySelected;
+@property int expLvl,BarProgress, enemySelected, whatOverdrive;
 @property float lastValue;
 @property BOOL firstTimeMagic;
 @property BOOL firstTimeOverdrive;
+
 @end

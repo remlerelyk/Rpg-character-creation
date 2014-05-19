@@ -17,13 +17,16 @@
 @property NSString * iWin,* Win;
 @property NSURL * audioURL,* audioSFX;
 
+
 @property (weak, nonatomic) IBOutlet UILabel *statDescribeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *strengthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *levelUpLabel;
+@property (weak, nonatomic) IBOutlet UILabel *labelNewAbility;
 @property (weak, nonatomic) IBOutlet UILabel *dexterityLabel;
 @property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *magicLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+
 - (IBAction)strengthMinusButton:(UIButton *)sender;
 - (IBAction)strengthPositiveButton:(UIButton *)sender;
 - (IBAction)dexterityMinusButton:(UIButton *)sender;

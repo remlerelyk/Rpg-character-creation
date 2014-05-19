@@ -20,6 +20,7 @@
     _firstTimeMagic = TRUE;
     _firstTimeOverdrive = TRUE;
     _enemySelected = 0;
+    
     return YES;
 }
 							

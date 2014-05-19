@@ -111,61 +111,60 @@
     if((appDelegate.Player.damageTaken >= 50) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:0]])
     {
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
-        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 500];
+       
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 50];
-        [appDelegate.Player setPlayerDamage:500];
+        [appDelegate.Player setPlayerDamage:50];
         appDelegate.overdriveUsed = TRUE;
-        _whatOverdrive = 0;
+        appDelegate.whatOverdrive = 0;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else if((appDelegate.Player.damageTaken >= 100) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:1]])
     {
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
-         [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 1000];
+        
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 100];
-        [appDelegate.Player setPlayerDamage:1000];
+        [appDelegate.Player setPlayerDamage:100];
         appDelegate.overdriveUsed = TRUE;
-        _whatOverdrive = 1;
+        appDelegate.whatOverdrive = 1;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else if((appDelegate.Player.damageTaken >= 500) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:2]])
     {
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
-         [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 5000];
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 500];
-        [appDelegate.Player setPlayerDamage:5000];
+        [appDelegate.Player setPlayerDamage:500];
         appDelegate.overdriveUsed = TRUE;
-        _whatOverdrive = 2;
+        appDelegate.whatOverdrive = 2;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else if((appDelegate.Player.damageTaken >= 1000) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:3]])
     {
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
-         [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 10000];
+        
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 1000];
-        [appDelegate.Player setPlayerDamage:10000];
+        [appDelegate.Player setPlayerDamage:1000];
         appDelegate.overdriveUsed = TRUE;
-        _whatOverdrive = 3;
+        appDelegate.whatOverdrive = 3;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else if((appDelegate.Player.damageTaken >= 2500) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:4]])
     {
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
-        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 25000];
+        
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 2500];
-        [appDelegate.Player setPlayerDamage:25000];
+        [appDelegate.Player setPlayerDamage:2500];
         appDelegate.overdriveUsed = TRUE;
-        _whatOverdrive  = 4;
+        appDelegate.whatOverdrive  = 4;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else if((appDelegate.Player.damageTaken >= 5000) && [[_overdriveArray objectAtIndex:indexPath.row] isEqual:[_overdriveArray objectAtIndex:5]])
     {
         NSLog(@"%@ ready", [_overdriveArray objectAtIndex:indexPath.row]);
-         [appDelegate.Enemy setCon:appDelegate.Enemy.Con - 50000];
+         
         [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken - 5000];
-        [appDelegate.Player setPlayerDamage:50000];
+        [appDelegate.Player setPlayerDamage:10000];
         appDelegate.overdriveUsed = TRUE;
-        _whatOverdrive = 5;
+        appDelegate.whatOverdrive = 5;
         [self performSegueWithIdentifier:@"OverdriveUse" sender:self];
     }
     else
@@ -181,7 +180,7 @@
         
         
         ViewControllerMain * destViewController = segue.destinationViewController;
-        destViewController.attackString = [_overdriveArrayName objectAtIndex:_whatOverdrive];
+        destViewController.attackString = [_overdriveArrayName objectAtIndex:appDelegate.whatOverdrive];
     }
 }
 @end

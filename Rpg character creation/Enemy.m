@@ -15,24 +15,26 @@
     _width = img.size.width*2;
     _height = img.size.height*2;
     _Lvl=Lvl;
-    _Str=(_Lvl)+arc4random()%_Lvl;
+    //
+    _Str=(_Lvl)+arc4random()%_Lvl * 2;
     if(_Str <= 1)
     {
         _Str = 1;
     }
-    _Dex=((arc4random()%4)+_Lvl)*(_Lvl/3);
+    _Dex=((arc4random()%4)+_Lvl)* 3;
     if(_Dex <= 1)
     {
         _Dex = 1;
     }
-    _Con=(((arc4random()%4)+_Lvl)*(_Lvl)/2);
+    _Con=(sqrt(_Lvl-4)*pow(_Lvl, (1/3))+(pow(_Lvl, 2)/3))+3;
+    //$\sqrt{(x-4)}\cdot x^{\frac{1}{3}}+\frac{x^2}{3}+3$
     if(_Con <= 1)
     {
         _Con = 1;
     }
     if(_Lvl > 1)
     {
-        _Exp = pow(_Lvl, 1.5);
+        _Exp = pow(_Lvl, 1);
         NSLog(@"Enemy exp gained %i", _Exp);
         NSLog(@"Lvl:%i\nStr:%i\nDex:%i\nCon:%i\n",_Lvl,_Str,_Dex,_Con);
     }

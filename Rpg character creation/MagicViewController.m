@@ -61,6 +61,39 @@ Spell = spell cost
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    /*
+     Spell = spell cost
+     Fire = 3
+     Cure = 2
+     Thunder = 4
+     Ice = 5
+     Bafire = 12
+     Bacure = 10
+     Bathunder = 15
+     Baice = 18
+     Bolufire = 23
+     Cracure = 20
+     Voltunder = 27
+     Sheer Ice = 30
+     SheerVoltabalu = 50
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     */
 	// Do any additional setup after loading the view.
     appDelegate = [[UIApplication sharedApplication] delegate];
         _magicArray = [[NSMutableArray alloc] initWithObjects: @"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"" , nil];
@@ -68,7 +101,7 @@ Spell = spell cost
         _magicArrayText = [[NSMutableArray alloc] initWithObjects: @"",@"",@"", @"",@"",@"",@"",@"",@"",@"",@"",@"",@""@"" ,nil];
 
   
-    NSLog(@"Player Lvl%i", appDelegate.Player.lvl);
+
     switch (appDelegate.Player.lvl)
     {
         case 75 ... 999:
@@ -77,10 +110,10 @@ Spell = spell cost
         case 61 ... 74:
             [_magicArray replaceObjectAtIndex:11 withObject:@"Sheer Ice:30MP"];
             [_magicArrayText replaceObjectAtIndex:11 withObject:@"Sheer Ice"];
-        case 50 ... 60:
+        case 49 ... 60:
             [_magicArray replaceObjectAtIndex:10 withObject:@"Voltunder:27MP"];
             [_magicArrayText replaceObjectAtIndex:10 withObject:@"Voltunder"];
-        case 42 ... 49:
+        case 42 ... 48:
             [_magicArray replaceObjectAtIndex:9 withObject:@"Cracure:20MP"];
             [_magicArrayText replaceObjectAtIndex:9 withObject:@"Cracure"];
         case 34 ... 41:
@@ -123,7 +156,7 @@ Spell = spell cost
             break;
     }
     //NSLog(@"Magic: %@", [_magicArray objectAtIndex:5]);
-    [manaLabel setText:[NSString stringWithFormat:@"MP:%i/%i", [appDelegate.Player curMagic], [appDelegate.Player magic]]];
+    [manaLabel setText:[NSString stringWithFormat:@"MP:%i/%i", [appDelegate.Player curMagic], [appDelegate.Player totalMagic]]];
     
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -154,7 +187,6 @@ Spell = spell cost
         //[cell setSelected:NO];
         
     }
-    NSLog(@"Magic array, object:%@", cell.textLabel.text);
     return cell;
 }
 /*-(void)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath

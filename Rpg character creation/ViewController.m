@@ -27,8 +27,9 @@
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", [appDelegate.Player health]]];
     [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", [appDelegate.Player magic]]];
 
-    appDelegate.enemyAlive = FALSE;
-    
+    appDelegate.Enemy.alive = FALSE;
+    appDelegate.EnemyTwo.alive = FALSE;
+    appDelegate.EnemyThree.alive = FALSE;
 
     [appDelegate.Player setIsMale:TRUE];
 

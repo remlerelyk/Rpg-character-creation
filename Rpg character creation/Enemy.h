@@ -11,6 +11,7 @@
 @interface Enemy : NSObject
 
 @property int Str,Dex,Con,Lvl,Exp,width,height, enemyDamage;
+@property BOOL alive, isFrozen;
 @property UIImage * img;
 
 -(int)enemyAttack;
