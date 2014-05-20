@@ -91,7 +91,7 @@ BOSS AT LVL 100 10 % <-
         //howManyEnemies = 1;
         //howManyEnemies = 2;
         //howManyEnemies = 3;
-        
+        //howManyEnemies = 4;
         
         NSLog(@"There are %i enemies", howManyEnemies);
         [_attackLabel setText:@""];
@@ -166,8 +166,8 @@ BOSS AT LVL 100 10 % <-
         
         //debugging
         
-        [appDelegate.Enemy setCon:50000];
-        [appDelegate.Enemy setStr:500];//100
+        [appDelegate.EnemyFour setCon:50000];
+        [appDelegate.EnemyFour setStr:500];//100
         
         
        //5 x 100 + 10= 510
@@ -196,7 +196,7 @@ BOSS AT LVL 100 10 % <-
     _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, appDelegate.Enemy.width, appDelegate.Enemy.height)];
     _baddyTwo = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, appDelegate.EnemyTwo.width, appDelegate.EnemyTwo.height)];
      _baddyThree = [[UIImageView alloc] initWithFrame:CGRectMake(10, 190, appDelegate.EnemyThree.width, appDelegate.EnemyThree.height)];
-    _baddyFour = [[UIImageView alloc] initWithFrame:CGRectMake(10, 280, appDelegate.EnemyThree.width, appDelegate.EnemyThree.height)];
+    _baddyFour = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, (appDelegate.EnemyFour.width)/3, (appDelegate.EnemyFour.height)/2)];
     
     [self.view addSubview: _baddy];
     [self.view addSubview: _baddyTwo];
@@ -256,15 +256,9 @@ BOSS AT LVL 100 10 % <-
         [_baddyThree setImage:[appDelegate.EnemyThree img]];
         [_baddyFour setImage:[appDelegate.EnemyFour img]];
     
-        // IMPLEMENTING ENEMY THREE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // IMPLEMENTING ENEMY FOUR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
-    
-    
-        // If enemy one dead, and two alive select two
-        // if enemy one dead and two dead select three
-        // if enemy one alive select one
-    
-    
+        
         if(appDelegate.Enemy.alive == FALSE)
         {
             [_baddy setImage:nil];
@@ -314,11 +308,12 @@ BOSS AT LVL 100 10 % <-
             if(appDelegate.EnemyFour.alive == TRUE)
             {
                 appDelegate.enemySelected = 4;
+                // [_selector delete:self];
                 [_selector setImage:nil];
-                _selector = [[UIImageView alloc] initWithFrame:CGRectMake(80, 30, 32, 20)]; // enemy one
+                _selector = [[UIImageView alloc] initWithFrame:CGRectMake(170, 120, 32, 20)];
                 [self.view addSubview:_selector];
-                
                 [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
+
                 
             }
         }
@@ -358,7 +353,11 @@ BOSS AT LVL 100 10 % <-
             [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
             [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.playerDamage];
         }
-        
+        if(appDelegate.enemySelected == 4)
+        {
+            [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
+            [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.playerDamage];
+        }
         if(appDelegate.Enemy.Con <= 0)
         {
             NSLog(@"Enemy Dead");
@@ -389,7 +388,17 @@ BOSS AT LVL 100 10 % <-
             // [self performSegueWithIdentifier:@"Uwin" sender:self];
             
         }
-        if((appDelegate.Enemy.alive && appDelegate.EnemyTwo.alive && appDelegate.EnemyThree.alive) == FALSE )
+        if(appDelegate.EnemyFour.Con <= 0)
+        {
+            NSLog(@"Enemy Dead");
+            [appDelegate.EnemyFour setCon:0];
+            [appDelegate.Player addExperiance:appDelegate.EnemyFour.Exp];
+            appDelegate.EnemyFour.alive = FALSE;
+            [_baddyFour setImage:nil];
+            // [self performSegueWithIdentifier:@"Uwin" sender:self];
+            
+        }
+        if((appDelegate.Enemy.alive && appDelegate.EnemyTwo.alive && appDelegate.EnemyThree.alive && appDelegate.EnemyFour.alive) == FALSE )
         {
             [self performSegueWithIdentifier:@"Uwin" sender:self];
         }
@@ -447,6 +456,24 @@ BOSS AT LVL 100 10 % <-
             }
             
         }
+        if(appDelegate.EnemyFour.alive == TRUE)
+        {
+            [appDelegate.EnemyFour enemyAttack];
+            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            [_manaLabel setText:[NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
+            
+            if(appDelegate.Player.curHealth <= 0)
+            {
+                //Show game over animation
+                UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+                [gameOverAlert show];
+            }
+            
+        }
         appDelegate.overdriveUsed = FALSE;
         [_playerDamageLabel setText:@""];
         [_playerDamageLabelTwo setText:@""];
@@ -480,6 +507,17 @@ BOSS AT LVL 100 10 % <-
                 [self.view addSubview:_selector];
                 
                 [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
+            }
+            if(appDelegate.EnemyFour.alive == TRUE)
+            {
+                appDelegate.enemySelected = 4;
+                // [_selector delete:self];
+                [_selector setImage:nil];
+                _selector = [[UIImageView alloc] initWithFrame:CGRectMake(170, 120, 32, 20)];
+                [self.view addSubview:_selector];
+                [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
+                
+                
             }
         }
     }
@@ -548,6 +586,11 @@ BOSS AT LVL 100 10 % <-
                     [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
                 }
+                if(appDelegate.enemySelected == 4)
+                {
+                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
+                }
                 break;
             case 4:
                 // thunder
@@ -571,7 +614,12 @@ BOSS AT LVL 100 10 % <-
                 {
                     [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
-                }   
+                }
+                if(appDelegate.EnemyFour.alive == TRUE)
+                {
+                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
+                }
                 
 
                 break;
@@ -614,6 +662,15 @@ BOSS AT LVL 100 10 % <-
                    // [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
                 }
+                if(appDelegate.EnemyFour.alive == TRUE)
+                {
+                    _frozenChance = 0;
+                    
+                    [_playerDamageLabelTwo setText:@"Immune"];
+                    [appDelegate.EnemyFour setIsFrozen:FALSE];
+                    // [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
+                }
                 break;
             
            
@@ -649,6 +706,11 @@ BOSS AT LVL 100 10 % <-
                     [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
                 }
+                if(appDelegate.enemySelected == 4)
+                {
+                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
+                }
                 break;
             case 15:
                 //Bathunder
@@ -670,6 +732,11 @@ BOSS AT LVL 100 10 % <-
                 {
                     [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
+                }
+                if(appDelegate.EnemyFour.alive == TRUE)
+                {
+                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 break;
             case 18:
@@ -708,7 +775,15 @@ BOSS AT LVL 100 10 % <-
                     }
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
                 }
-
+                if(appDelegate.EnemyFour.alive == TRUE)
+                {
+                    _frozenChance = 0;
+                    
+                    [_playerDamageLabelTwo setText:@"Immune"];
+                    [appDelegate.EnemyFour setIsFrozen:FALSE];
+                    // [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
+                }
                 break;
             case 20:
                     //Cracure
@@ -743,6 +818,11 @@ BOSS AT LVL 100 10 % <-
                     [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
                 }
+                if(appDelegate.enemySelected == 4)
+                {
+                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
+                }
                 break;
             case 27:
                 //Voltunder
@@ -764,6 +844,11 @@ BOSS AT LVL 100 10 % <-
                 {
                     [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
+                }
+                if(appDelegate.EnemyFour.alive == TRUE)
+                {
+                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 break;
             case 30:
@@ -802,6 +887,14 @@ BOSS AT LVL 100 10 % <-
                     }
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
                 }
+                if(appDelegate.EnemyFour.alive == TRUE)
+                {
+                    _frozenChance = 0;
+                    [_playerDamageLabelTwo setText:@"Immune"];
+                    [appDelegate.EnemyFour setIsFrozen:FALSE];
+                    // [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
+                }
                 break;
             case 50:
                 //SheerVoltabalu
@@ -824,7 +917,11 @@ BOSS AT LVL 100 10 % <-
                     [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
                 }
-
+                if(appDelegate.EnemyFour.alive == TRUE)
+                {
+                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
+                }
                 break;
                 
             default:
@@ -884,7 +981,17 @@ BOSS AT LVL 100 10 % <-
             // [self performSegueWithIdentifier:@"Uwin" sender:self];
             
         }
-        if((appDelegate.Enemy.alive && appDelegate.EnemyTwo.alive && appDelegate.EnemyThree.alive) == FALSE )
+        if(appDelegate.EnemyFour.Con <= 0)
+        {
+            NSLog(@"Enemy Dead");
+            [appDelegate.EnemyFour setCon:0];
+            [appDelegate.Player addExperiance:appDelegate.EnemyFour.Exp];
+            appDelegate.EnemyFour.alive = FALSE;
+            [_baddyFour setImage:nil];
+            // [self performSegueWithIdentifier:@"Uwin" sender:self];
+            
+        }
+        if((appDelegate.Enemy.alive && appDelegate.EnemyTwo.alive && appDelegate.EnemyThree.alive && appDelegate.EnemyFour.alive) == FALSE )
         {
             [self performSegueWithIdentifier:@"Uwin" sender:self];
         }
@@ -950,9 +1057,26 @@ BOSS AT LVL 100 10 % <-
             }
             
         }
+        if(appDelegate.EnemyFour.alive == TRUE)
+        {
+            [appDelegate.EnemyFour enemyAttack];
+            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            [_manaLabel setText:[NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
+            
+            if(appDelegate.Player.curHealth <= 0)
+            {
+                //Show game over animation
+                UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+                [gameOverAlert show];
+            }
+        }
         else
         {
-            NSLog(@"Enemy threeNot Attacking");
+            NSLog(@"Enemy Four not Attacking");
         }
         
         appDelegate.enemySelected = 0;
@@ -985,6 +1109,15 @@ BOSS AT LVL 100 10 % <-
                 appDelegate.enemySelected = 3;
                 [_selector setImage:nil];
                 _selector = [[UIImageView alloc] initWithFrame:CGRectMake(80, 210, 32, 20)];
+                [self.view addSubview:_selector];
+                
+                [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
+            }
+            if(appDelegate.EnemyFour.alive == TRUE)
+            {
+                appDelegate.enemySelected = 4;
+                [_selector setImage:nil];
+                _selector = [[UIImageView alloc] initWithFrame:CGRectMake(170, 120, 32, 20)];
                 [self.view addSubview:_selector];
                 
                 [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
@@ -1094,10 +1227,36 @@ BOSS AT LVL 100 10 % <-
         
         NSLog(@"Enemy three working");
     }
+    /*
+     
+     Boundary box for boss
+     
+     
+     
+     
+     
+     */
+    
+    if(appDelegate.EnemyFour.alive == TRUE)
+    {
+        appDelegate.enemySelected = 4;
+        // [_selector delete:self];
+        [_selector setImage:nil];
+        
+        _selector = [[UIImageView alloc] initWithFrame:CGRectMake(170, 120, 32, 20)];
+        
+        [self.view addSubview:_selector];
+        
+        
+        [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
+        
+        NSLog(@"Enemy four working");
+    }
+    
     
     //NSLog(@" point x = %i ", baddyPointX);
     //NSLog(@" point x = %i ", baddyPointY);
-    
+
     
 }
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
@@ -1110,7 +1269,7 @@ BOSS AT LVL 100 10 % <-
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    if(appDelegate.Enemy.alive == FALSE && appDelegate.EnemyTwo.alive == FALSE && appDelegate.EnemyThree.alive == FALSE)
+    if(appDelegate.Enemy.alive == FALSE && appDelegate.EnemyTwo.alive == FALSE && appDelegate.EnemyThree.alive == FALSE && appDelegate.EnemyFour.alive == FALSE)
     {
         [self performSegueWithIdentifier:@"Uwin" sender:self];
     }
