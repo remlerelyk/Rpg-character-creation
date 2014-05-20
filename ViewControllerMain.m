@@ -31,15 +31,15 @@
 
 /*BUCKET LIST
 
-FIRE DEAL HIGH DAMAGE ONE TARGET - 99%
-LIGHTNING DEAL DAMAGE MULTIPLE TARGET MEDIUM DAMAGE 99 %
-ICE DEAL DAMAGE MULTIPLE TARGET MINUMAL DAMAGE WITH FREEZE CHANCE 99 %
+FIRE DEAL HIGH DAMAGE ONE TARGET - 80%
+LIGHTNING DEAL DAMAGE MULTIPLE TARGET MEDIUM DAMAGE 80 %
+ICE DEAL DAMAGE MULTIPLE TARGET MINUMAL DAMAGE WITH FREEZE CHANCE 80 %
 
 CHANGE OVERDRIVE POWER 0%
  
 FIX STAT CHANGES 40 %
  
-BOSS AT LVL 100 0 %
+BOSS AT LVL 100 10 % <-
 
 
 
@@ -67,19 +67,25 @@ BOSS AT LVL 100 0 %
     //[appDelegate.Player setLvl:33];
     if(appDelegate.Enemy.alive == FALSE && appDelegate.EnemyTwo.alive == FALSE && appDelegate.EnemyThree.alive == FALSE)
     {
+         [appDelegate.Player setLvl:100];
+        
         appDelegate.enemySelected = 0;
         int howManyEnemies = 0;
         if(appDelegate.Player.lvl <= 3)
         {
             howManyEnemies = 1;
         }
-        else if(3 > appDelegate.Player.lvl < 8)
+        else if(appDelegate.Player.lvl < 8 && appDelegate.Player.lvl > 3)
         {
             howManyEnemies = arc4random() % 2 + 1;
         }
-        else if( appDelegate.Player.lvl > 9)
+        else if( appDelegate.Player.lvl > 9 && appDelegate.Player.lvl < 99)
         {
             howManyEnemies = arc4random() % 3 +1;
+        }
+        else if(appDelegate.Player.lvl == 100)
+        {
+            howManyEnemies = 4;
         }
         
         //howManyEnemies = 1;
@@ -137,6 +143,17 @@ BOSS AT LVL 100 0 %
             _baddyTwo = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, appDelegate.EnemyTwo.width, appDelegate.EnemyTwo.height)];
             _baddyThree = [[UIImageView alloc] initWithFrame:CGRectMake(10, 190, appDelegate.EnemyThree.width, appDelegate.EnemyThree.height)];
         }
+        if(howManyEnemies == 4)
+        {
+            _Shinryu = [[Enemy alloc]initWithLv:[appDelegate.Player lvl] andWith:[UIImage imageNamed:@"KaiserDragon.PNG"]];
+            
+            appDelegate.EnemyFour = _Shinryu;
+
+            appDelegate.EnemyFour.alive = TRUE;
+
+            
+            _baddyFour = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, appDelegate.EnemyFour.width, appDelegate.EnemyFour.height)];
+        }
         
         //_bob = [[Enemy alloc]initWithLv:100 andWith:[UIImage imageNamed:@"baddy.gif"]];
         
@@ -150,10 +167,10 @@ BOSS AT LVL 100 0 %
         //debugging
         
         [appDelegate.Enemy setCon:50000];
-        [appDelegate.Enemy setStr:300];//100
+        [appDelegate.Enemy setStr:500];//100
         
         
-        [appDelegate.Player setLvl:100];//5 x 100 + 10= 510
+       //5 x 100 + 10= 510
         [appDelegate.Player setDexterity:329];//329
         //[appDelegate.Player setCurHealth:9000];
         //[appDelegate.Player setTotalHealth:9000];
@@ -179,10 +196,12 @@ BOSS AT LVL 100 0 %
     _baddy = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, appDelegate.Enemy.width, appDelegate.Enemy.height)];
     _baddyTwo = [[UIImageView alloc] initWithFrame:CGRectMake(10, 100, appDelegate.EnemyTwo.width, appDelegate.EnemyTwo.height)];
      _baddyThree = [[UIImageView alloc] initWithFrame:CGRectMake(10, 190, appDelegate.EnemyThree.width, appDelegate.EnemyThree.height)];
+    _baddyFour = [[UIImageView alloc] initWithFrame:CGRectMake(10, 280, appDelegate.EnemyThree.width, appDelegate.EnemyThree.height)];
     
     [self.view addSubview: _baddy];
     [self.view addSubview: _baddyTwo];
     [self.view addSubview:_baddyThree];
+     [self.view addSubview:_baddyFour];
     [self.view addSubview:_playerDamageLabel];
     [self.view addSubview:_playerDamageLabelTwo];
     [self.view addSubview:_playerDamageLabelThree];
@@ -231,6 +250,7 @@ BOSS AT LVL 100 0 %
         [_baddy setImage:[appDelegate.Enemy img]];
         [_baddyTwo setImage:[appDelegate.EnemyTwo img]];
         [_baddyThree setImage:[appDelegate.EnemyThree img]];
+        [_baddyFour setImage:[appDelegate.EnemyFour img]];
     
         // IMPLEMENTING ENEMY THREE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
@@ -252,6 +272,10 @@ BOSS AT LVL 100 0 %
         if(appDelegate.EnemyThree.alive == FALSE)
         {
             [_baddyThree setImage:nil];
+        }
+        if(appDelegate.EnemyFour.alive == FALSE)
+        {
+            [_baddyFour setImage:nil];
         }
         if(appDelegate.enemySelected == 0)
         {
@@ -282,6 +306,16 @@ BOSS AT LVL 100 0 %
                 [self.view addSubview:_selector];
                 
                 [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
+            }
+            if(appDelegate.EnemyFour.alive == TRUE)
+            {
+                appDelegate.enemySelected = 4;
+                [_selector setImage:nil];
+                _selector = [[UIImageView alloc] initWithFrame:CGRectMake(80, 30, 32, 20)]; // enemy one
+                [self.view addSubview:_selector];
+                
+                [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
+                
             }
         }
     
