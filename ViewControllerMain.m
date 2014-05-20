@@ -188,8 +188,13 @@ BOSS AT LVL 100 10 % <-
     }
     _buttonPress = FALSE;
    // NSLog(@"Spell cost %i",appDelegate.Player.spellCost);
+    if (appDelegate.EnemyFour.alive == TRUE) {
+        _playPos = 64;
+    }else{
+        _playPos =0;
+    }
                                                                 // 240  24 48 48
-    _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 20, 48, 48)];
+    _Animation = [[UIImageView alloc] initWithFrame:CGRectMake(240, 20+_playPos, 48, 48)];
     
     [self.view addSubview: _Animation];
 
@@ -1298,8 +1303,13 @@ BOSS AT LVL 100 10 % <-
         _Animation.animationDuration = 1.0f;
         [_Animation startAnimating];
         [UIView animateWithDuration:1.0 animations:^{
+            if (appDelegate.EnemyFour.alive ==TRUE) {
+                _Animation.frame = CGRectMake(240,20+_playPos,48,48);
+                _Animation.frame = CGRectMake(176,20+_playPos,48,48);
+            }else{
             _Animation.frame = CGRectMake(240,20,48,48);
             _Animation.frame = CGRectMake(64,20,48,48);
+            }
         }completion:^(BOOL finished) {
             if (finished){
                 // start doing damage
@@ -1337,8 +1347,14 @@ BOSS AT LVL 100 10 % <-
                 _Animation.animationDuration = 0.5f;
                 [_Animation startAnimating];
                 [UIView animateWithDuration:0.5 animations:^{
-                    _Animation.frame = CGRectMake(64,20,48,48);
-                    _Animation.frame = CGRectMake(240,20,48,48);
+                    if (appDelegate.EnemyFour.alive ==TRUE) {
+                        _Animation.frame = CGRectMake(176,20+_playPos,48,48);
+                        _Animation.frame = CGRectMake(240,20+_playPos,48,48);
+
+                    }else{
+                        _Animation.frame = CGRectMake(64,20,48,48);
+                        _Animation.frame = CGRectMake(240,20,48,48);
+                    }
                 }completion:^(BOOL Done){if (Done){
                     _Animation.transform = CGAffineTransformMakeScale(1, 1);
                     [_playerDamageLabel setText:@""];

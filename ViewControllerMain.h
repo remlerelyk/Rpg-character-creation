@@ -50,5 +50,6 @@
 @property Enemy * Jill;
 @property Enemy * Shinryu;
 @property NSSet * theSet;
+@property int playPos;
 
 @end
