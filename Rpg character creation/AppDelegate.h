@@ -20,6 +20,7 @@
 @property Enemy * Enemy;
 @property Enemy * EnemyTwo;
 @property Enemy * EnemyThree;
+@property Enemy * EnemyFour;
 @property (strong, nonatomic) UIWindow *window;
 @property int expLvl,BarProgress, enemySelected, whatOverdrive;
 @property float lastValue;

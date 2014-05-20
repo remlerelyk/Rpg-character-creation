@@ -31,7 +31,7 @@
 @property NSString * audioPath,* hit,* death,* cure,* bossMusic;
 @property (nonatomic, strong) NSString * attackString;
 @property NSURL * audioURL,* audioSFX;
-@property UIImageView *Animation, * baddy,* baddyTwo,* baddyThree, * selector, * magicLayer;
+@property UIImageView *Animation, * baddy,* baddyTwo,* baddyThree, * baddyFour, * selector, * magicLayer;
 @property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
 @property (weak, nonatomic) IBOutlet UILabel *enemyDamageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerDamageLabelTwo;
@@ -43,11 +43,12 @@
 @property (weak, nonatomic) IBOutlet UILabel *manaLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerHealLabel;
 
-@property UIImage * Temp, *TempTwo,*TempThree, * uIdle;
+@property UIImage * Temp, *TempTwo,*TempThree, * TempFour, * uIdle;
 @property BOOL buttonPress;
 @property Enemy * bob;
 @property Enemy * jack;
 @property Enemy * Jill;
+@property Enemy * Shinryu;
 @property NSSet * theSet;
 
 @end
