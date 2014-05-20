@@ -231,7 +231,7 @@ BOSS AT LVL 100 10 % <-
     
     if(appDelegate.isMusic){
     _audioPath = [[NSBundle mainBundle] pathForResource:@"ff7bat" ofType:@"mp3"];
-        if (appDelegate.EnemyFour.alive = TRUE) {
+        if (appDelegate.EnemyFour.alive == TRUE) {
              _audioURL = [NSURL fileURLWithPath:_bossMusic];
         }else{
     _audioURL = [NSURL fileURLWithPath:_audioPath];
