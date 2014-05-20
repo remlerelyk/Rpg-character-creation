@@ -20,6 +20,7 @@
 		3D8C30C61896EB4200C711A7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D8C30C51896EB4200C711A7 /* ViewController.m */; };
 		3DFBDD9818D7609300C557B0 /* OverdriveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFBDD9718D7609300C557B0 /* OverdriveViewController.m */; };
 		3DFCBA6418BFD02000A55BA5 /* MagicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFCBA6318BFD02000A55BA5 /* MagicViewController.m */; };
+		59196433192BD7F700E14956 /* bossMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 59196432192BD7F700E14956 /* bossMusic.mp3 */; };
 		591CC76118E4AA34005A6736 /* iWin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 591CC75F18E4AA34005A6736 /* iWin.mp3 */; };
 		591CC76218E4AA34005A6736 /* Win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 591CC76018E4AA34005A6736 /* Win.mp3 */; };
 		591E402218C6612800FE299F /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 591E402118C6612800FE299F /* Player.m */; };
@@ -88,6 +89,7 @@
 		3DFBDD9718D7609300C557B0 /* OverdriveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverdriveViewController.m; sourceTree = "<group>"; };
 		3DFCBA6218BFD02000A55BA5 /* MagicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicViewController.h; sourceTree = "<group>"; };
 		3DFCBA6318BFD02000A55BA5 /* MagicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicViewController.m; sourceTree = "<group>"; };
+		59196432192BD7F700E14956 /* bossMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bossMusic.mp3; sourceTree = "<group>"; };
 		591CC75F18E4AA34005A6736 /* iWin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = iWin.mp3; sourceTree = "<group>"; };
 		591CC76018E4AA34005A6736 /* Win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Win.mp3; sourceTree = "<group>"; };
 		591E402018C6612800FE299F /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 		591EF8BF18C7BCCA000F255E /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				59196432192BD7F700E14956 /* bossMusic.mp3 */,
 				591CC75F18E4AA34005A6736 /* iWin.mp3 */,
 				591CC76018E4AA34005A6736 /* Win.mp3 */,
 				591EF8C818C7BE49000F255E /* cure.mp3 */,
@@ -405,6 +408,7 @@
 				591CC76118E4AA34005A6736 /* iWin.mp3 in Resources */,
 				591CC76218E4AA34005A6736 /* Win.mp3 in Resources */,
 				59E278AB192A8BEA00C8EE41 /* KaiserDragon.PNG in Resources */,
+				59196433192BD7F700E14956 /* bossMusic.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

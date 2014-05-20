@@ -204,7 +204,7 @@ BOSS AT LVL 100 0 %
     
    // NSLog(@"%i", [appDelegate.Player curMagic]);
     
-
+    _bossMusic = [[NSBundle mainBundle] pathForResource:@"bossMusic" ofType:@"mp3"];
     _hit = [[NSBundle mainBundle] pathForResource:@"hit" ofType:@"mp3"];
     _death = [[NSBundle mainBundle] pathForResource:@"death" ofType:@"mp3"];
     _cure = [[NSBundle mainBundle] pathForResource:@"cure" ofType:@"mp3"];
@@ -212,7 +212,11 @@ BOSS AT LVL 100 0 %
     
     if(appDelegate.isMusic){
     _audioPath = [[NSBundle mainBundle] pathForResource:@"ff7bat" ofType:@"mp3"];
+        if (appDelegate.EnemyFour.alive = TRUE) {
+             _audioURL = [NSURL fileURLWithPath:_bossMusic];
+        }else{
     _audioURL = [NSURL fileURLWithPath:_audioPath];
+        }
     appDelegate.music =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioURL error:nil];
     [appDelegate.music play];
         appDelegate.isMusic = FALSE;
