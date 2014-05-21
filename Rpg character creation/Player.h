@@ -13,7 +13,7 @@
 @property int exp,lvl,expLvUP,magic,strength,dexterity,health,totalHealth,totalMagic,curMagic,curStrength,curDexterity,curHealth,totalStats, spellCost, playerDamage, spellDamage, damageTaken, numberOfHits;
 @property (nonatomic, strong) NSString * curMagicSkill;
 @property float amoutOfProgress;
-@property BOOL isMale;
+@property BOOL isMale, isFrozen;
 
 -(void)addExperiance: (int) e;
 -(void)cleanStats;
