@@ -51,5 +51,6 @@
 @property Enemy * Shinryu;
 @property NSSet * theSet;
 @property int playPos;
+@property NSArray * thunderAttack, * fireAttack, * iceAttack;
 
 @end
