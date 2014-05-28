@@ -52,6 +52,9 @@ BOSS AT LVL 100 99 % <-
 //Start Here
 - (void)viewDidLoad
 {
+    _thunderAttack=[[NSArray alloc]initWithObjects:[UIImage imageNamed:@"t1.png"],[UIImage imageNamed:@"t2.png"],[UIImage imageNamed:@"t3.png"],[UIImage imageNamed:@"t4.png"],[UIImage imageNamed:@"t5.png"],[UIImage imageNamed:@"t6.png"],[UIImage imageNamed:@"t7.png"],[UIImage imageNamed:@"t8.png"],[UIImage imageNamed:@"t9.png"],[UIImage imageNamed:@"t10.png"],[UIImage imageNamed:@"t11.png"],[UIImage imageNamed:@"t12.png"],[UIImage imageNamed:@"t13.png"],[UIImage imageNamed:@"t14.png"],[UIImage imageNamed:@"t15.png"],[UIImage imageNamed:@"t16.png"], nil];
+    _fireAttack=[[NSArray alloc]initWithObjects:[UIImage imageNamed:@"fire0.png"],[UIImage imageNamed:@"fire1.png"],[UIImage imageNamed:@"fire2.png"],[UIImage imageNamed:@"fire3.png"],[UIImage imageNamed:@"fire2.png"],[UIImage imageNamed:@"fire1.png"], nil];
+    _iceAttack =[[NSArray alloc]initWithObjects:[UIImage imageNamed:@"ice0.png"],[UIImage imageNamed:@"ice1.png"],[UIImage imageNamed:@"ice2.png"],[UIImage imageNamed:@"ice3.png"],[UIImage imageNamed:@"ice2.png"],[UIImage imageNamed:@"ice1.png"], nil];
     NSLog(@"Spell Cost:%i", appDelegate.Player.spellCost);
     
     appDelegate = [[UIApplication sharedApplication] delegate];
@@ -250,6 +253,7 @@ BOSS AT LVL 100 99 % <-
     _hit = [[NSBundle mainBundle] pathForResource:@"hit" ofType:@"mp3"];
     _death = [[NSBundle mainBundle] pathForResource:@"death" ofType:@"mp3"];
     _cure = [[NSBundle mainBundle] pathForResource:@"cure" ofType:@"mp3"];
+    
     
     
     if(appDelegate.isMusic){
@@ -745,7 +749,10 @@ BOSS AT LVL 100 99 % <-
         [appDelegate.Player playerSpell];
         NSLog(@"Spell Damge:%i", appDelegate.Player.spellDamage);
         NSLog(@"Spell Cost: %i", appDelegate.Player.spellCost);
-    
+        UIImageView * effectAnimation = [[UIImageView alloc]initWithFrame:_baddyFour.frame];
+        [_baddyFour addSubview:effectAnimation];
+        [_baddyFour bringSubviewToFront:effectAnimation];
+        [effectAnimation setImage:[UIImage imageNamed:@"exp.gif"]];
         
         /*switch (appDelegate.Player.spellCost)
         {
@@ -767,7 +774,8 @@ BOSS AT LVL 100 99 % <-
                 NSLog(@"U haz no makics");
                 break;
         }*/
-        
+
+
         switch (appDelegate.Player.spellCost)
         {
             case 2:
@@ -2280,6 +2288,14 @@ BOSS AT LVL 100 99 % <-
     CGColorSpaceRelease(space);
     
     return coloredImage;
+}
+-(UIImageView *)addEffectAnimation:(UIImageView *)theInput:(NSArray *)array
+{
+    UIImageView * theView = [[UIImageView alloc]initWithFrame:theInput.frame];
+    [theView setAnimationImages:array];
+    [theView setAnimationDuration:.5];
+    [theView setAnimationRepeatCount:2];
+    return theView;
 }
 
 

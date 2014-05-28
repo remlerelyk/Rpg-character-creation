@@ -56,6 +56,8 @@
 @property Enemy * Jill;
 @property Enemy * Shinryu;
 @property NSSet * theSet;
-@property int playPos, whichBossAttack, whichBossAttackTwo;
+@property int playPos;
+@property NSArray * thunderAttack, * fireAttack, * iceAttack;
+
 
 @end
