@@ -840,12 +840,7 @@ BOSS AT LVL 100 99 % <-
                 break;
             case 4:
                 // thunder
-                _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(_baddy.frame.origin.x, 0, _baddy.frame.size.width, _baddyTwo.frame.origin.y)];
-                [_baddy addSubview:_magicLayer];
-                [_magicLayer setAnimationImages:_thunderAttack];
-                [_magicLayer setAnimationDuration:1];
-                [_magicLayer setAnimationRepeatCount:1];
-                [_magicLayer startAnimating];
+
                 
                 [appDelegate.Player setSpellDamage:40];
                 [_attackLabel setText:_attackString];
