@@ -586,28 +586,57 @@ BOSS AT LVL 100 60 % <-
                 
                 if(appDelegate.enemySelected == 1)
                 {
+                    _magicLayer = [[UIImageView alloc]initWithFrame:_baddy.frame];
+                    [_baddy addSubview:_magicLayer];
+                    [_magicLayer setAnimationImages:_fireAttack];
+                    [_magicLayer setAnimationDuration:.3];
+                    [_magicLayer setAnimationRepeatCount:3];
+                    [_magicLayer startAnimating];
                     [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
                 }
                 if(appDelegate.enemySelected == 2)
                 {
+                    _magicLayer = [[UIImageView alloc]initWithFrame:_baddyTwo.frame];
+                    [_baddyTwo addSubview:_magicLayer];
+                    [_magicLayer setAnimationImages:_fireAttack];
+                    [_magicLayer setAnimationDuration:.3];
+                    [_magicLayer setAnimationRepeatCount:3];
+                    [_magicLayer startAnimating];
                     [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyTwo setCon:appDelegate.EnemyTwo.Con - appDelegate.Player.spellDamage];
                 }
                 if(appDelegate.enemySelected == 3)
                 {
+                    _magicLayer = [[UIImageView alloc]initWithFrame:_baddyThree.frame];
+                    [_baddyThree addSubview:_magicLayer];
+                    [_magicLayer setAnimationImages:_fireAttack];
+                    [_magicLayer setAnimationDuration:.3];
+                    [_magicLayer setAnimationRepeatCount:3];
+                    [_magicLayer startAnimating];
                     [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
                 }
                 if(appDelegate.enemySelected == 4)
                 {
+                    _magicLayer = [[UIImageView alloc]initWithFrame:_baddyFour.frame];
+                    [_baddyFour addSubview:_magicLayer];
+                    [_magicLayer setAnimationImages:_fireAttack];
+                    [_magicLayer setAnimationDuration:.3];
+                    [_magicLayer setAnimationRepeatCount:3];
+                    [_magicLayer startAnimating];
                     [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 break;
             case 4:
                 // thunder
-              
+                _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(_baddy.frame.origin.x, 0, _baddy.frame.size.width, _baddyTwo.frame.origin.y)];
+                [_baddy addSubview:_magicLayer];
+                [_magicLayer setAnimationImages:_thunderAttack];
+                [_magicLayer setAnimationDuration:1];
+                [_magicLayer setAnimationRepeatCount:1];
+                [_magicLayer startAnimating];
                 
                 [appDelegate.Player setSpellDamage:40];
                 [_attackLabel setText:_attackString];
@@ -644,6 +673,12 @@ BOSS AT LVL 100 60 % <-
                 
                 if(appDelegate.Enemy.alive == TRUE)
                 {
+                    _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIImage imageNamed:@"ice0.png"].size.width, [UIImage imageNamed:@"ice0.png"].size.height)];
+                    [_baddy addSubview:_magicLayer];
+                    [_magicLayer setAnimationImages:_iceAttack];
+                    [_magicLayer setAnimationDuration:.3];
+                    [_magicLayer setAnimationRepeatCount:3];
+                    [_magicLayer startAnimating];
                     _frozenChance = arc4random() % 100 + 1;
                     if(_frozenChance > 20)
                     {
