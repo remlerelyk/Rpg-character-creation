@@ -33,14 +33,20 @@
 @property NSURL * audioURL,* audioSFX;
 @property UIImageView *Animation, * baddy,* baddyTwo,* baddyThree, * baddyFour, * selector, * magicLayer;
 @property NSArray * mWalk,* mWin,* fWalk,* fWin,* uWalk,* uWin;
+- (IBAction)unFreezeButton:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *enemyDamageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *enemyDamageLabelTwo;
+@property (weak, nonatomic) IBOutlet UILabel *frozenLabel;
 @property (weak, nonatomic) IBOutlet UILabel *playerDamageLabelTwo;
 @property (weak, nonatomic) IBOutlet UILabel *playerDamageLabelThree;
+@property (weak, nonatomic) IBOutlet UILabel *playerDamageLabelFour;
 
 @property (weak, nonatomic) IBOutlet UILabel *healthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *attackLabel;
+@property (weak, nonatomic) IBOutlet UILabel *attackLabelTwo;
 @property (weak, nonatomic) IBOutlet UILabel *playerDamageLabel;
 @property (weak, nonatomic) IBOutlet UILabel *manaLabel;
+@property (weak, nonatomic) IBOutlet UIButton *unFreeze;
 @property (weak, nonatomic) IBOutlet UILabel *playerHealLabel;
 
 @property UIImage * Temp, *TempTwo,*TempThree, * TempFour, * uIdle;
@@ -50,7 +56,8 @@
 @property Enemy * Jill;
 @property Enemy * Shinryu;
 @property NSSet * theSet;
-@property int playPos;
+@property int playPos,whichBossAttack, whichBossAttackTwo;;
 @property NSArray * thunderAttack, * fireAttack, * iceAttack;
+
 
 @end
