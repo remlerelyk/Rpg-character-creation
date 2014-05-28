@@ -31,15 +31,16 @@
 
 /*BUCKET LIST
 
-FIRE DEAL HIGH DAMAGE ONE TARGET - 80%
-LIGHTNING DEAL DAMAGE MULTIPLE TARGET MEDIUM DAMAGE 80 %
-ICE DEAL DAMAGE MULTIPLE TARGET MINUMAL DAMAGE WITH FREEZE CHANCE 80 %
+FIRE DEAL HIGH DAMAGE ONE TARGET - 90 %
+LIGHTNING DEAL DAMAGE MULTIPLE TARGET MEDIUM DAMAGE 90 %
+ICE DEAL DAMAGE MULTIPLE TARGET MINUMAL DAMAGE WITH FREEZE CHANCE 90 %
 
 CHANGE OVERDRIVE POWER 0%
- 
+        |
+        v
 FIX STAT CHANGES 40 %
  
-BOSS AT LVL 100 60 % <-
+BOSS AT LVL 100 99 % <-
 
 
 
@@ -56,7 +57,8 @@ BOSS AT LVL 100 60 % <-
     appDelegate = [[UIApplication sharedApplication] delegate];
     appDelegate.isLeft =FALSE;
     
-    
+    [_unFreeze setUserInteractionEnabled:FALSE];
+    [_unFreeze setAlpha:0];
     //appDelegate.Player.lvl ++;
     //[appDelegate.Player setExp:10000];
     //[appDelegate.Player levelUp];
@@ -65,12 +67,13 @@ BOSS AT LVL 100 60 % <-
     
     
     //[appDelegate.Player setLvl:33];
-    if(appDelegate.Enemy.alive == FALSE && appDelegate.EnemyTwo.alive == FALSE && appDelegate.EnemyThree.alive == FALSE)
+    if(appDelegate.Enemy.alive == FALSE && appDelegate.EnemyTwo.alive == FALSE && appDelegate.EnemyThree.alive == FALSE && appDelegate.EnemyFour.alive == FALSE)
     {
-         [appDelegate.Player setLvl:100];
+         [appDelegate.Player setLvl:99];
         
         appDelegate.enemySelected = 0;
         int howManyEnemies = 0;
+        
         if(appDelegate.Player.lvl <= 3)
         {
             howManyEnemies = 1;
@@ -79,12 +82,14 @@ BOSS AT LVL 100 60 % <-
         {
             howManyEnemies = arc4random() % 2 + 1;
         }
-        else if( appDelegate.Player.lvl > 9 && appDelegate.Player.lvl < 99)
+        else if( appDelegate.Player.lvl > 9 && appDelegate.Player.lvl <= 99)
         {
             howManyEnemies = arc4random() % 3 +1;
         }
         else if(appDelegate.Player.lvl == 100)
         {
+            _whichBossAttack = 0;
+            _whichBossAttackTwo = 0;
             howManyEnemies = 4;
         }
         
@@ -95,10 +100,12 @@ BOSS AT LVL 100 60 % <-
         
         NSLog(@"There are %i enemies", howManyEnemies);
         [_attackLabel setText:@""];
+        [_attackLabelTwo setText:@""];
         [_enemyDamageLabel setText:@""];
         [_playerDamageLabel setText:@""];
         [_playerDamageLabelTwo setText:@""];
         [_playerDamageLabelThree setText:@""];
+        [_playerDamageLabelFour setText:@""];
         //[_playerDamageLabel bringSubviewToFront:];
         if(howManyEnemies == 1)
         {
@@ -210,17 +217,28 @@ BOSS AT LVL 100 60 % <-
     [self.view addSubview:_playerDamageLabel];
     [self.view addSubview:_playerDamageLabelTwo];
     [self.view addSubview:_playerDamageLabelThree];
-    [self.view addSubview:_playerHealLabel];
+    [self.view addSubview:_playerDamageLabelFour];
+    [self.view addSubview:_enemyDamageLabel];
+    [self.view addSubview:_enemyDamageLabelTwo];
+    [self.view addSubview:_playerDamageLabelFour];
+    [self.view addSubview:_frozenLabel];
     [self.view bringSubviewToFront:_playerDamageLabel];
     [self.view bringSubviewToFront:_playerDamageLabelTwo];
     [self.view bringSubviewToFront:_playerDamageLabelThree];
+    [self.view bringSubviewToFront:_playerDamageLabelFour];
+    [self.view bringSubviewToFront:_enemyDamageLabelTwo];
+    [self.view bringSubviewToFront:_enemyDamageLabel];
+    [self.view bringSubviewToFront:_frozenLabel];
     [self.view bringSubviewToFront:_playerHealLabel];
 
     NSString * healthData = [NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth];
     NSString * manaData = [NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.totalMagic];
     [_healthLabel setText:healthData];
     [_manaLabel setText:manaData];
-
+    [appDelegate.Enemy setIsFrozen:FALSE];
+    [appDelegate.EnemyTwo setIsFrozen:FALSE];
+    [appDelegate.EnemyThree setIsFrozen:FALSE];
+    [appDelegate.EnemyFour setIsFrozen:FALSE];
     [super viewDidLoad];
     
 	// Do any additional setup after loading the view.
@@ -360,7 +378,7 @@ BOSS AT LVL 100 60 % <-
         }
         if(appDelegate.enemySelected == 4)
         {
-            [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
+            [_playerDamageLabelFour setText:[NSString stringWithFormat:@"   %i", appDelegate.Player.playerDamage]];
             [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.playerDamage];
         }
         if(appDelegate.Enemy.Con <= 0)
@@ -463,26 +481,221 @@ BOSS AT LVL 100 60 % <-
         }
         if(appDelegate.EnemyFour.alive == TRUE)
         {
-            [appDelegate.EnemyFour enemyAttack];
-            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
-            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
-            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            if(_whichBossAttack == 0)
+            {
+                _whichBossAttack = arc4random() % 4 + 1;
+                //_whichBossAttack = 3;
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
+            else if(_whichBossAttack == 1)
+            {
+                
+                while(_whichBossAttack == 1)
+                {
+                    _whichBossAttack = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
+            else if(_whichBossAttack == 2)
+            {
+                while(_whichBossAttack == 2)
+                {
+                    _whichBossAttack = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
+            else if(_whichBossAttack == 3)
+            {
+                while(_whichBossAttack == 3)
+                {
+                    _whichBossAttack = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
+            else if(_whichBossAttack == 4)
+            {
+                while(_whichBossAttack == 4)
+                {
+                    _whichBossAttack = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
             
-            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
-            [_manaLabel setText:[NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
+            NSLog(@"Enemy four attacking");
             
+            //Attack Two
+            if(_whichBossAttackTwo ==  0)
+            {
+                _whichBossAttackTwo = arc4random() % 4 + 1;
+                //_whichBossAttack = 3;
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            else if(_whichBossAttackTwo == 1)
+            {
+                while(_whichBossAttackTwo == 1)
+                {
+                    _whichBossAttackTwo = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            else if(_whichBossAttackTwo == 2)
+            {
+                while(_whichBossAttackTwo == 2)
+                {
+                    _whichBossAttackTwo = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            else if(_whichBossAttackTwo == 3)
+            {
+                while(_whichBossAttackTwo == 3)
+                {
+                    _whichBossAttackTwo = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            else if(_whichBossAttackTwo == 4)
+            {
+                while(_whichBossAttackTwo == 4)
+                {
+                    _whichBossAttackTwo = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            NSLog(@"which attack: %i", _whichBossAttack);
+            NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            
+            if(_whichBossAttack == 1)
+            {
+                appDelegate.EnemyFour.enemyDamage = 350;
+                [_attackLabelTwo setText:@"Scorching Heat"];
+                NSLog(@"Scorching Heat");
+                [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else if(_whichBossAttack == 2)
+            {
+                appDelegate.EnemyFour.enemyDamage = 200;
+                [_attackLabelTwo setText:@"Thunderous Wrath"];
+                NSLog(@"Thunderous wrath");
+                [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else if(_whichBossAttack == 3)
+            {
+                appDelegate.EnemyFour.enemyDamage = 150;
+                [_attackLabelTwo setText:@"Frozen Waste"];
+                NSLog(@"Frozen Waste");
+                _frozenChance = arc4random() % 100 + 1;
+                //_frozenChance = 55;
+                if(_frozenChance < 10)
+                {
+                    [_frozenLabel setText:@"Frozen"];
+                    [appDelegate.Player setIsFrozen:TRUE];
+                }
+                [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+                
+            }
+            else if(_whichBossAttack == 4)
+            {
+                [appDelegate.EnemyFour enemyAttack];
+                [_attackLabelTwo setText:@"Vicious Bite"];
+                NSLog(@"Vicious Bite");
+                [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else
+            {
+                NSLog(@"Boss attack error");
+            }
+            
+            if(_whichBossAttackTwo == 1)
+            {
+                appDelegate.EnemyFour.enemyDamage = 300;
+                [_attackLabel setText:@"Bolufire"];
+                NSLog(@"Bolufire");
+                [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else if(_whichBossAttackTwo == 2)
+            {
+                appDelegate.EnemyFour.enemyDamage = 250;
+                [_attackLabel setText:@"Voltunder"];
+                NSLog(@"Voltunder");
+                [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else if(_whichBossAttackTwo == 3)
+            {
+                appDelegate.EnemyFour.enemyDamage = 100;
+                [_attackLabel setText:@"Sheer Ice"];
+                NSLog(@"Sheer Ice");
+                _frozenChance = arc4random() % 100 + 1;
+                //_frozenChance = 55;
+                if(_frozenChance < 20)
+                {
+                    [_frozenLabel setText:@"Frozen"];
+                    [appDelegate.Player setIsFrozen:TRUE];
+                }
+                [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+                
+            }
+            else if(_whichBossAttackTwo == 4)
+            {
+                [appDelegate.EnemyFour enemyAttack];
+                [_attackLabel setText:@"Sharp Claws"];
+                NSLog(@"Sharp Claws");
+                [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else
+            {
+                NSLog(@"Boss attack error");
+            }
+            
+            _buttonPress = FALSE;
             if(appDelegate.Player.curHealth <= 0)
             {
                 //Show game over animation
                 UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
                 [gameOverAlert show];
             }
+            if(appDelegate.Player.isFrozen == TRUE)
+            {
+                _buttonPress = TRUE;
+                [_unFreeze setUserInteractionEnabled:TRUE];
+                [_unFreeze setAlpha:1];
+            }
+            
+        
             
         }
+        
+        
+        
         appDelegate.overdriveUsed = FALSE;
         [_playerDamageLabel setText:@""];
         [_playerDamageLabelTwo setText:@""];
         [_playerDamageLabelThree setText:@""];
+        [_playerDamageLabelFour setText:@""];
         appDelegate.enemySelected = 0;
         if(appDelegate.enemySelected == 0)
         {
@@ -560,7 +773,7 @@ BOSS AT LVL 100 60 % <-
             case 2:
 
                     // cure
-                    [appDelegate.Player setSpellDamage:50];
+                    [appDelegate.Player setSpellDamage:100];
                     [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
                     [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     if(appDelegate.Player.curHealth > appDelegate.Player.totalHealth)
@@ -593,7 +806,7 @@ BOSS AT LVL 100 60 % <-
                 }
                 if(appDelegate.enemySelected == 4)
                 {
-                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [_playerDamageLabelFour setText:[NSString stringWithFormat:@"     %i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 break;
@@ -622,7 +835,7 @@ BOSS AT LVL 100 60 % <-
                 }
                 if(appDelegate.EnemyFour.alive == TRUE)
                 {
-                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [_playerDamageLabelFour setText:[NSString stringWithFormat:@"     %i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 
@@ -637,41 +850,55 @@ BOSS AT LVL 100 60 % <-
                 if(appDelegate.Enemy.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
-                    if(_frozenChance > 20)
+                    if(_frozenChance < 20)
                     {
-                        [_playerDamageLabel setText:@"Frozen"];
+                       [_playerDamageLabel setText:[NSString stringWithFormat:@"Frozen %i", appDelegate.Player.spellDamage]];
                         [appDelegate.Enemy setIsFrozen:TRUE];
+                        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
                     }
-                    //[_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
-                    [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
+                    else
+                    {
+                        [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
+                        
+                    }
+                    
                 }
                 if(appDelegate.EnemyTwo.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
-                    if(_frozenChance > 20)
+                    if(_frozenChance < 20)
                     {
-                        [_playerDamageLabelTwo setText:@"Frozen"];
+                        [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"Frozen %i", appDelegate.Player.spellDamage]];
                         [appDelegate.EnemyTwo setIsFrozen:TRUE];
+                        [appDelegate.EnemyTwo setCon:appDelegate.EnemyTwo.Con - appDelegate.Player.spellDamage];
                     }
-                    //[_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
-                    [appDelegate.EnemyTwo setCon:appDelegate.EnemyTwo.Con - appDelegate.Player.spellDamage];
+                    else
+                    {
+                        [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                        [appDelegate.EnemyTwo setCon:appDelegate.EnemyTwo.Con - appDelegate.Player.spellDamage];
+                    }
                 }
                 if(appDelegate.EnemyThree.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
-                    if(_frozenChance > 20)
+                    if(_frozenChance < 20)
                     {
-                        [_playerDamageLabelThree setText:@"Frozen"];
+                        [_playerDamageLabelThree setText:[NSString stringWithFormat:@"Frozen %i", appDelegate.Player.spellDamage]];
                         [appDelegate.EnemyThree setIsFrozen:TRUE];
+                        [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
                     }
-                   // [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
-                    [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
+                    else
+                    {
+                        [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                        [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
+                    }
                 }
                 if(appDelegate.EnemyFour.alive == TRUE)
                 {
                     _frozenChance = 0;
-                    
-                    [_playerDamageLabelTwo setText:@"Immune"];
+                    [appDelegate.Player setSpellDamage:0];
+                    [_playerDamageLabelFour setText:@"Immune 0"];
                     [appDelegate.EnemyFour setIsFrozen:FALSE];
                     // [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
@@ -681,7 +908,7 @@ BOSS AT LVL 100 60 % <-
            
             case 10:
                     //Bacure
-                    [appDelegate.Player setSpellDamage:150];
+                    [appDelegate.Player setSpellDamage:500];
                     [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
                     [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     if(appDelegate.Player.curHealth > appDelegate.Player.totalHealth)
@@ -713,7 +940,7 @@ BOSS AT LVL 100 60 % <-
                 }
                 if(appDelegate.enemySelected == 4)
                 {
-                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [_playerDamageLabelFour setText:[NSString stringWithFormat:@"   %i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 break;
@@ -740,7 +967,7 @@ BOSS AT LVL 100 60 % <-
                 }
                 if(appDelegate.EnemyFour.alive == TRUE)
                 {
-                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [_playerDamageLabelFour setText:[NSString stringWithFormat:@"   %i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 break;
@@ -753,38 +980,53 @@ BOSS AT LVL 100 60 % <-
                 if(appDelegate.Enemy.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
-                    if(_frozenChance > 30)
+                    if(_frozenChance < 30)
                     {
-                        [_playerDamageLabel setText:@"Frozen"];
+                        [_playerDamageLabel setText:[NSString stringWithFormat:@"Frozen %i", appDelegate.Player.spellDamage]];
                         [appDelegate.Enemy setIsFrozen:TRUE];
+                        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
                     }
-                    [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
+                    else
+                    {
+                        [_playerDamageLabel setText:[NSString stringWithFormat:@" %i", appDelegate.Player.spellDamage]];
+                        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
+                    }
                 }
                 if(appDelegate.EnemyTwo.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
-                    if(_frozenChance > 30)
+                    if(_frozenChance < 30)
                     {
-                        [_playerDamageLabelTwo setText:@"Frozen"];
+                        [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"Frozen %i", appDelegate.Player.spellDamage]];
                         [appDelegate.EnemyTwo setIsFrozen:TRUE];
+                        [appDelegate.EnemyTwo setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
                     }
-                    [appDelegate.EnemyTwo setCon:appDelegate.EnemyTwo.Con - appDelegate.Player.spellDamage];
+                    else
+                    {
+                        [_playerDamageLabelThree setText:[NSString stringWithFormat:@" %i", appDelegate.Player.spellDamage]];
+                        [appDelegate.EnemyTwo setCon:appDelegate.EnemyTwo.Con - appDelegate.Player.spellDamage];
+                    }
                 }
                 if(appDelegate.EnemyThree.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
-                    if(_frozenChance > 30)
+                    if(_frozenChance < 30)
                     {
-                        [_playerDamageLabelThree setText:@"Frozen"];
+                        [_playerDamageLabelThree setText:[NSString stringWithFormat:@"Frozen %i", appDelegate.Player.spellDamage]];
                         [appDelegate.EnemyThree setIsFrozen:TRUE];
+                        [appDelegate.EnemyThree setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
                     }
-                    [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
+                    else
+                    {
+                        [_playerDamageLabelThree setText:[NSString stringWithFormat:@" %i", appDelegate.Player.spellDamage]];
+                        [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
+                    }
                 }
                 if(appDelegate.EnemyFour.alive == TRUE)
                 {
                     _frozenChance = 0;
-                    
-                    [_playerDamageLabelTwo setText:@"Immune"];
+                    [appDelegate.Player setSpellDamage:0];
+                    [_playerDamageLabelFour setText:@"Immune 0"];
                     [appDelegate.EnemyFour setIsFrozen:FALSE];
                     // [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
@@ -792,7 +1034,7 @@ BOSS AT LVL 100 60 % <-
                 break;
             case 20:
                     //Cracure
-                    [appDelegate.Player setSpellDamage:700];
+                    [appDelegate.Player setSpellDamage:1500];
                     [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
                     [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     if(appDelegate.Player.curHealth > appDelegate.Player.totalHealth)
@@ -825,7 +1067,7 @@ BOSS AT LVL 100 60 % <-
                 }
                 if(appDelegate.enemySelected == 4)
                 {
-                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [_playerDamageLabelFour setText:[NSString stringWithFormat:@"   %i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 break;
@@ -852,7 +1094,7 @@ BOSS AT LVL 100 60 % <-
                 }
                 if(appDelegate.EnemyFour.alive == TRUE)
                 {
-                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [_playerDamageLabelFour setText:[NSString stringWithFormat:@"   %i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 break;
@@ -865,37 +1107,53 @@ BOSS AT LVL 100 60 % <-
                 if(appDelegate.Enemy.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
-                    if(_frozenChance > 50)
+                    if(_frozenChance < 40)
                     {
-                        [_playerDamageLabel setText:@"Frozen"];
+                        [_playerDamageLabel setText:[NSString stringWithFormat:@"Frozen \n %i", appDelegate.Player.spellDamage]];
                         [appDelegate.Enemy setIsFrozen:TRUE];
+                        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
                     }
-                    [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
+                    else
+                    {
+                        [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                        [appDelegate.Enemy setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
+                    }
                 }
                 if(appDelegate.EnemyTwo.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
-                    if(_frozenChance > 50)
+                    if(_frozenChance < 40)
                     {
-                        [_playerDamageLabelTwo setText:@"Frozen"];
+                        [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"Frozen \n %i", appDelegate.Player.spellDamage]];
                         [appDelegate.EnemyTwo setIsFrozen:TRUE];
+                        [appDelegate.EnemyTwo setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
                     }
-                    [appDelegate.EnemyTwo setCon:appDelegate.EnemyTwo.Con - appDelegate.Player.spellDamage];
+                    else
+                    {
+                        [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                        [appDelegate.EnemyTwo setCon:appDelegate.EnemyTwo.Con - appDelegate.Player.spellDamage];
+                    }
                 }
                 if(appDelegate.EnemyThree.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
-                    if(_frozenChance > 50)
+                    if(_frozenChance < 40)
                     {
-                        [_playerDamageLabelThree setText:@"Frozen"];
+                        [_playerDamageLabelThree setText:[NSString stringWithFormat:@"Frozen \n %i", appDelegate.Player.spellDamage]];
                         [appDelegate.EnemyThree setIsFrozen:TRUE];
+                        [appDelegate.EnemyThree setCon:appDelegate.Enemy.Con - appDelegate.Player.spellDamage];
                     }
-                    [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
+                    else
+                    {
+                        [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                        [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.spellDamage];
+                    }
                 }
                 if(appDelegate.EnemyFour.alive == TRUE)
                 {
                     _frozenChance = 0;
-                    [_playerDamageLabelTwo setText:@"Immune"];
+                    [appDelegate.Player setSpellDamage:0];
+                    [_playerDamageLabelFour setText:@"Immune - 0"];
                     [appDelegate.EnemyFour setIsFrozen:FALSE];
                     // [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
@@ -924,7 +1182,7 @@ BOSS AT LVL 100 60 % <-
                 }
                 if(appDelegate.EnemyFour.alive == TRUE)
                 {
-                    [_playerDamageLabelTwo setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                    [_playerDamageLabelFour setText:[NSString stringWithFormat:@"   %i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
                 break;
@@ -1064,26 +1322,220 @@ BOSS AT LVL 100 60 % <-
         }
         if(appDelegate.EnemyFour.alive == TRUE)
         {
-            [appDelegate.EnemyFour enemyAttack];
-            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
-            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
-            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            //Attack One
             
-            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
-            [_manaLabel setText:[NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
             
+            if(_whichBossAttack == 0)
+            {
+                _whichBossAttack = arc4random() % 4 + 1;
+                //_whichBossAttack = 3;
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
+            else if(_whichBossAttack == 1)
+            {
+                
+                while(_whichBossAttack == 1)
+                {
+                    _whichBossAttack = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
+            else if(_whichBossAttack == 2)
+            {
+                while(_whichBossAttack == 2)
+                {
+                    _whichBossAttack = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
+            else if(_whichBossAttack == 3)
+            {
+                while(_whichBossAttack == 3)
+                {
+                    _whichBossAttack = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
+            else if(_whichBossAttack == 4)
+            {
+                while(_whichBossAttack == 4)
+                {
+                    _whichBossAttack = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack: %i", _whichBossAttack);
+            }
+            
+            NSLog(@"Enemy four attacking");
+            
+            //Attack Two
+            if(_whichBossAttackTwo ==  0)
+            {
+                _whichBossAttackTwo = arc4random() % 4 + 1;
+                //_whichBossAttack = 3;
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            else if(_whichBossAttackTwo == 1)
+            {
+                while(_whichBossAttackTwo == 1)
+                {
+                    _whichBossAttackTwo = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            else if(_whichBossAttackTwo == 2)
+            {
+                while(_whichBossAttackTwo == 2)
+                {
+                    _whichBossAttackTwo = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            else if(_whichBossAttackTwo == 3)
+            {
+                while(_whichBossAttackTwo == 3)
+                {
+                    _whichBossAttackTwo = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            else if(_whichBossAttackTwo == 4)
+            {
+                while(_whichBossAttackTwo == 4)
+                {
+                    _whichBossAttackTwo = arc4random() % 4 + 1;
+                }
+                NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            }
+            NSLog(@"which attack: %i", _whichBossAttack);
+            NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+            
+            if(_whichBossAttack == 1)
+            {
+                appDelegate.EnemyFour.enemyDamage = 350;
+                [_attackLabelTwo setText:@"Scorching Heat"];
+                NSLog(@"Scorching Heat");
+                [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else if(_whichBossAttack == 2)
+            {
+                appDelegate.EnemyFour.enemyDamage = 200;
+                [_attackLabelTwo setText:@"Thunderous Wrath"];
+                NSLog(@"Thunderous wrath");
+                [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else if(_whichBossAttack == 3)
+            {
+                appDelegate.EnemyFour.enemyDamage = 150;
+                [_attackLabelTwo setText:@"Frozen Waste"];
+                NSLog(@"Frozen Waste");
+                _frozenChance = arc4random() % 100 + 1;
+                //_frozenChance = 55;
+                if(_frozenChance < 10)
+                {
+                    [_frozenLabel setText:@"Frozen"];
+                    [appDelegate.Player setIsFrozen:TRUE];
+                }
+                [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+                
+            }
+            else if(_whichBossAttack == 4)
+            {
+                [appDelegate.EnemyFour enemyAttack];
+                [_attackLabelTwo setText:@"Vicious Bite"];
+                NSLog(@"Vicious Bite");
+                [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else
+            {
+                NSLog(@"Boss attack error");
+            }
+            
+            if(_whichBossAttackTwo == 1)
+            {
+                appDelegate.EnemyFour.enemyDamage = 300;
+                [_attackLabel setText:@"Bolufire"];
+                NSLog(@"Bolufire");
+                [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else if(_whichBossAttackTwo == 2)
+            {
+                appDelegate.EnemyFour.enemyDamage = 250;
+                [_attackLabel setText:@"Voltunder"];
+                NSLog(@"Voltunder");
+                [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else if(_whichBossAttackTwo == 3)
+            {
+                appDelegate.EnemyFour.enemyDamage = 100;
+                [_attackLabel setText:@"Sheer Ice"];
+                NSLog(@"Sheer Ice");
+                _frozenChance = arc4random() % 100 + 1;
+                //_frozenChance = 55;
+                if(_frozenChance < 20)
+                {
+                    [_frozenLabel setText:@"Frozen"];
+                    [appDelegate.Player setIsFrozen:TRUE];
+                }
+                [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+                
+            }
+            else if(_whichBossAttackTwo == 4)
+            {
+                [appDelegate.EnemyFour enemyAttack];
+                [_attackLabel setText:@"Sharp Claws"];
+                NSLog(@"Sharp Claws");
+                [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            }
+            else
+            {
+                NSLog(@"Boss attack error");
+            }
+            
+            _buttonPress = FALSE;
             if(appDelegate.Player.curHealth <= 0)
             {
                 //Show game over animation
                 UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
                 [gameOverAlert show];
             }
+            if(appDelegate.Player.isFrozen == TRUE)
+            {
+                _buttonPress = TRUE;
+                [_unFreeze setUserInteractionEnabled:TRUE];
+                [_unFreeze setAlpha:1];
+            }
+            
         }
+    }
         else
         {
             NSLog(@"Enemy Four not Attacking");
         }
-        
+    
         appDelegate.enemySelected = 0;
         appDelegate.Player.spellCost = 0;
         //[_playerDamageLabel setText:@""];
@@ -1127,7 +1579,7 @@ BOSS AT LVL 100 60 % <-
                 
                 [_selector setImage:[UIImage imageNamed:@"ff1.gif"]];
             }
-        }
+        
     }
     NSLog(@"Enemy two con: %i", appDelegate.EnemyTwo.Con);
 }
@@ -1234,8 +1686,7 @@ BOSS AT LVL 100 60 % <-
     }
     /*
      
-     Boundary box for boss
-     
+
      
      
      
@@ -1293,9 +1744,13 @@ BOSS AT LVL 100 60 % <-
 }*/
 - (IBAction)Attack:(UIButton *)sender
 {
+   
     if (_buttonPress == FALSE)
     {
-        
+        [appDelegate.Enemy setIsFrozen:FALSE];
+        [appDelegate.EnemyTwo setIsFrozen:FALSE];
+        [appDelegate.EnemyThree setIsFrozen:FALSE];
+        [appDelegate.EnemyFour setIsFrozen:FALSE];
         
         _buttonPress = TRUE;
         //start your attack
@@ -1337,12 +1792,12 @@ BOSS AT LVL 100 60 % <-
                     NSLog(@"Number of hits: %i", appDelegate.Player.numberOfHits);
                     NSLog(@"Enemy three hit");
                 }
-                else if(appDelegate.enemySelected == 4)
+                else if(appDelegate.enemySelected == 4 && appDelegate.Player.isFrozen == FALSE)
                 {
                     [appDelegate.EnemyThree setCon:appDelegate.EnemyThree.Con - appDelegate.Player.playerDamage];
-                    [_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.playerDamage]];
+                    [_playerDamageLabelFour setText:[NSString stringWithFormat:@"   %i", appDelegate.Player.playerDamage]];
                     NSLog(@"Number of hits: %i", appDelegate.Player.numberOfHits);
-                    NSLog(@"Enemy three hit");
+                    NSLog(@"Enemy Four hit");
                 }
                 
             
@@ -1367,6 +1822,7 @@ BOSS AT LVL 100 60 % <-
                     [_playerDamageLabel setText:@""];
                     [_playerDamageLabelTwo setText:@""];
                     [_playerDamageLabelThree setText:@""];
+                    [_playerDamageLabelFour setText:@""];
                     if(appDelegate.Enemy.Con <= 0)
                     {
                         [appDelegate.Enemy setCon:0];
@@ -1423,7 +1879,7 @@ BOSS AT LVL 100 60 % <-
                     _TempFour = [_baddyFour image];
                     // Start enemy attack
                         //NSLog(@"IS enemy alive%c",appDelegate.Enemy.alive);
-                    
+                    [appDelegate.Player setIsFrozen:FALSE];
                         if(appDelegate.Enemy.alive == TRUE)
                         {
                             //NSLog(@"The first enemy is working");
@@ -1483,44 +1939,121 @@ BOSS AT LVL 100 60 % <-
                     {
                         //Attack One
                         
-                        [appDelegate.EnemyFour enemyAttack];
-                        [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
-                        [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
-                        [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
-                        [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
-                        [_manaLabel setText:[NSString stringWithFormat:@"MP: %i/%i",appDelegate.Player.curMagic, appDelegate.Player.totalMagic]];
+                       
+                        if(_whichBossAttack == 0)
+                        {
+                            _whichBossAttack = arc4random() % 4 + 1;
+                            //_whichBossAttack = 3;
+                            NSLog(@"which attack: %i", _whichBossAttack);
+                        }
+                        else if(_whichBossAttack == 1)
+                        {
+                            
+                            while(_whichBossAttack == 1)
+                            {
+                                _whichBossAttack = arc4random() % 4 + 1;
+                            }
+                            NSLog(@"which attack: %i", _whichBossAttack);
+                        }
+                        else if(_whichBossAttack == 2)
+                        {
+                            while(_whichBossAttack == 2)
+                            {
+                                _whichBossAttack = arc4random() % 4 + 1;
+                            }
+                            NSLog(@"which attack: %i", _whichBossAttack);
+                        }
+                        else if(_whichBossAttack == 3)
+                        {
+                            while(_whichBossAttack == 3)
+                            {
+                                _whichBossAttack = arc4random() % 4 + 1;
+                            }
+                            NSLog(@"which attack: %i", _whichBossAttack);
+                        }
+                        else if(_whichBossAttack == 4)
+                        {
+                            while(_whichBossAttack == 4)
+                            {
+                                _whichBossAttack = arc4random() % 4 + 1;
+                            }
+                            NSLog(@"which attack: %i", _whichBossAttack);
+                        }
+                    
                         NSLog(@"Enemy four attacking");
                         
                         //Attack Two
-                        int whichBossAttack = 0;
+                        if(_whichBossAttackTwo ==  0)
+                        {
+                            _whichBossAttackTwo = arc4random() % 4 + 1;
+                            //_whichBossAttack = 3;
+                            NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+                        }
+                        else if(_whichBossAttackTwo == 1)
+                        {
+                            while(_whichBossAttackTwo == 1)
+                            {
+                                _whichBossAttackTwo = arc4random() % 4 + 1;
+                            }
+                            NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+                        }
+                        else if(_whichBossAttackTwo == 2)
+                        {
+                            while(_whichBossAttackTwo == 2)
+                            {
+                                _whichBossAttackTwo = arc4random() % 4 + 1;
+                            }
+                            NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+                        }
+                        else if(_whichBossAttackTwo == 3)
+                        {
+                            while(_whichBossAttackTwo == 3)
+                            {
+                                _whichBossAttackTwo = arc4random() % 4 + 1;
+                            }
+                            NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+                        }
+                        else if(_whichBossAttackTwo == 4)
+                        {
+                            while(_whichBossAttackTwo == 4)
+                            {
+                                _whichBossAttackTwo = arc4random() % 4 + 1;
+                            }
+                            NSLog(@"which attack 2: %i", _whichBossAttackTwo);
+                        }
+                        NSLog(@"which attack: %i", _whichBossAttack);
+                        NSLog(@"which attack 2: %i", _whichBossAttackTwo);
                         
-                        whichBossAttack = arc4random() % 4 + 1;
-                        if(whichBossAttack == 1)
-                        {   
-                            appDelegate.EnemyFour.enemyDamage = 300;
-                            [_attackLabel setText:@"Bolufire"];
+                        if(_whichBossAttack == 1)
+                        {
+                            appDelegate.EnemyFour.enemyDamage = 350;
+                            [_attackLabelTwo setText:@"Scorching Heat"];
+                            NSLog(@"Scorching Heat");
                             [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
                             [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
                             [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
                             [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
                         }
-                        else if(whichBossAttack == 2)
+                        else if(_whichBossAttack == 2)
                         {
                             appDelegate.EnemyFour.enemyDamage = 200;
-                            [_attackLabel setText:@"Voltunder"];
+                            [_attackLabelTwo setText:@"Thunderous Wrath"];
+                            NSLog(@"Thunderous wrath");
                             [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
                             [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
                             [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
                             [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
                         }
-                        else if(whichBossAttack == 3)
+                        else if(_whichBossAttack == 3)
                         {
-                            appDelegate.EnemyFour.enemyDamage = 100;
-                            [_attackLabel setText:@"Sheer Ice"];
+                            appDelegate.EnemyFour.enemyDamage = 150;
+                            [_attackLabelTwo setText:@"Frozen Waste"];
+                            NSLog(@"Frozen Waste");
                             _frozenChance = arc4random() % 100 + 1;
-                            if(_frozenChance > 50)
+                            //_frozenChance = 55;
+                            if(_frozenChance < 10)
                             {
-                                [_enemyDamageLabel setText:@"Frozen"];
+                                [_frozenLabel setText:@"Frozen"];
                                 [appDelegate.Player setIsFrozen:TRUE];
                             }
                             [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
@@ -1529,11 +2062,65 @@ BOSS AT LVL 100 60 % <-
                             [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
                             
                         }
-                        else if(whichBossAttack == 4)
+                        else if(_whichBossAttack == 4)
+                        {
+                            [appDelegate.EnemyFour enemyAttack];
+                            [_attackLabelTwo setText:@"Vicious Bite"];
+                            NSLog(@"Vicious Bite");
+                            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+                        }
+                        else
+                        {
+                            NSLog(@"Boss attack error");
+                        }
+
+                        if(_whichBossAttackTwo == 1)
+                        {   
+                            appDelegate.EnemyFour.enemyDamage = 300;
+                            [_attackLabel setText:@"Bolufire"];
+                            NSLog(@"Bolufire");
+                            [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+                        }
+                        else if(_whichBossAttackTwo == 2)
+                        {
+                            appDelegate.EnemyFour.enemyDamage = 250;
+                            [_attackLabel setText:@"Voltunder"];
+                            NSLog(@"Voltunder");
+                            [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+                        }
+                        else if(_whichBossAttackTwo == 3)
+                        {
+                            appDelegate.EnemyFour.enemyDamage = 100;
+                            [_attackLabel setText:@"Sheer Ice"];
+                            NSLog(@"Sheer Ice");
+                            _frozenChance = arc4random() % 100 + 1;
+                            //_frozenChance = 55;
+                            if(_frozenChance < 20)
+                            {
+                                [_frozenLabel setText:@"Frozen"];
+                                [appDelegate.Player setIsFrozen:TRUE];
+                            }
+                            [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+                            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+                            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+                            
+                        }
+                        else if(_whichBossAttackTwo == 4)
                         {
                             [appDelegate.EnemyFour enemyAttack];
                             [_attackLabel setText:@"Sharp Claws"];
-                            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+                            NSLog(@"Sharp Claws");
+                            [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
                             [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
                             [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
                             [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
@@ -1594,6 +2181,14 @@ BOSS AT LVL 100 60 % <-
                     [_Animation stopAnimating];
                     [_Animation setImage:_uIdle];
                     _buttonPress = FALSE;
+                    //[appDelegate.Player setIsFrozen:FALSE];
+                    if(appDelegate.Player.isFrozen == TRUE)
+                    {
+                        _buttonPress = TRUE;
+                        [_unFreeze setUserInteractionEnabled:TRUE];
+                        [_unFreeze setAlpha:1];
+                    }
+
                     appDelegate.enemySelected = 0;
                     if(appDelegate.enemySelected == 0)
                     {
@@ -1687,5 +2282,227 @@ BOSS AT LVL 100 60 % <-
     return coloredImage;
 }
 
+
+- (IBAction)unFreezeButton:(UIButton *)sender
+{
+    [_frozenLabel setText:@""];
+    [_unFreeze setUserInteractionEnabled:FALSE];
+    [_unFreeze setAlpha:0];
+    [appDelegate.Player setIsFrozen:FALSE];
+    if(appDelegate.EnemyFour.alive == TRUE)
+    {
+        //Attack One
+        
+        
+        if(_whichBossAttack == 0)
+        {
+            _whichBossAttack = arc4random() % 4 + 1;
+            //_whichBossAttack = 3;
+            NSLog(@"which attack: %i", _whichBossAttack);
+        }
+        else if(_whichBossAttack == 1)
+        {
+            
+            while(_whichBossAttack == 1)
+            {
+                _whichBossAttack = arc4random() % 4 + 1;
+            }
+            NSLog(@"which attack: %i", _whichBossAttack);
+        }
+        else if(_whichBossAttack == 2)
+        {
+            while(_whichBossAttack == 2)
+            {
+                _whichBossAttack = arc4random() % 4 + 1;
+            }
+            NSLog(@"which attack: %i", _whichBossAttack);
+        }
+        else if(_whichBossAttack == 3)
+        {
+            while(_whichBossAttack == 3)
+            {
+                _whichBossAttack = arc4random() % 4 + 1;
+            }
+            NSLog(@"which attack: %i", _whichBossAttack);
+        }
+        else if(_whichBossAttack == 4)
+        {
+            while(_whichBossAttack == 4)
+            {
+                _whichBossAttack = arc4random() % 4 + 1;
+            }
+            NSLog(@"which attack: %i", _whichBossAttack);
+        }
+        
+        NSLog(@"Enemy four attacking");
+        
+        //Attack Two
+        if(_whichBossAttackTwo ==  0)
+        {
+            _whichBossAttackTwo = arc4random() % 4 + 1;
+            //_whichBossAttack = 3;
+            NSLog(@"which attack: %i", _whichBossAttackTwo);
+        }
+        else if(_whichBossAttackTwo == 1)
+        {
+            while(_whichBossAttackTwo == 1)
+            {
+                _whichBossAttackTwo = arc4random() % 4 + 1;
+            }
+            NSLog(@"which attack: %i", _whichBossAttackTwo);
+        }
+        else if(_whichBossAttackTwo == 2)
+        {
+            while(_whichBossAttackTwo == 2)
+            {
+                _whichBossAttackTwo = arc4random() % 4 + 1;
+            }
+            NSLog(@"which attack: %i", _whichBossAttackTwo);
+        }
+        else if(_whichBossAttackTwo == 3)
+        {
+            while(_whichBossAttackTwo == 3)
+            {
+                _whichBossAttackTwo = arc4random() % 4 + 1;
+            }
+            NSLog(@"which attack: %i", _whichBossAttackTwo);
+        }
+        else if(_whichBossAttackTwo == 4)
+        {
+            while(_whichBossAttackTwo == 4)
+            {
+                _whichBossAttackTwo = arc4random() % 4 + 1;
+            }
+            NSLog(@"which attack: %i", _whichBossAttackTwo);
+        }
+        
+        
+        
+        if(_whichBossAttack == 1)
+        {
+            appDelegate.EnemyFour.enemyDamage = 350;
+            [_attackLabelTwo setText:@"Scorching Heat"];
+            NSLog(@"Scorching Heat");
+            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+        }
+        else if(_whichBossAttack == 2)
+        {
+            appDelegate.EnemyFour.enemyDamage = 200;
+            [_attackLabelTwo setText:@"Thunderous Wrath"];
+            NSLog(@"Thunderous wrath");
+            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+        }
+        else if(_whichBossAttack == 3)
+        {
+            appDelegate.EnemyFour.enemyDamage = 150;
+            [_attackLabelTwo setText:@"Frozen Waste"];
+            NSLog(@"Frozen Waste");
+            _frozenChance = arc4random() % 100 + 1;
+            NSLog(@"Frozen Number 1:%i", _frozenChance);
+            if(_frozenChance < 10)
+            {
+                [_frozenLabel setText:@"Frozen"];
+                [appDelegate.Player setIsFrozen:TRUE];
+            }
+            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            
+        }
+        else if(_whichBossAttack == 4)
+        {
+            [appDelegate.EnemyFour enemyAttack];
+            [_attackLabelTwo setText:@"Vicious Bite"];
+            NSLog(@"Vicious Bite");
+            [_enemyDamageLabel setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+        }
+        else
+        {
+            NSLog(@"Boss attack error");
+        }
+        
+        if(_whichBossAttackTwo == 1)
+        {
+            appDelegate.EnemyFour.enemyDamage = 300;
+            [_attackLabel setText:@"Bolufire"];
+            NSLog(@"Bolufire");
+            [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+        }
+        else if(_whichBossAttackTwo == 2)
+        {
+            appDelegate.EnemyFour.enemyDamage = 250;
+            [_attackLabel setText:@"Voltunder"];
+            NSLog(@"Voltunder");
+            [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+        }
+        else if(_whichBossAttackTwo == 3)
+        {
+            appDelegate.EnemyFour.enemyDamage = 100;
+            [_attackLabel setText:@"Sheer Ice"];
+            NSLog(@"Sheer Ice");
+            _frozenChance = arc4random() % 100 + 1;
+            //_frozenChance = 55;
+            NSLog(@"Frozen Number 2:%i", _frozenChance);
+            if(_frozenChance < 20)
+            {
+                [_frozenLabel setText:@"Frozen"];
+                [appDelegate.Player setIsFrozen:TRUE];
+            }
+            [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+            
+        }
+        else if(_whichBossAttackTwo == 4)
+        {
+            [appDelegate.EnemyFour enemyAttack];
+            [_attackLabel setText:@"Sharp Claws"];
+            NSLog(@"Sharp Claws");
+            [_enemyDamageLabelTwo setText:[NSString stringWithFormat:@"%i", [appDelegate.EnemyFour enemyDamage]]];
+            [appDelegate.Player setCurHealth:appDelegate.Player.curHealth - appDelegate.EnemyFour.enemyDamage];
+            [appDelegate.Player setDamageTaken:appDelegate.Player.damageTaken + appDelegate.EnemyFour.enemyDamage];
+            [_healthLabel setText:[NSString stringWithFormat:@"HP: %i/%i", appDelegate.Player.curHealth, appDelegate.Player.totalHealth]];
+        }
+        else
+        {
+            NSLog(@"Boss attack error");
+        }
+        
+        _buttonPress = FALSE;
+        if(appDelegate.Player.curHealth <= 0)
+        {
+            //Show game over animation
+            UIAlertView *  gameOverAlert = [[UIAlertView alloc]                                                                                                              initWithTitle:@"Game Over" message:@"You have died" delegate:nil cancelButtonTitle:nil otherButtonTitles:nil];
+            [gameOverAlert show];
+        }
+        
+    }
+    _buttonPress = FALSE;
+    //[appDelegate.Player setIsFrozen:FALSE];
+    
+    if(appDelegate.Player.isFrozen == TRUE)
+    {
+        _buttonPress = TRUE;
+        [_unFreeze setUserInteractionEnabled:TRUE];
+        [_unFreeze setAlpha:1];
+    }
+}
 
 @end
