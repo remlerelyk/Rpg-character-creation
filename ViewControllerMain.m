@@ -72,7 +72,7 @@ BOSS AT LVL 100 99 % <-
     //[appDelegate.Player setLvl:33];
     if(appDelegate.Enemy.alive == FALSE && appDelegate.EnemyTwo.alive == FALSE && appDelegate.EnemyThree.alive == FALSE && appDelegate.EnemyFour.alive == FALSE)
     {
-         [appDelegate.Player setLvl:99];
+        [appDelegate.Player setLvl:50];
         
         appDelegate.enemySelected = 0;
         int howManyEnemies = 0;
@@ -85,11 +85,11 @@ BOSS AT LVL 100 99 % <-
         {
             howManyEnemies = arc4random() % 2 + 1;
         }
-        else if( appDelegate.Player.lvl > 9 && appDelegate.Player.lvl <= 99)
+        else if( appDelegate.Player.lvl > 9 && appDelegate.Player.lvl <= 49)
         {
             howManyEnemies = arc4random() % 3 +1;
         }
-        else if(appDelegate.Player.lvl == 100)
+        else if(appDelegate.Player.lvl == 50)
         {
             _whichBossAttack = 0;
             _whichBossAttackTwo = 0;
@@ -176,19 +176,19 @@ BOSS AT LVL 100 99 % <-
         
         //debugging
         
-        [appDelegate.EnemyFour setCon:50000];
-        [appDelegate.EnemyFour setStr:500];//100
+        [appDelegate.EnemyFour setCon:30000];
+        [appDelegate.EnemyFour setStr:150];//100
         
         
        //5 x 100 + 10= 510
-        [appDelegate.Player setDexterity:329];//329
+        [appDelegate.Player setDexterity:150];//150
         //[appDelegate.Player setCurHealth:9000];
         //[appDelegate.Player setTotalHealth:9000];
-        [appDelegate.Player setHealth:392];//392
-        [appDelegate.Player setDamageTaken:10000];
-        [appDelegate.Player setMagic:367];//367
+        [appDelegate.Player setHealth:195];//195
+        //[appDelegate.Player setDamageTaken:10000];
+        [appDelegate.Player setMagic:187];//187
         //[appDelegate.Player setCurMagic:120];
-        [appDelegate.Player setStrength:496];//496
+        [appDelegate.Player setStrength:184];//184
         [appDelegate.Player cleanStats];
         
         
@@ -749,10 +749,7 @@ BOSS AT LVL 100 99 % <-
         [appDelegate.Player playerSpell];
         NSLog(@"Spell Damge:%i", appDelegate.Player.spellDamage);
         NSLog(@"Spell Cost: %i", appDelegate.Player.spellCost);
-        UIImageView * effectAnimation = [[UIImageView alloc]initWithFrame:_baddyFour.frame];
-        [_baddyFour addSubview:effectAnimation];
-        [_baddyFour bringSubviewToFront:effectAnimation];
-        [effectAnimation setImage:[UIImage imageNamed:@"exp.gif"]];
+       
         
         /*switch (appDelegate.Player.spellCost)
         {
@@ -795,8 +792,6 @@ BOSS AT LVL 100 99 % <-
                 //Fire
                 [appDelegate.Player setSpellDamage:50];
                 [_attackLabel setText:_attackString];
-                
-                
                 if(appDelegate.enemySelected == 1)
                 {
                     _magicLayer = [[UIImageView alloc]initWithFrame:_baddy.frame];

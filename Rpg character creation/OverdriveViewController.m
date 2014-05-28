@@ -53,22 +53,22 @@
     
     switch (appDelegate.Player.lvl)
     {
-        case 80 ... 999:
+        case 40 ... 999:
             [_overdriveArray replaceObjectAtIndex:5 withObject:@"DNS:5000"];
             [_overdriveArrayName replaceObjectAtIndex:5 withObject:@"Dance of the Nine Swords"];
-        case 50 ... 79:
+        case 30 ... 39:
             [_overdriveArray replaceObjectAtIndex:4 withObject:@"Between the eyes:2500"];
             [_overdriveArrayName replaceObjectAtIndex:4 withObject:@"Between the eyes"];
-        case 40 ... 49:
+        case 20 ... 29:
             [_overdriveArray replaceObjectAtIndex:3 withObject:@"Jabbing the Abdomen:1000"];
             [_overdriveArrayName replaceObjectAtIndex:3 withObject:@"Jabbing the Abdomen"];
-        case 30 ... 39:
+        case 15 ... 19:
             [_overdriveArray replaceObjectAtIndex:2 withObject:@"Smoltering Blade:500"];
             [_overdriveArrayName replaceObjectAtIndex:2 withObject:@"Smoltering Blade"];
-        case 20 ... 29:
+        case 11 ... 14:
             [_overdriveArray replaceObjectAtIndex:1 withObject:@"Tri-Magic:100"];
             [_overdriveArrayName replaceObjectAtIndex:1 withObject:@"Tri-Magic"];
-        case 10 ... 19:
+        case 6 ... 10:
             [_overdriveArray replaceObjectAtIndex:0 withObject:@"Multi-Slash:50"];
             [_overdriveArrayName replaceObjectAtIndex:0 withObject:@"Multi-Slash"];
             break;

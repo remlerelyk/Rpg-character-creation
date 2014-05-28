@@ -46,66 +46,6 @@
         _totalStats += 1;
         switch (_lvl)
         {
-                
-            case 96 ... 100:
-                _strength += 0 + arc4random() % 10;
-                _dexterity += 0 + arc4random() % 10;
-                _health += 0 + arc4random() % 10;
-                _magic += 0 + arc4random() % 10;
-                break;
-            case 91 ... 95:
-                _strength += 5 + arc4random() % 3;
-                _dexterity += 5 + arc4random() % 3;
-                _health += 5 + arc4random() % 3;
-                _magic += 5 + arc4random() % 3;
-                break;
-            case 86 ... 90:
-                _strength += 5 + arc4random() % 4;
-                _dexterity += 5 + arc4random() % 4;
-                _health += 5 + arc4random() % 4;
-                _magic += 5 + arc4random() % 4;
-                break;
-            case 81 ... 85:
-                _strength += 10+ arc4random() % 5;
-                _dexterity += 0 + arc4random() % 5;
-                _health += 0 + arc4random() % 5;
-                _magic += 0 + arc4random() % 5;
-                break;
-            case 76 ... 80:
-                _strength += 0 + arc4random() % 3;
-                _dexterity += 0 + arc4random() % 3;
-                _health += 0 + arc4random() % 3;
-                _magic += 0 + arc4random() % 3;
-                break;
-            case 71 ... 75:
-                _strength += 0 + arc4random() % 4;
-                _dexterity += 0 + arc4random() % 4;
-                _health += 0 + arc4random() % 4;
-                _magic += 0 + arc4random() % 4;
-                break;
-            case 66 ... 70:
-                _strength += 0 + arc4random() % 6;
-                _dexterity += 0 + arc4random() % 6;
-                _health += 0 + arc4random() % 6;
-                _magic += 0 + arc4random() % 6;
-                break;
-            case 61 ... 65:
-                _strength += 0 + arc4random() % 5;
-                _dexterity += 0 + arc4random() % 5;
-                _health += 0 + arc4random() % 5;
-                _magic += 0 + arc4random() % 5;
-            case 56 ... 60:
-                _strength += 0 + arc4random() % 6;
-                _dexterity += 0 + arc4random() % 6;
-                _health += 0 + arc4random() % 6;
-                _magic += 0 + arc4random() % 6;
-                break;
-            case 51 ... 55:
-                _strength += 0 + arc4random() % 7;
-                _dexterity += 0 + arc4random() % 7;
-                _health += 0 + arc4random() % 7;
-                _magic += 0 + arc4random() % 7;
-                break;
             case 46 ... 50:
                 _strength += 3 + arc4random() % 3;
                 _dexterity += 3 + arc4random() % 3;

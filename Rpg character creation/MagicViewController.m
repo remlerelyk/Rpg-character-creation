@@ -104,31 +104,31 @@ Spell = spell cost
 
     switch (appDelegate.Player.lvl)
     {
-        case 75 ... 999:
+        case 43 ... 50:
             [_magicArray replaceObjectAtIndex:12 withObject:@"SheerVoltabalu:50MP"];
             [_magicArrayText replaceObjectAtIndex:12 withObject:@"SheerVoltabalu"];
-        case 61 ... 74:
+        case 38 ... 42:
             [_magicArray replaceObjectAtIndex:11 withObject:@"Sheer Ice:30MP"];
             [_magicArrayText replaceObjectAtIndex:11 withObject:@"Sheer Ice"];
-        case 49 ... 60:
+        case 34 ... 37:
             [_magicArray replaceObjectAtIndex:10 withObject:@"Voltunder:27MP"];
             [_magicArrayText replaceObjectAtIndex:10 withObject:@"Voltunder"];
-        case 42 ... 48:
+        case 29 ... 33:
             [_magicArray replaceObjectAtIndex:9 withObject:@"Cracure:20MP"];
             [_magicArrayText replaceObjectAtIndex:9 withObject:@"Cracure"];
-        case 34 ... 41:
+        case 24 ... 28:
             [_magicArray replaceObjectAtIndex:8 withObject:@"Bolufire:23MP"];
             [_magicArrayText replaceObjectAtIndex:8 withObject:@"Bolufire"];
-        case 27 ... 33:
+        case 19 ... 22:
             [_magicArray replaceObjectAtIndex:7 withObject:@"Baice:18MP"];
             [_magicArrayText replaceObjectAtIndex:7 withObject:@"Baice"];
-        case 21 ... 26:
+        case 16 ... 18:
             [_magicArray replaceObjectAtIndex:6 withObject:@"Bathunder:15MP"];
             [_magicArrayText replaceObjectAtIndex:6 withObject:@"Bathunder"];
-        case 15 ... 20:
+        case 13 ... 15:
             [_magicArray replaceObjectAtIndex:5 withObject:@"Bacure:10MP"];
             [_magicArrayText replaceObjectAtIndex:5 withObject:@"Bacure"];
-        case 10 ... 14:
+        case 10 ... 12:
             [_magicArray replaceObjectAtIndex:4 withObject:@"Bafire:12MP"];
             [_magicArrayText replaceObjectAtIndex:4 withObject:@"Bafire"];
         case 7 ... 9:
