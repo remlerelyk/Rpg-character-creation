@@ -868,6 +868,15 @@ BOSS AT LVL 100 99 % <-
                 }
                 if(appDelegate.EnemyFour.alive == TRUE)
                 {
+                    _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(_baddyFour.frame.origin.x, 0, _baddyFour.frame.size.width, _baddyFour.frame.size.height)];
+                    [_baddyFour addSubview:_magicLayer];
+                    [_magicLayer setAnimationImages:_thunderAttack];
+                    [_magicLayer setAnimationDuration:.7];
+                    [_magicLayer setAnimationRepeatCount:2];
+                    [_magicLayer startAnimating];
+                    
+                    [appDelegate.Player setSpellDamage:40];
+                    [_attackLabel setText:_attackString];
                     [_playerDamageLabelFour setText:[NSString stringWithFormat:@"     %i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
                 }
