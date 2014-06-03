@@ -846,6 +846,7 @@ BOSS AT LVL 100 99 % <-
                 [_magicLayer setAnimationDuration:.7];
                 [_magicLayer setAnimationRepeatCount:2];
                 [_magicLayer startAnimating];
+
                 
                 [appDelegate.Player setSpellDamage:40];
                 [_attackLabel setText:_attackString];
