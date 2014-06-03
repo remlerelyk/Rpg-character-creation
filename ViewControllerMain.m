@@ -248,7 +248,7 @@ BOSS AT LVL 100 99 % <-
     
     
    // NSLog(@"%i", [appDelegate.Player curMagic]);
-    
+    _select = [[NSBundle mainBundle] pathForResource:@"select" ofType:@"mp3"];
     _bossMusic = [[NSBundle mainBundle] pathForResource:@"bossMusic" ofType:@"mp3"];
     _hit = [[NSBundle mainBundle] pathForResource:@"hit" ofType:@"mp3"];
     _death = [[NSBundle mainBundle] pathForResource:@"death" ofType:@"mp3"];
@@ -1771,6 +1771,30 @@ BOSS AT LVL 100 99 % <-
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     
+    CGPoint thePoint = [[touches anyObject] locationInView:self.view];
+    int pointX = thePoint.x;
+    int pointY = thePoint.y;
+    
+    if(pointX >= 20 && pointX <= 66 && pointY >= 12 && pointY <= 75 && appDelegate.Enemy.alive == TRUE)
+    {
+        _audioSFX = [NSURL fileURLWithPath:_select];
+    appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+    [appDelegate.sfx play];
+    }
+    
+    if(pointX >= 20 && pointX <= 66  && pointY >= 102 && pointY <= 163 && appDelegate.EnemyTwo.alive == TRUE)
+    {
+        _audioSFX = [NSURL fileURLWithPath:_select];
+        appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+        [appDelegate.sfx play];
+    }
+    if(pointX >= 20 && pointX <= 66  && pointY >= 193 && pointY <= 254 && appDelegate.EnemyThree.alive == TRUE)
+    {
+        _audioSFX = [NSURL fileURLWithPath:_select];
+        appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+        [appDelegate.sfx play];
+    }
+
 }
 -(void)viewDidAppear:(BOOL)animated
 {
