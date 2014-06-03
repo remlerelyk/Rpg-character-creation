@@ -888,16 +888,16 @@ BOSS AT LVL 100 99 % <-
                 //Ice
                 [appDelegate.Player setSpellDamage:20];
                 [_attackLabel setText:_attackString];
-                
+                _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIImage imageNamed:@"ice0.png"].size.width*.5, [UIImage imageNamed:@"ice0.png"].size.height*.5)];
+                [self.view addSubview:_magicLayer];
+                [_magicLayer setAnimationImages:_iceAttack];
+                [_magicLayer setAnimationDuration:.3];
+                [_magicLayer setAnimationRepeatCount:3];
+                [_magicLayer startAnimating];
                 
                 if(appDelegate.Enemy.alive == TRUE)
                 {
-                    _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIImage imageNamed:@"ice0.png"].size.width, [UIImage imageNamed:@"ice0.png"].size.height)];
-                    [_baddy addSubview:_magicLayer];
-                    [_magicLayer setAnimationImages:_iceAttack];
-                    [_magicLayer setAnimationDuration:.3];
-                    [_magicLayer setAnimationRepeatCount:3];
-                    [_magicLayer startAnimating];
+
                     _frozenChance = arc4random() % 100 + 1;
                     if(_frozenChance < 20)
                     {
