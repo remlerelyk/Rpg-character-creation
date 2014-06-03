@@ -72,7 +72,7 @@ BOSS AT LVL 100 99 % <-
     //[appDelegate.Player setLvl:33];
     if(appDelegate.Enemy.alive == FALSE && appDelegate.EnemyTwo.alive == FALSE && appDelegate.EnemyThree.alive == FALSE && appDelegate.EnemyFour.alive == FALSE)
     {
-        [appDelegate.Player setLvl:50];
+        [appDelegate.Player setLvl:49];
         
         appDelegate.enemySelected = 0;
         int howManyEnemies = 0;
@@ -840,11 +840,11 @@ BOSS AT LVL 100 99 % <-
                 break;
             case 4:
                 // thunder
-                _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(_baddy.frame.origin.x, 0, _baddy.frame.size.width, _baddyTwo.frame.origin.y)];
+                _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(20, 0, _baddy.frame.size.width*2, _baddyTwo.frame.origin.y)];
                 [_baddy addSubview:_magicLayer];
                 [_magicLayer setAnimationImages:_thunderAttack];
-                [_magicLayer setAnimationDuration:1];
-                [_magicLayer setAnimationRepeatCount:1];
+                [_magicLayer setAnimationDuration:.7];
+                [_magicLayer setAnimationRepeatCount:2];
                 [_magicLayer startAnimating];
                 
                 [appDelegate.Player setSpellDamage:40];
