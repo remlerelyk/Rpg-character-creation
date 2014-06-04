@@ -24,6 +24,7 @@
 @property int currentHealth;
 @property int currentMagic;
 @property int frozenChance;
+@property int whatSpell;
 @property BOOL overdriveUsed;
 - (IBAction)Attack:(UIButton *)sender;
 - (IBAction)Overdrive:(UIButton *)sender;
