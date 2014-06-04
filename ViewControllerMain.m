@@ -253,7 +253,7 @@ BOSS AT LVL 100 99 % <-
     _hit = [[NSBundle mainBundle] pathForResource:@"hit" ofType:@"mp3"];
     _death = [[NSBundle mainBundle] pathForResource:@"death" ofType:@"mp3"];
     _cure = [[NSBundle mainBundle] pathForResource:@"cure" ofType:@"mp3"];
-    
+    _ice = [[NSBundle mainBundle] pathForResource:@"ice" ofType:@"mp3"];
     
     
     if(appDelegate.isMusic){
