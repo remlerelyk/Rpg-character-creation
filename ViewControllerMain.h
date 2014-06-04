@@ -28,7 +28,7 @@
 - (IBAction)Attack:(UIButton *)sender;
 - (IBAction)Overdrive:(UIButton *)sender;
 - (IBAction)Magic:(UIButton *)sender;
-@property NSString * audioPath,* hit,* death,* cure,* bossMusic,* select,* ice;
+@property NSString * audioPath,* hit,* death,* cure,* bossMusic,* select,* ice, * fire,* thunder, * madness;
 @property (nonatomic, strong) NSString * attackString;
 @property NSURL * audioURL,* audioSFX;
 @property UIImageView *Animation, * baddy,* baddyTwo,* baddyThree, * baddyFour, * selector, * magicLayer;

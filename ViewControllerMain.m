@@ -254,7 +254,8 @@ BOSS AT LVL 100 99 % <-
     _death = [[NSBundle mainBundle] pathForResource:@"death" ofType:@"mp3"];
     _cure = [[NSBundle mainBundle] pathForResource:@"cure" ofType:@"mp3"];
     _ice = [[NSBundle mainBundle] pathForResource:@"ice" ofType:@"mp3"];
-    
+    _fire = [[NSBundle mainBundle] pathForResource:@"fire" ofType:@"mp3"];
+    _thunder = [[NSBundle mainBundle] pathForResource:@"thunder" ofType:@"mp3"];
     
     if(appDelegate.isMusic){
     _audioPath = [[NSBundle mainBundle] pathForResource:@"ff7bat" ofType:@"mp3"];
@@ -778,6 +779,9 @@ BOSS AT LVL 100 99 % <-
             case 2:
 
                     // cure
+                _audioSFX = [NSURL fileURLWithPath:_cure];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                     [appDelegate.Player setSpellDamage:100];
                     [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
                     [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
@@ -792,6 +796,9 @@ BOSS AT LVL 100 99 % <-
                 //Fire
                 [appDelegate.Player setSpellDamage:50];
                 [_attackLabel setText:_attackString];
+                _audioSFX = [NSURL fileURLWithPath:_fire];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                 if(appDelegate.enemySelected == 1)
                 {
                     _magicLayer = [[UIImageView alloc]initWithFrame:_baddy.frame];
@@ -846,7 +853,9 @@ BOSS AT LVL 100 99 % <-
                 [_magicLayer setAnimationDuration:.7];
                 [_magicLayer setAnimationRepeatCount:2];
                 [_magicLayer startAnimating];
-
+                _audioSFX = [NSURL fileURLWithPath:_thunder];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                 
                 [appDelegate.Player setSpellDamage:40];
                 [_attackLabel setText:_attackString];
@@ -875,7 +884,9 @@ BOSS AT LVL 100 99 % <-
                     [_magicLayer setAnimationDuration:.7];
                     [_magicLayer setAnimationRepeatCount:2];
                     [_magicLayer startAnimating];
-                    
+                    _audioSFX = [NSURL fileURLWithPath:_thunder];
+                    appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                    [appDelegate.sfx play];
                     [appDelegate.Player setSpellDamage:40];
                     [_attackLabel setText:_attackString];
                     [_playerDamageLabelFour setText:[NSString stringWithFormat:@"     %i", appDelegate.Player.spellDamage]];
@@ -961,6 +972,9 @@ BOSS AT LVL 100 99 % <-
            
             case 10:
                     //Bacure
+                _audioSFX = [NSURL fileURLWithPath:_cure];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                     [appDelegate.Player setSpellDamage:500];
                     [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
                     [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
@@ -974,7 +988,9 @@ BOSS AT LVL 100 99 % <-
                 //Bafire
                 [appDelegate.Player setSpellDamage:2000];
                 [_attackLabel setText:_attackString];
-                
+                _audioSFX = [NSURL fileURLWithPath:_fire];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                 
                 if(appDelegate.enemySelected == 1)
                 {
@@ -1002,7 +1018,9 @@ BOSS AT LVL 100 99 % <-
                 [appDelegate.Player setSpellDamage:1200];
                 [_attackLabel setText:_attackString];
                 
-                
+                _audioSFX = [NSURL fileURLWithPath:_thunder];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                 if(appDelegate.Enemy.alive == TRUE)
                 {
                     [_playerDamageLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
@@ -1090,6 +1108,9 @@ BOSS AT LVL 100 99 % <-
                 break;
             case 20:
                     //Cracure
+                _audioSFX = [NSURL fileURLWithPath:_cure];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                     [appDelegate.Player setSpellDamage:1500];
                     [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
                     [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
@@ -1104,7 +1125,9 @@ BOSS AT LVL 100 99 % <-
                 //Bolufire
                 [appDelegate.Player setSpellDamage:4500];
                 [_attackLabel setText:_attackString];
-                
+                _audioSFX = [NSURL fileURLWithPath:_fire];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                 
                 if(appDelegate.enemySelected == 1)
                 {
