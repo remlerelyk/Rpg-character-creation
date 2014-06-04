@@ -894,6 +894,10 @@ BOSS AT LVL 100 99 % <-
                 [_magicLayer setAnimationDuration:.3];
                 [_magicLayer setAnimationRepeatCount:3];
                 [_magicLayer startAnimating];
+                _audioSFX = [NSURL fileURLWithPath:_ice];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
+                
                 
                 if(appDelegate.Enemy.alive == TRUE)
                 {
@@ -1024,6 +1028,9 @@ BOSS AT LVL 100 99 % <-
                 //Baice
                 [appDelegate.Player setSpellDamage:400];
                 [_attackLabel setText:_attackString];
+                _audioSFX = [NSURL fileURLWithPath:_ice];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                 
                 
                 if(appDelegate.Enemy.alive == TRUE)
@@ -1151,7 +1158,9 @@ BOSS AT LVL 100 99 % <-
                 //Sheer Ice
                 [appDelegate.Player setSpellDamage:1000];
                 [_attackLabel setText:_attackString];
-                
+                _audioSFX = [NSURL fileURLWithPath:_ice];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                 
                 if(appDelegate.Enemy.alive == TRUE)
                 {
