@@ -1355,7 +1355,9 @@ BOSS AT LVL 100 99 % <-
                 [_magicLayer setAnimationDuration:.3];
                 [_magicLayer setAnimationRepeatCount:3];
                 [_magicLayer startAnimating];
-
+                _audioSFX = [NSURL fileURLWithPath:_ice];
+                appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
+                [appDelegate.sfx play];
                 if(appDelegate.Enemy.alive == TRUE)
                 {
                     _frozenChance = arc4random() % 100 + 1;
