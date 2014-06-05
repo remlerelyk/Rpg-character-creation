@@ -42,8 +42,8 @@
     {
         NSLog(@"Lvl up");
         _lvl++;
-        
         _totalStats += 1;
+        _lvlUp = TRUE;
         switch (_lvl)
         {
             case 46 ... 50:

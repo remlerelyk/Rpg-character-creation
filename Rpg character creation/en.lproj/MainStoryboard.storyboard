@@ -864,14 +864,22 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="conMinus" destination="iwn-ra-kIc" id="dR7-Eq-iEa"/>
+                        <outlet property="conPlus" destination="9n4-mO-pSa" id="wja-hM-0Qv"/>
                         <outlet property="descriptionTextView" destination="RLT-QM-uLc" id="QpU-PK-S1d"/>
+                        <outlet property="dexMinus" destination="Mc4-BM-dCG" id="IPs-Vd-sJF"/>
+                        <outlet property="dexPlus" destination="hIM-qS-8Ga" id="hij-AV-Ahh"/>
                         <outlet property="dexterityLabel" destination="71G-ot-YlL" id="SfF-BM-ra4"/>
                         <outlet property="healthLabel" destination="r5n-XH-Okr" id="6bp-8q-mKS"/>
+                        <outlet property="intMinus" destination="fFD-Ug-fOL" id="PGP-IB-OqJ"/>
+                        <outlet property="intPlus" destination="SRg-cL-Jjz" id="U6X-Qm-d2l"/>
                         <outlet property="labelNewAbility" destination="5Fc-zT-hw4" id="Yv9-A2-ZY8"/>
                         <outlet property="levelUpLabel" destination="97L-Nj-YE9" id="fbM-JC-FhS"/>
                         <outlet property="magicLabel" destination="Afq-TV-xLh" id="ELv-gW-6S1"/>
                         <outlet property="statDescribeLabel" destination="jAp-4x-KWi" id="qSu-mr-4CX"/>
                         <outlet property="strengthLabel" destination="Wbu-xr-EHO" id="em4-u1-BTd"/>
+                        <outlet property="strengthMinus" destination="a6U-NU-ITP" id="3yZ-uD-Rpk"/>
+                        <outlet property="strengthPlus" destination="RXJ-P3-Gq5" id="ylG-BI-qZB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fD4-vd-0pc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -967,91 +975,6 @@
             <point key="canvasLocation" x="1112" y="62"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="ExpController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExpController.h"/>
-            <relationships>
-                <relationship kind="action" name="dexterityMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="dexterityPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="healthMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="healthPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="leaveView:" candidateClass="UIButton"/>
-                <relationship kind="action" name="magicMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="magicPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="strengthMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="strengthPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="descriptionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="dexterityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="labelNewAbility" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="levelUpLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="magicLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statDescribeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="strengthLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MagicViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MagicViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="magicTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="OverdriveViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OverdriveViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="overdriveLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="overdriveTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dexterityMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="dexterityPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="femaleImageButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="healthMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="healthPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="magicMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="magicPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="maleImageButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="strengthMinusButton:" candidateClass="UIButton"/>
-                <relationship kind="action" name="strengthPositiveButton:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="characterImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="descriptionTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="dexterityLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="magicLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statDescribeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="strengthLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewControllerMain" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewControllerMain.h"/>
-            <relationships>
-                <relationship kind="action" name="Attack:" candidateClass="UIButton"/>
-                <relationship kind="action" name="Magic:" candidateClass="UIButton"/>
-                <relationship kind="action" name="Overdrive:" candidateClass="UIButton"/>
-                <relationship kind="action" name="unFreezeButton:" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="attackLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="attackLabelTwo" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enemyDamageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enemyDamageLabelTwo" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="frozenLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="healthLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="manaLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playerDamageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playerDamageLabelFour" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playerDamageLabelThree" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playerDamageLabelTwo" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playerHealLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="unFreeze" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

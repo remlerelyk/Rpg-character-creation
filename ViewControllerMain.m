@@ -69,7 +69,6 @@ BOSS AT LVL 100 99 % <-
     //[appDelegate.Player cleanStats];
     NSLog(@"Player Level: %i",appDelegate.Player.lvl);
     
-    
     //[appDelegate.Player setLvl:33];
     if(appDelegate.Enemy.alive == FALSE && appDelegate.EnemyTwo.alive == FALSE && appDelegate.EnemyThree.alive == FALSE && appDelegate.EnemyFour.alive == FALSE)
     {
@@ -82,11 +81,11 @@ BOSS AT LVL 100 99 % <-
         {
             howManyEnemies = 1;
         }
-        else if(appDelegate.Player.lvl < 8 && appDelegate.Player.lvl > 3)
+        else if(appDelegate.Player.lvl > 3  && appDelegate.Player.lvl <= 8 )
         {
             howManyEnemies = arc4random() % 2 + 1;
         }
-        else if( appDelegate.Player.lvl > 9 && appDelegate.Player.lvl <= 49)
+        else if( appDelegate.Player.lvl >= 9 && appDelegate.Player.lvl <= 49)
         {
             howManyEnemies = arc4random() % 3 +1;
         }
@@ -162,7 +161,8 @@ BOSS AT LVL 100 99 % <-
 
             appDelegate.EnemyFour.alive = TRUE;
 
-            
+            [appDelegate.EnemyFour setCon:30000];
+            [appDelegate.EnemyFour setStr:150];
             _baddyFour = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, appDelegate.EnemyFour.width, appDelegate.EnemyFour.height)];
         }
         
@@ -182,13 +182,13 @@ BOSS AT LVL 100 99 % <-
         
         
        //5 x 100 + 10= 510
-        //[appDelegate.Player setDexterity:150];//150
-        //[appDelegate.Player setCurHealth:9000];
-        //[appDelegate.Player setTotalHealth:9000];
-        //[appDelegate.Player setHealth:195];//195
+        
+        
+        
+        //[appDelegate.Player setDexterity:200];//150
+        //[appDelegate.Player setHealth:300];//195
         //[appDelegate.Player setDamageTaken:10000];
         //[appDelegate.Player setMagic:187];//187
-        //[appDelegate.Player setCurMagic:120];
         //[appDelegate.Player setStrength:184];//184
         //[appDelegate.Player cleanStats];
         
@@ -698,10 +698,6 @@ BOSS AT LVL 100 99 % <-
         
         
         appDelegate.overdriveUsed = FALSE;
-        [_playerDamageLabel setText:@""];
-        [_playerDamageLabelTwo setText:@""];
-        [_playerDamageLabelThree setText:@""];
-        [_playerDamageLabelFour setText:@""];
         appDelegate.enemySelected = 0;
         if(appDelegate.enemySelected == 0)
         {
@@ -795,7 +791,7 @@ BOSS AT LVL 100 99 % <-
 
             case 3:
                 //Fire
-                [appDelegate.Player setSpellDamage:50];
+                [appDelegate.Player setSpellDamage:25];
                 [_attackLabel setText:_attackString];
                 _audioSFX = [NSURL fileURLWithPath:_fire];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
@@ -851,16 +847,11 @@ BOSS AT LVL 100 99 % <-
                 // thunder
 
                 _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(20, 0, _baddy.frame.size.width*2, _baddyTwo.frame.origin.y)];
-                [_baddy addSubview:_magicLayer];
-                [_magicLayer setAnimationImages:_thunderAttack];
-                [_magicLayer setAnimationDuration:.7];
-                [_magicLayer setAnimationRepeatCount:2];
-                [_magicLayer startAnimating];
                 _audioSFX = [NSURL fileURLWithPath:_thunder];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
                 [appDelegate.sfx play];
 
-                [appDelegate.Player setSpellDamage:40];
+                [appDelegate.Player setSpellDamage:15];
                 [_attackLabel setText:_attackString];
 
                 if(appDelegate.EnemyThree.alive == TRUE)
@@ -895,7 +886,7 @@ BOSS AT LVL 100 99 % <-
                     _audioSFX = [NSURL fileURLWithPath:_thunder];
                     appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
                     [appDelegate.sfx play];
-                    [appDelegate.Player setSpellDamage:40];
+                    [appDelegate.Player setSpellDamage:15];
                     [_attackLabel setText:_attackString];
                     [_playerDamageLabelFour setText:[NSString stringWithFormat:@"     %i", appDelegate.Player.spellDamage]];
                     [appDelegate.EnemyFour setCon:appDelegate.EnemyFour.Con - appDelegate.Player.spellDamage];
@@ -908,15 +899,8 @@ BOSS AT LVL 100 99 % <-
                 break;
             case 5:
                 //Ice
-                [appDelegate.Player setSpellDamage:20];
+                [appDelegate.Player setSpellDamage:10];
                 [_attackLabel setText:_attackString];
-                _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, [UIImage imageNamed:@"ice0.png"].size.width*.5, [UIImage imageNamed:@"ice0.png"].size.height*.5)];
-                [self.view addSubview:_magicLayer];
-                [_magicLayer setAnimationImages:_iceAttack];
-                [_magicLayer setAnimationDuration:.3];
-                [_magicLayer setAnimationRepeatCount:3];
-                [_magicLayer startAnimating];
-                _audioSFX = [NSURL fileURLWithPath:_ice];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
                 [appDelegate.sfx play];
                 
@@ -1001,7 +985,7 @@ BOSS AT LVL 100 99 % <-
                 break;
             case 12:
                 //Bafire
-                [appDelegate.Player setSpellDamage:2000];
+                [appDelegate.Player setSpellDamage:200];
                 [_attackLabel setText:_attackString];
                 _audioSFX = [NSURL fileURLWithPath:_fire];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
@@ -1057,7 +1041,7 @@ BOSS AT LVL 100 99 % <-
                 break;
             case 15:
                 //Bathunder
-                [appDelegate.Player setSpellDamage:200];
+                [appDelegate.Player setSpellDamage:100];
                 [_attackLabel setText:_attackString];
                 
 
@@ -1183,7 +1167,7 @@ BOSS AT LVL 100 99 % <-
                 _audioSFX = [NSURL fileURLWithPath:_cure];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
                 [appDelegate.sfx play];
-                    [appDelegate.Player setSpellDamage:1500];
+                    [appDelegate.Player setSpellDamage:2000];
                     [appDelegate.Player setCurHealth:appDelegate.Player.curHealth + appDelegate.Player.spellDamage];
                     [_playerHealLabel setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
                     if(appDelegate.Player.curHealth > appDelegate.Player.totalHealth)
@@ -1195,7 +1179,7 @@ BOSS AT LVL 100 99 % <-
                 
             case 23:
                 //Bolufire
-                [appDelegate.Player setSpellDamage:4500];
+                [appDelegate.Player setSpellDamage:500];
                 [_attackLabel setText:_attackString];
                 _audioSFX = [NSURL fileURLWithPath:_fire];
                 appDelegate.sfx =[[AVAudioPlayer alloc] initWithContentsOfURL:_audioSFX error:nil];
@@ -1252,7 +1236,7 @@ BOSS AT LVL 100 99 % <-
             case 27:
                 //Voltunder
             {
-                [appDelegate.Player setSpellDamage:400];
+                [appDelegate.Player setSpellDamage:250];
                 [_attackLabel setText:_attackString];
                 
                 if(appDelegate.EnemyFour.alive == TRUE)
@@ -1334,7 +1318,7 @@ BOSS AT LVL 100 99 % <-
                 break;
                 case 30:
                 //Sheer Ice
-                [appDelegate.Player setSpellDamage:200];
+                [appDelegate.Player setSpellDamage:150];
                 [_attackLabel setText:_attackString];
                 
                 _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(-30, 80, [UIImage imageNamed:@"ice0.png"].size.width/2, [UIImage imageNamed:@"ice0.png"].size.height/2)];
@@ -1440,6 +1424,12 @@ BOSS AT LVL 100 99 % <-
                 [_magicLayer setAnimationRepeatCount:3];
                 [_magicLayer startAnimating];
                 
+                if(appDelegate.EnemyFour.alive == TRUE)
+                {
+                    _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(-500, 0, _baddyFour.frame.size.width*7, _baddyFour.frame.origin.y*20)];
+                    [_baddyFour addSubview:_magicLayer];
+                    //[_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                }
                 if(appDelegate.EnemyThree.alive == TRUE)
                 {
                     _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(-140, -50, _baddy.frame.size.width*7, _baddyTwo.frame.origin.y)];
@@ -1462,7 +1452,12 @@ BOSS AT LVL 100 99 % <-
                 [_magicLayer setAnimationDuration:.7];
                 [_magicLayer setAnimationRepeatCount:1];
                 [_magicLayer startAnimating];
-                
+                if(appDelegate.EnemyFour.alive == TRUE)
+                {
+                    _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(-400, 0, _baddyFour.frame.size.width*7, _baddyFour.frame.origin.y*20)];
+                    [_baddyFour addSubview:_magicLayer];
+                    //[_playerDamageLabelThree setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+                }
                 if(appDelegate.EnemyThree.alive == TRUE)
                 {
                     _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(-90, -50, _baddy.frame.size.width*7, _baddyTwo.frame.origin.y)];
@@ -1487,13 +1482,26 @@ BOSS AT LVL 100 99 % <-
                 [_magicLayer startAnimating];
                 
                 [self performSelector:@selector(thunderAnimation) withObject:self afterDelay:.72];
-                
+                if(appDelegate.EnemyFour.alive == FALSE)
+                {
                 _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(-50, -230, _baddy.frame.size.width * 5, _baddyTwo.frame.origin.y * 3)];
                 [_baddyThree addSubview:_magicLayer];
+                [_baddyTwo addSubview:_magicLayer];
+                [_baddy addSubview:_magicLayer];
                 [_magicLayer setAnimationImages:_fireAttack];
                 [_magicLayer setAnimationDuration:.3];
                 [_magicLayer setAnimationRepeatCount:3];
                 [_magicLayer startAnimating];
+                }
+                else
+                {
+                    _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(-200, 0, _baddyFour.frame.size.width * 4, _baddyFour.frame.origin.y * 25)];
+                    [_baddyFour addSubview:_magicLayer];
+                    [_magicLayer setAnimationImages:_fireAttack];
+                    [_magicLayer setAnimationDuration:.3];
+                    [_magicLayer setAnimationRepeatCount:3];
+                    [_magicLayer startAnimating];
+                }
 
                 if(appDelegate.Enemy.alive == TRUE)
                 {
@@ -2178,6 +2186,7 @@ BOSS AT LVL 100 99 % <-
                     [_playerDamageLabelTwo setText:@""];
                     [_playerDamageLabelThree setText:@""];
                     [_playerDamageLabelFour setText:@""];
+                    [_playerHealLabel setText:@""];
                     if(appDelegate.Enemy.Con <= 0)
                     {
                         [appDelegate.Enemy setCon:0];
@@ -2897,6 +2906,12 @@ BOSS AT LVL 100 99 % <-
     NSLog(@" waht spell%i",_whatSpell);
     if(_whatSpell == 1)
     {
+        if(appDelegate.EnemyFour.alive == TRUE)
+        {
+            _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(-980, 0, _baddyFour.frame.size.width*14, _baddyFour.frame.origin.y*20)];
+            [_baddyFour addSubview:_magicLayer];
+           // [_playerDamageLabelFour setText:[NSString stringWithFormat:@"%i", appDelegate.Player.spellDamage]];
+        }
         if(appDelegate.EnemyThree.alive == TRUE)
         {
             _magicLayer = [[UIImageView alloc]initWithFrame:CGRectMake(-325, -50, _baddy.frame.size.width*14, _baddyTwo.frame.origin.y)];

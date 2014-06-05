@@ -145,7 +145,6 @@ Spell = spell cost
             [_magicArrayText replaceObjectAtIndex:1 withObject:@"Fire"];
             
         case 2:
-            NSLog(@"Fire");
             [_magicArray replaceObjectAtIndex:0 withObject:@"Cure:2MP"];
             [_magicArrayText replaceObjectAtIndex:0 withObject:@"Cure"];
             break;

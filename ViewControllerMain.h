@@ -15,7 +15,7 @@
 #import "ExpController.h"
 @interface ViewControllerMain : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
-    AppDelegate *appDelegate;
+    AppDelegate * appDelegate;
     //Enemy * enemy;
 
 }

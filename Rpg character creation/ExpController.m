@@ -84,52 +84,59 @@
         if (temp==280) {
            _exp.frame=CGRectMake(16, 16, 1, 16);
             appDelegate.lastValue = 1;
+            
             [_levelUpLabel setText:@"Level UP!!!"];
              [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
             switch (appDelegate.Player.lvl)
             {
-                case 80:
-                    [_labelNewAbility setText:@"Learned Dance of the Nine Swords"];
-                    break;
-                case 75:
+                
+                case 43:
                     [_labelNewAbility setText:@"Learned SheerVoltabalu"];
                      break;
-                case 61:
+                case 40:
+                    [_labelNewAbility setText:@"Learned Dance of the Nine Swords"];
+                    break;
+                case 38:
                     [_labelNewAbility setText:@"Learned Sheer Ice"];
                      break;
-                case 50:
-                    [_labelNewAbility setText:@"Learned Between the eyes"];
-                     break;
-                case 49:
+                
+                case 34:
                     [_labelNewAbility setText:@"Learned Voltunder"];
                     break;
-                case 42:
+                case 30:
+                    [_labelNewAbility setText:@"Learned Between the eyes"];
+                    break;
+                case 29:
                     [_labelNewAbility setText:@"Learned Cracure"];
                      break;
-                case 40:
-                    [_labelNewAbility setText:@"Learned Jabbing the Abdomen"];
-                    break;
-                case 34:
+                
+                case 24:
                     [_labelNewAbility setText:@"Learned Balufire"];
                      break;
-                case 30:
-                    [_labelNewAbility setText:@"Learned Smoltering Blade"];
+                case 20:
+                    [_labelNewAbility setText:@"Learned Jabbing the Abdomen"];
                     break;
-                case 27:
+                case 19:
                     [_labelNewAbility setText:@"Learned Baice"];
                      break;
-                case 21:
+                case 16:
                     [_labelNewAbility setText:@"Learned Bathunder"];
                      break;
-                case 20:
-                    [_labelNewAbility setText:@"Learned Tri-Magic"];
-                    break;
                 case 15:
+                    [_labelNewAbility setText:@"Learned Smoltering Blade"];
+                    break;
+                case 13:
                     [_labelNewAbility setText:@"Learned Bacure"];
                      break;
+                case 11:
+                    [_labelNewAbility setText:@"Learned Tri-Magic"];
+                    break;
                 case 10:
                     [_labelNewAbility setText:@"Learned Bafire and MultiSlash"];
                      break;
+                case 6:
+                    [_labelNewAbility setText:@"Learned MultiSlash"];
+                    break;
                 case 7:
                     [_labelNewAbility setText:@"Learned Ice"];
                      break;
@@ -211,6 +218,50 @@
             }];
     }
      */
+
+    if(appDelegate.Player.lvlUp == FALSE)
+    {
+        [_strengthMinus setAlpha:0];
+        [_strengthPlus setAlpha:0];
+        [_conMinus setAlpha:0];
+        [_conPlus setAlpha:0];
+        [_intMinus setAlpha:0];
+        [_intPlus setAlpha:0];
+        [_dexMinus setAlpha:0];
+        [_dexPlus setAlpha:0];
+        
+        [_strengthMinus setUserInteractionEnabled:FALSE];
+        [_strengthPlus setUserInteractionEnabled:FALSE];
+        [_conPlus setUserInteractionEnabled:FALSE];
+        [_conMinus setUserInteractionEnabled:FALSE];
+        [_dexMinus setUserInteractionEnabled:FALSE];
+        [_dexPlus setUserInteractionEnabled:FALSE];
+        [_intMinus setUserInteractionEnabled:FALSE];
+        [_intPlus setUserInteractionEnabled:FALSE];
+    }
+    if(appDelegate.Player.lvlUp == TRUE)
+    {
+        [_strengthMinus setAlpha:1];
+        [_strengthPlus setAlpha:1];
+        [_conMinus setAlpha:1];
+        [_conPlus setAlpha:1];
+        [_intMinus setAlpha:1];
+        [_intPlus setAlpha:1];
+        [_dexMinus setAlpha:1];
+        [_dexPlus setAlpha:1];
+        
+        [_strengthMinus setUserInteractionEnabled:TRUE];
+        [_strengthPlus setUserInteractionEnabled:TRUE];
+        [_conPlus setUserInteractionEnabled:TRUE];
+        [_conMinus setUserInteractionEnabled:TRUE];
+        [_dexMinus setUserInteractionEnabled:TRUE];
+        [_dexPlus setUserInteractionEnabled:TRUE];
+        [_intMinus setUserInteractionEnabled:TRUE];
+        [_intPlus setUserInteractionEnabled:TRUE];
+        
+        
+        appDelegate.Player.lvlUp = FALSE;
+    }
 }
 // All of the button actions
 - (IBAction)magicMinusButton:(UIButton *)sender
@@ -223,7 +274,6 @@
     [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", [appDelegate.Player magic]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much MP or magic points you have. It also Increases damage done by spells."];
-    [appDelegate.Player cleanStats];
 }
 
 - (IBAction)magicPositiveButton:(UIButton *)sender
@@ -236,7 +286,6 @@
     [_magicLabel setText:[NSString stringWithFormat:@"Int: %i", [appDelegate.Player magic]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much MP or magic points you have. It also Increases damage done by spells. When you're MP reaches 0 you can no longer cast any spells, and you must either level up or use a mana potion to restore it."];
-    [appDelegate.Player cleanStats];
 }
 - (IBAction)strengthMinusButton:(UIButton *)sender
 {
@@ -249,7 +298,6 @@
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", [appDelegate.Player strength]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much damage you deal with weapons"];
-    [appDelegate.Player cleanStats];
 }
 
 - (IBAction)strengthPositiveButton:(UIButton *)sender
@@ -262,7 +310,6 @@
     [_strengthLabel setText:[NSString stringWithFormat:@"Str: %i", [appDelegate.Player strength]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much damage you deal with weapons"];
-    [appDelegate.Player cleanStats];
 }
 
 - (IBAction)dexterityMinusButton:(UIButton *)sender
@@ -274,8 +321,7 @@
     }
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", [appDelegate.Player dexterity]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
-    [_descriptionTextView setText:@"This stat affects who goes first in the combat phase, it also affects your critical hit chance."];
-    [appDelegate.Player cleanStats];
+    [_descriptionTextView setText:@"Every 13 points of dex increases how many times you hit the enemy."];
 }
 
 - (IBAction)dexterityPositiveButton:(UIButton *)sender
@@ -287,8 +333,7 @@
     }
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", [appDelegate.Player dexterity]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
-    [_descriptionTextView setText:@"This stat affects who goes first in the combat phase, it also affects your critical hit chance."];
-    [appDelegate.Player cleanStats];
+    [_descriptionTextView setText:@"Every 13 points of dex increases how many times you hit the enemy.."];
 }
 
 - (IBAction)healthMinusButton:(UIButton *)sender
@@ -301,7 +346,6 @@
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", [appDelegate.Player health]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to restore your health."];
-    [appDelegate.Player cleanStats];
 }
 
 
@@ -327,7 +371,6 @@
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", [appDelegate.Player health]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
     [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to restore your health."];
-    [appDelegate.Player cleanStats];
 }
 
 

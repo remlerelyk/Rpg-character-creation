@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <math.h>
-@interface Player : NSObject
 
+@interface Player : NSObject
 @property int exp,lvl,expLvUP,magic,strength,dexterity,health,totalHealth,totalMagic,curMagic,curStrength,curDexterity,curHealth,totalStats, spellCost, playerDamage, spellDamage, damageTaken, numberOfHits;
 @property (nonatomic, strong) NSString * curMagicSkill;
 @property float amoutOfProgress;
-@property BOOL isMale, isFrozen;
+@property BOOL isMale, isFrozen,lvlUp;
 
 -(void)addExperiance: (int) e;
 -(void)cleanStats;

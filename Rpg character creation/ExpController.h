@@ -16,8 +16,16 @@
 @property UIImageView * Frame,* exp;
 @property NSString * iWin,* Win;
 @property NSURL * audioURL,* audioSFX;
+@property (weak, nonatomic) IBOutlet UIButton *dexMinus;
+@property (weak, nonatomic) IBOutlet UIButton *dexPlus;
+@property (weak, nonatomic) IBOutlet UIButton *conMinus;
+@property (weak, nonatomic) IBOutlet UIButton *conPlus;
+@property (weak, nonatomic) IBOutlet UIButton *intMinus;
+@property (weak, nonatomic) IBOutlet UIButton *intPlus;
 
+@property (weak, nonatomic) IBOutlet UIButton *strengthPlus;
 
+@property (weak, nonatomic) IBOutlet UIButton *strengthMinus;
 @property (weak, nonatomic) IBOutlet UILabel *statDescribeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *strengthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *levelUpLabel;

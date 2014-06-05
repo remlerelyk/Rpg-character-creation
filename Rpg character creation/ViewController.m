@@ -117,7 +117,7 @@
     }
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", [appDelegate.Player dexterity]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
-    [_descriptionTextView setText:@"This stat affects who goes first in the combat phase, it also affects your critical hit chance."];
+    [_descriptionTextView setText:@"Every 13 points of dex increases how many times you hit the enemy."];
     [appDelegate.Player cleanStats];
 }
 
@@ -130,7 +130,7 @@
     }
     [_dexterityLabel setText:[NSString stringWithFormat:@"Dex: %i", [appDelegate.Player dexterity]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
-    [_descriptionTextView setText:@"This stat affects who goes first in the combat phase, it also affects your critical hit chance."];
+    [_descriptionTextView setText:@"Every 13 points of dex increases how many times you hit the enemy.."];
     [appDelegate.Player cleanStats];
 }
 
@@ -143,7 +143,7 @@
     }
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", [appDelegate.Player health]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
-    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to restore your health."];
+    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, Use heal magic or level up to restore your health."];
     [appDelegate.Player cleanStats];
 }
 
@@ -156,7 +156,7 @@
     }
     [_healthLabel setText:[NSString stringWithFormat:@"Con: %i", [appDelegate.Player health]]];
     [_statDescribeLabel setText:[NSString stringWithFormat:@"You have %i stat points left", [appDelegate.Player totalStats]]];
-    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, use a health potion or level up to restore your health."];
+    [_descriptionTextView setText:@"This stat affects how much health you have, when you're health reaches 0 you lose, Use heal magic or level up to restore your health."];
     [appDelegate.Player cleanStats];
 }
 - (IBAction)maleImageButton:(UIButton *)sender
